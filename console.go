@@ -16,7 +16,7 @@ func Title() {
         Version: %s%s%s
 		Developed by %s名無し｡(@sevenc-nanashi)%s
 		Fork by %sTootieJin%s
-        https://github.com/sevenc-nanashi/pjsekai-overlay
+        https://github.com/TootieJin/pjsekai-overlay-APPEND
       %s-------------------------------------------------------------------------------%s
     `))+"\n\n",
 		RgbColorEscape(0x00afc7), ResetEscape(),
