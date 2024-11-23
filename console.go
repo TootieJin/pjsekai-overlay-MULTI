@@ -14,8 +14,8 @@ func Title() {
       %s== pjsekai-overlay-APPEND -----------------------------------------------------------%s
         %sフォークプロセカ風動画作成補助ツール / Forked PJSekai-style video creation tool%s
         Version: %s%s%s
-        Developed by %s名無し｡(@sevenc-nanashi)%s
-		APPENDed by %sTootieJin%s
+		Developed by %s名無し｡(@sevenc-nanashi)%s
+		Fork by %sTootieJin%s
         https://github.com/sevenc-nanashi/pjsekai-overlay
       %s-------------------------------------------------------------------------------%s
     `))+"\n\n",
