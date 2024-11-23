@@ -1,6 +1,6 @@
 # pjsekai-overlay-APPEND / Forked PJSekai-style video creation tool
 
-**English** / [日本語](./README_jp.md)
+**English** / [日本語](README_jp.md)
 
 Fork of [pjsekai-overlay](https://github.com/sevenc-nanashi/pjsekai-overlay) by [TootieJin](https://tootiejin.com).
 
@@ -10,14 +10,14 @@ Fork of [pjsekai-overlay](https://github.com/sevenc-nanashi/pjsekai-overlay) by 
 > Only use this tool __if you can figure it out yourself.__ **DO NOT open issues, or request help in Sonolus / Chart Cyanvas Discord servers**.
 
 This is a forked version of pjsekai-overlay with additional features originally not in the main repo, including:
-- [Extra assets](./assets/extra assets/)
+- [Extra assets](assets/extra assets)
 - Added/adjusted elements to look identical to the official photography
 - Make 1080p videos quickly
 
 
 ## Requirements
 
-- [AviUtl (JP)](http://spring-fragrance.mints.ne.jp/aviutl/) + [Advanced Editing plug-in](http://spring-fragrance.mints.ne.jp/aviutl/) （[Tutorial](https://aviutl.info/dl-innsuto-ru/)）
+- [AviUtl (JP)](http://spring-fragrance.mints.ne.jp/aviutl/) + [Advanced Editing plug-in](http://spring-fragrance.mints.ne.jp/aviutl/) ([Tutorial](https://aviutl.info/dl-innsuto-ru/))
   （Recommended: [patch.aul](https://scrapbox.io/ePi5131/patch.aul)）
 - [AVIUtl_Unmult](https://github.com/mes51/AVIUtl_Unmult)
 - Basic knowledge of AviUtl
@@ -29,7 +29,6 @@ This is a forked version of pjsekai-overlay with additional features originally 
    - Turn on「Hide UI」
 3. Transfer the video file to your computer.
    - Download the [ffmpeg](https://www.ffmpeg.org/) encoder if you haven't.
-Once you're done, move on to "Usage Guide" below.
 
 ## Usage Guide (pjsekai-overlay-APPEND)
 
@@ -41,7 +40,7 @@ Once you're done, move on to "Usage Guide" below.
 4. Open `pjsekai-overlay.exe`
 5. Input the chart ID.
    - Potato Leaves prefix: `ptlv-`, Chart Cyanvas prefix: `chcy-`
-6. Import object file by navigating to your pjsekai-overlaydist/[chart ID] directory, and select main.exo
+6. Import object file by navigating to your pjsekai-overlay/dist/[chart ID] directory, and select main.exo
 
 ## Usage Guide (AviUtl JP)
 
