@@ -23,6 +23,7 @@ func Title() {
 		RgbColorEscape(0x00afc7), ResetEscape(),
 		RgbColorEscape(0x0f6ea3), pjsekaioverlay.Version, ResetEscape(),
 		RgbColorEscape(0x48b0d5), ResetEscape(),
+		RgbColorEscape(0x48b0d5), ResetEscape(),
 		RgbColorEscape(0xff5a91), ResetEscape(),
 	)
 
