@@ -10,7 +10,7 @@ Fork of [pjsekai-overlay](https://github.com/sevenc-nanashi/pjsekai-overlay) by 
 > Only use this tool __if you can figure it out yourself.__ **DO NOT open issues, or request help in Sonolus / Chart Cyanvas Discord servers**.
 
 This is a forked version of pjsekai-overlay with additional features originally not in the main repo, including:
-- [Extra assets](assets/extra assets)
+- [Extra assets](./assets/extra%20assets)
 - Added/adjusted elements to look identical to the official photography
 - Make 1080p videos quickly
 
