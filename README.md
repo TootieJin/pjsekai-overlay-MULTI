@@ -15,7 +15,6 @@ This is a forked version of pjsekai-overlay with additional features originally 
 - Added/adjusted elements to look identical to the official photography
 - Make 1080p videos quickly
 
-
 ## Requirements
 
 - [AviUtl (JP)](http://spring-fragrance.mints.ne.jp/aviutl/) + [Advanced Editing plug-in](http://spring-fragrance.mints.ne.jp/aviutl/) ([Tutorial](https://aviutl.info/dl-innsuto-ru/))
