@@ -73,7 +73,7 @@ PJSekai-style video creation tool:
 
 ## Video Example
 
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/HvAx62Xtc10?si=8aeIuSkuL3u_k2ay" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+[![](https://res.cloudinary.com/marcomontalbano/image/upload/v1732454510/video_to_markdown/images/youtube--JVKMuscJf8c-c05b58ac6eb4c4700831b2b3070cd403.jpg)](https://youtu.be/JVKMuscJf8c "")
 
 ---------------------------------------------------------------------------------------
 
@@ -112,3 +112,7 @@ PJSekai-style video creation tool:
    (https://github.com/TootieJin/pjsekai-overlay-APPEND)
 - 名無し｡ (https://sevenc7c.com) オリジナル版
    (https://github.com/sevenc-nanashi/pjsekai-overlay)
+
+## 動画の例
+
+[![](https://res.cloudinary.com/marcomontalbano/image/upload/v1732454510/video_to_markdown/images/youtube--JVKMuscJf8c-c05b58ac6eb4c4700831b2b3070cd403.jpg)](https://youtu.be/JVKMuscJf8c "")
