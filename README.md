@@ -11,14 +11,14 @@ Fork of [pjsekai-overlay](https://github.com/sevenc-nanashi/pjsekai-overlay) by 
 > Only use this tool __if you can figure it out yourself.__ **DO NOT open issues, or request help in Sonolus / Chart Cyanvas Discord servers**.
 
 This is a forked version of pjsekai-overlay with additional features originally not in the main repo, including:
-- [Extra assets](./assets/extra%20assets)
-- Added/adjusted elements to look identical to the official photography
-- Make 1080p videos quickly
+  - [Extra assets](./assets/extra%20assets) (thank you [ReiyuN](https://discordid.netlify.app/?id=383636820409188374) for the contribution!)
+  - Added/adjusted elements to look identical to the official photography
+  - Make 1080p videos quickly
 
 ## Requirements
 
 - [AviUtl (JP)](http://spring-fragrance.mints.ne.jp/aviutl/) + [Advanced Editing plug-in](http://spring-fragrance.mints.ne.jp/aviutl/) ([Tutorial](https://aviutl.info/dl-innsuto-ru/))
-  （Recommended: [patch.aul](https://scrapbox.io/ePi5131/patch.aul)）
+    ((Recommended: [patch.aul](https://scrapbox.io/ePi5131/patch.aul)）
 - [AVIUtl_Unmult](https://github.com/mes51/AVIUtl_Unmult)
 - Basic knowledge of AviUtl
 
@@ -71,6 +71,10 @@ PJSekai-style video creation tool:
    (https://github.com/sevenc-nanashi/pjsekai-overlay)
 ```
 
+## Video Example
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/HvAx62Xtc10?si=8aeIuSkuL3u_k2ay" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 ---------------------------------------------------------------------------------------
 
 # pjsekai-overlay-APPEND / フォークプロセカ風動画作成補助ツール (日本語)
@@ -78,9 +82,9 @@ PJSekai-style video creation tool:
 [TootieJin](https://tootiejin.com)氏による[pjsekai-overlay](https://github.com/sevenc-nanashi/pjsekai-overlay)用フォーク。
 
 これはpjsekai-overlayのフォーク版で、元々メインレポにはない以下のような追加機能があります：
-- [追加アセット](./assets/extra%20assets/)
-- 本家撮影と同じように見えるように要素を追加/調整
-- 1080p動画を素早く作成
+  - [追加アセット](./assets/extra%20assets/) ([ReiyuN](https://discordid.netlify.app/?id=383636820409188374)、ご寄稿ありがとうございました。)
+  - 本家撮影と同じように見えるように要素を追加/調整
+  - 1080p動画を素早く作成
 
 ## 利用規約
 
