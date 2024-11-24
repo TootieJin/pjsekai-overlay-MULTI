@@ -18,7 +18,7 @@ This is a forked version of pjsekai-overlay with additional features originally 
 ## Requirements
 
 - [AviUtl (JP)](http://spring-fragrance.mints.ne.jp/aviutl/) + [Advanced Editing plug-in](http://spring-fragrance.mints.ne.jp/aviutl/) ([Tutorial](https://aviutl.info/dl-innsuto-ru/))
-    ((Recommended: [patch.aul](https://scrapbox.io/ePi5131/patch.aul)）
+    (Recommended: [patch.aul](https://scrapbox.io/ePi5131/patch.aul))
 - [AVIUtl_Unmult](https://github.com/mes51/AVIUtl_Unmult)
 - Basic knowledge of AviUtl
 
