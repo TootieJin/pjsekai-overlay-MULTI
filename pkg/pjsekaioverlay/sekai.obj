@@ -181,26 +181,26 @@ if PED_DATA and PED_DATA.version_status == "ok" then
       progress = 1
     end
 
-    local diff_x = 50 * (1 - (0.9 ^ (progress * 12)))
-    local diff_y = 34
+    local diff_x = 47 * (1 - (0.9 ^ (progress * 12)))
+    local diff_y = 33
     local diff_alpha = 1.3 * (1 - (0.9 ^ (progress * 12)))
 
     obj.load("image", PED_DATA.path.."/score/digit/splus.png")
-    obj.draw(25 + diff_x, diff_y, 0, 0.4, diff_alpha)
+    obj.draw(26.25 + diff_x, diff_y, 0, 0.42, diff_alpha)
     obj.load("image", PED_DATA.path.."/score/digit/plus.png")
-    obj.draw(25 + diff_x, diff_y, 0, 0.4, diff_alpha)
+    obj.draw(26.25 + diff_x, diff_y, 0, 0.42, diff_alpha)
 
     for c = 1, diff_len do
       local digit = diff:sub(c, c)
       obj.load("image", PED_DATA.path.."/score/digit/s"..digit..".png")
 
-      obj.draw(25 + 13 * c + diff_x, diff_y, 0, 0.4, diff_alpha)
+      obj.draw(26.25 + 13.65 * c + diff_x, diff_y, 0, 0.42, diff_alpha)
     end
     for c = 1, diff_len do
       local digit = diff:sub(c, c)
       obj.load("image", PED_DATA.path.."/score/digit/"..digit..".png")
 
-      obj.draw(25 + 13 * c + diff_x, diff_y, 0, 0.4, diff_alpha)
+      obj.draw(26.25 + 13.65 * c + diff_x, diff_y, 0, 0.42, diff_alpha)
     end
   end
 
@@ -276,6 +276,13 @@ if PED_DATA and PED_DATA.version_status == "ok" then
           end
         else
           obj.load("image", PED_DATA.path.."/combo/n"..digit..".png")
+          if progress > 8 and progress < 12 then
+            obj.effect("グロー", "強さ",  progress, "ぼかし", 5)
+            obj.effect("ライト", "強さ",  progress * 4, "逆光", 1)
+          elseif progress >= 12 and progress < 16 then
+            obj.effect("グロー", "強さ",  3 * (1 - (progress - 13) / 0.5), "ぼかし", 5)
+            obj.effect("ライト", "強さ",  15 * (1 - (progress - 13) / 0.5), "逆光", 1)
+          end
         end
         obj.draw(shift * 75 * shift_fax, 0, 0, 0.70 * shift_fax, alpha)
       end
@@ -291,10 +298,13 @@ if PED_DATA and PED_DATA.version_status == "ok" then
     local progress = ((obj.frame - OFFSET) - (PED_DATA.current.time * obj.framerate))
     if progress < 2 then
       obj.load("image", PED_DATA.path.."/perfect.png")
-      obj.draw(0, 0, 0, (0.6 + 0.4 * (progress / 2)) * 0.7, progress / 2)
+      obj.draw(0, 0, 0, 0.7 - (-1.45 + (progress / 4)) ^ 4 * 0.7, 0)
+    elseif progress < 5 then
+      obj.load("image", PED_DATA.path.."/perfect.png")
+      obj.draw(0, 0, 0, 0.7 - (-1.45 + (progress / 4)) ^ 4 * 0.7, 1)
     elseif progress < 20 then
       obj.load("image", PED_DATA.path.."/perfect.png")
-      obj.draw(0, 0, 0, 0.7)
+      obj.draw(0, 0, 0, 0.7, 1)
     end
   end
 end
