@@ -76,27 +76,31 @@ else
   if PED_DATA.loaded == "not_found" then
     obj.load(
       "text",
-      "<s32,メイリオ,B>(! 読み込み失敗 !)\n<s>"..
-      "pedファイルが見付かりません！"
+      "<s32,メイリオ,B>(! ERROR !)\n<s>"..
+      "pedファイルが見付かりません！\n"..
+      "ped file not found!"
     )
   elseif PED_DATA.loaded == "invalid" then
     obj.load(
       "text",
-      "<s32,メイリオ,B>(! 読み込み失敗 !)\n<s>"..
-      "pedファイルを読み取れません！"
+      "<s32,メイリオ,B>(! ERROR !)\n<s>"..
+      "pedファイルを読み取れません！\n"..
+      "Unable to read ped file!"
     )
   elseif PED_DATA.version == nil then
     obj.load(
       "text",
-      "<s32,メイリオ,B>(! 読み込み失敗 !)\n<s>"..
-      "pedファイルのバージョンが設定されていません！"
+      "<s32,メイリオ,B>(! ERROR !)\n<s>"..
+      "pedファイルのバージョンが設定されていません！\n"..
+      "Version of the ped file is not set!"
     )
   else
     obj.load(
       "text",
-      "<s32,メイリオ,B>(! 読み込み失敗 !)\n<s>"..
+      "<s32,メイリオ,B>(! ERROR !)\n<s>"..
       "pedファイルとのバージョンが違います！\n"..
-      "オブジェクトファイルは{version}、pedファイルは"..PED_DATA.version.."です。"
+      "The version of the ped file is different!\n"..
+      "[オブジェクトファイル(.obj): {version}, .ped: "..PED_DATA.version.."]"
     )
   end
   obj.draw()
@@ -275,6 +279,9 @@ if PED_DATA and PED_DATA.version_status == "ok" then
             obj.effect("ライト", "強さ",  15 * (1 - (progress - 13) / 0.5), "逆光", 1)
           end
         else
+          obj.load("image", PED_DATA.path.."/combo/b"..digit..".png")
+          obj.setoption("blend", 0)
+          obj.draw(shift * 75 * shift_fax, 0, 0, 0.70 * shift_fax, 0)
           obj.load("image", PED_DATA.path.."/combo/n"..digit..".png")
           if progress > 8 and progress < 12 then
             obj.effect("グロー", "強さ",  progress, "ぼかし", 5)

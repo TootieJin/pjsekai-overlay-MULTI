@@ -1,14 +1,12 @@
-[**日本語セクション**](#pjsekai-overlay-append--フォークプロセカ風動画作成補助ツール-日本語)
-# pjsekai-overlay-APPEND / Forked PJSekai-style video creation tool (English)
-
+## [**日本語セクション**](#pjsekai-overlay-append--フォークプロセカ風動画作成補助ツール-日本語)
 https://github.com/user-attachments/assets/148e315c-b737-4ccc-90cc-b5311a00b07e
+# pjsekai-overlay-APPEND / Forked PJSekai-style video creation tool (English)
 
 Fork of [pjsekai-overlay](https://github.com/sevenc-nanashi/pjsekai-overlay) by [TootieJin](https://tootiejin.com).
 
 > [!CAUTION]
-> **for English users:**\
-> This tool is primary only for Japanese users, people with technical know-how and basic knowledge of AviUtl, as this repo is only useable in AviUtl JP.\
-> Only use this tool __if you can figure it out yourself.__ **DO NOT open issues, or request help in Sonolus / Chart Cyanvas Discord servers**.
+> **For English users:** This tool is primary only for Japanese users, people with technical know-how and basic knowledge of AviUtl.
+> Only use this tool if you can figure it out yourself. **DO NOT open issues, DM me, or request help in Sonolus / Chart Cyanvas Discord servers about this**.
 
 This is a forked version of pjsekai-overlay with additional features originally not in the main repo, including:
   - [Extra assets](./assets/extra%20assets) (thank you [ReiyuN](https://discordid.netlify.app/?id=383636820409188374) for the contribution!)
@@ -17,9 +15,9 @@ This is a forked version of pjsekai-overlay with additional features originally 
 
 ## Requirements
 
-- [AviUtl (JP)](http://spring-fragrance.mints.ne.jp/aviutl/) + [Advanced Editing plug-in](http://spring-fragrance.mints.ne.jp/aviutl/) ([Tutorial](https://aviutl.info/dl-innsuto-ru/))
+- [AviUtl](https://spring-fragrance.mints.ne.jp/aviutl/aviutl110.zip) + [English Mod](https://drive.google.com/file/d/1ZgUX-qME7LqOkhCwqsE6e67ZzztmIPdj/view?usp=sharing) + [L-SMASH Works](https://github.com/Mr-Ojii/L-SMASH-Works-Auto-Builds/releases/latest)
     (Recommended: [patch.aul](https://scrapbox.io/ePi5131/patch.aul))
-- [AVIUtl_Unmult](https://github.com/mes51/AVIUtl_Unmult)
+- [Unmult](https://github.com/mes51/AVIUtl_Unmult)
 - Basic knowledge of AviUtl
 
 ## Video Guide
@@ -29,6 +27,7 @@ This is a forked version of pjsekai-overlay with additional features originally 
    - Turn on「Hide UI」
 3. Transfer the video file to your computer.
    - Download the [ffmpeg](https://www.ffmpeg.org/) encoder if you haven't.
+4. Once done, refer to the usage guide below.
 
 ## Usage Guide (pjsekai-overlay-APPEND)
 
@@ -40,11 +39,13 @@ This is a forked version of pjsekai-overlay with additional features originally 
 4. Open `pjsekai-overlay.exe`
 5. Input the chart ID.
    - Potato Leaves prefix: `ptlv-`, Chart Cyanvas prefix: `chcy-`
-6. Import object file by navigating to your pjsekai-overlay/dist/[chart ID] directory, and select main.exo
+6. Import object file by navigating to your `pjsekai-overlay/dist/[chart ID]` directory, and select the exo file depending on which AviUtl you're running at:
+   - `main.exo` is for the JP original version
+   - `main_en.exo` is for the EN modded version
 
-## Usage Guide (AviUtl JP)
+## Usage Guide (AviUtl EN)
 
-Refer to this [guide](https://github.com/Khronophobia/pjsekai-overlay-english/wiki/Usage-Guide) on how to use AviUtl.
+Refer to this [guide](https://github.com/Khronophobia/pjsekai-overlay-english/wiki/Usage-Guide) on how to use AviUtl (English).
 
 ## Terms of Use
 
@@ -85,6 +86,39 @@ PJSekai-style video creation tool:
   - [追加アセット](./assets/extra%20assets/) ([ReiyuN](https://discordid.netlify.app/?id=383636820409188374)、ご寄稿ありがとうございました。)
   - 本家撮影と同じように見えるように要素を追加/調整
   - 1080p動画を素早く作成
+
+## 必須事項
+
+- [AviUtl](http://spring-fragrance.mints.ne.jp/aviutl/) + [拡張編集プラグイン](http://spring-fragrance.mints.ne.jp/aviutl/) （[導入方法](https://aviutl.info/dl-innsuto-ru/)）
+  （強く推奨：[patch.aul](https://scrapbox.io/ePi5131/patch.aul)）
+- [AVIUtl_Unmult](https://github.com/mes51/AVIUtl_Unmult)
+- AviUtlの基本的な知識
+
+## 動画の作り方
+
+1. [譜面を作る](https://wiki.purplepalette.net/create-charts)
+2. [Sonolus](https://sonolus.com/)で譜面を撮影する
+   - [Potato Leaves](https://github.com/sevenc-nanashi/potato_leaves)、または [Chart Cyanvas](https://cc.sevenc7c.com)で撮影してください。
+   - 「Hide UI」をオンにしてください。
+3. 撮影したプレイ動画のファイルをパソコンに転送する
+   - Google Drive など
+4. [ffmpeg](https://www.ffmpeg.org/)で再エンコードする
+   - AviUtl で読み込むため
+5. 下の利用方法に従って UI を後付けする
+
+## 利用方法
+
+0. 1280x720, 60fps で aviutl のプロジェクトを作成する
+1. 右の Releases から最新のバージョンの zip をダウンロードする
+2. zip を解凍する
+3. AviUtl を起動する
+   - pjsekai-overlay が起動する前に AviUtl を起動するとオブジェクトのインストールが行われます。
+4. `pjsekai-overlay.exe` を起動する
+5. 譜面 ID を入力する
+   - Potato Leaves の場合は `ptlv-` を、Chart Cyanvas の場合は `chcy-` を先頭につけたまま入力してください。
+6. `pjsekai-overlay/dist/[譜面ID]`ディレクトリに移動して、オブジェクトファイルをインポートします：
+   - `main.exo`はJPバージョン用です。
+   - `main_en.exo`はENモディファイ版です。
 
 ## 利用規約
 
