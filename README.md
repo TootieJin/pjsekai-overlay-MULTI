@@ -7,7 +7,7 @@ https://github.com/user-attachments/assets/148e315c-b737-4ccc-90cc-b5311a00b07e
 Fork of [pjsekai-overlay](https://github.com/sevenc-nanashi/pjsekai-overlay) by [TootieJin](https://tootiejin.com).
 
 > [!CAUTION]
-> **For English users:** This tool is primary only for Japanese users, people with technical know-how and basic knowledge of AviUtl, as this repo **ONLY WORKS IN _AviUtl JP_.**
+> **For English users:** This tool is primary only for Japanese users, people with technical know-how and basic knowledge of AviUtl, as this repo **ONLY WORKS IN _AviUtl JP_.**\
 > Only use this tool if you can figure it out yourself. **DO NOT open issues, DM me, or request help in Sonolus / Chart Cyanvas Discord servers about this**.
 
 This is a forked version of pjsekai-overlay with additional features originally not in the main repo, including:
@@ -17,8 +17,8 @@ This is a forked version of pjsekai-overlay with additional features originally 
 
 ## Requirements
 
-- - [AviUtl](http://spring-fragrance.mints.ne.jp/aviutl/) + [Advanced Editing plug-in](http://spring-fragrance.mints.ne.jp/aviutl/) + [L-SMASH Works](https://github.com/Mr-Ojii/L-SMASH-Works-Auto-Builds/releases/latest)
-    (Recommended: [patch.aul](https://scrapbox.io/ePi5131/patch.aul))
+- [AviUtl](http://spring-fragrance.mints.ne.jp/aviutl/) + [Advanced Editing plug-in](http://spring-fragrance.mints.ne.jp/aviutl/) + [L-SMASH Works](https://github.com/Mr-Ojii/L-SMASH-Works-Auto-Builds/releases/latest)
+  - (Recommended: [patch.aul](https://scrapbox.io/ePi5131/patch.aul))
 - [Unmult](https://github.com/mes51/AVIUtl_Unmult)
 - Basic knowledge of AviUtl
 
@@ -92,8 +92,8 @@ PJSekai-style video creation tool:
 ## 必須事項
 
 - [AviUtl](http://spring-fragrance.mints.ne.jp/aviutl/) + [拡張編集プラグイン](http://spring-fragrance.mints.ne.jp/aviutl/) （[導入方法](https://aviutl.info/dl-innsuto-ru/)）
-  （強く推奨：[patch.aul](https://scrapbox.io/ePi5131/patch.aul)）
-- [AVIUtl_Unmult](https://github.com/mes51/AVIUtl_Unmult)
+  - (強く推奨：[patch.aul](https://scrapbox.io/ePi5131/patch.aul))
+- [Unmult](https://github.com/mes51/AVIUtl_Unmult)
 - AviUtlの基本的な知識
 
 ## 動画の作り方
