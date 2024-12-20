@@ -1,5 +1,7 @@
 [**日本語セクション**](#pjsekai-overlay-append--フォークプロセカ風動画作成補助ツール-日本語)
+
 https://github.com/user-attachments/assets/148e315c-b737-4ccc-90cc-b5311a00b07e
+
 # pjsekai-overlay-APPEND / Forked PJSekai-style video creation tool (English)
 
 Fork of [pjsekai-overlay](https://github.com/sevenc-nanashi/pjsekai-overlay) by [TootieJin](https://tootiejin.com).
@@ -43,7 +45,7 @@ This is a forked version of pjsekai-overlay with additional features originally 
    - `main.exo` is for the JP original version
    - `main_en.exo` is for the EN modded version
 
-## Usage Guide (AviUtl EN)
+## Usage Guide (AviUtl JP)
 
 Refer to this [guide](https://github.com/Khronophobia/pjsekai-overlay-english/wiki/Usage-Guide) on how to use AviUtl (English).
 
