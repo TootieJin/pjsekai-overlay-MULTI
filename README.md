@@ -1,4 +1,4 @@
-## [**日本語セクション**](#pjsekai-overlay-append--フォークプロセカ風動画作成補助ツール-日本語)
+[**日本語セクション**](#pjsekai-overlay-append--フォークプロセカ風動画作成補助ツール-日本語)
 https://github.com/user-attachments/assets/148e315c-b737-4ccc-90cc-b5311a00b07e
 # pjsekai-overlay-APPEND / Forked PJSekai-style video creation tool (English)
 
