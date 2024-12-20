@@ -12,13 +12,15 @@ func Title() {
 	fmt.Printf(
 		strings.TrimSpace(dedent.Dedent(`
     %s== pjsekai-overlay-APPEND -----------------------------------------------------------%s
-        %sフォークプロセカ風動画作成補助ツール / Forked PJSekai-style video creation tool%s
+    %sフォークプロセカ風動画作成補助ツール / Forked PJSekai-style video creation tool%s
         Version: %s%s%s
 
         Developed by %s名無し｡(@sevenc-nanashi)%s
             https://github.com/sevenc-nanashi/pjsekai-overlay
         Forked by %sTootieJin%s
          -> https://github.com/TootieJin/pjsekai-overlay-APPEND %s(使用中/In use)%s
+	
+	%s[CAUTION] This program ONLY WORKS IN AviUtl JP. DO NOT open issues or request help about this%s
     %s-------------------------------------------------------------------------------%s
     `))+"\n\n",
 		RgbColorEscape(0x00afc7), ResetEscape(),
@@ -27,6 +29,7 @@ func Title() {
 		RgbColorEscape(0x48b0d5), ResetEscape(),
 		RgbColorEscape(0x48b0d5), ResetEscape(),
 		RgbColorEscape(0xadff2f), ResetEscape(),
+		RgbColorEscape(0xff0000), ResetEscape(),
 		RgbColorEscape(0xff5a91), ResetEscape(),
 	)
 

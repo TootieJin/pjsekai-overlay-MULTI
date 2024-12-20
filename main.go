@@ -114,7 +114,7 @@ func origMain(isOptionSpecified bool) {
 	chart, err := pjsekaioverlay.FetchChart(chartSource, chartId)
 
 	if err != nil {
-		fmt.Println(color.RedString(fmt.Sprintf("FAIL:%s", err.Error())))
+		fmt.Println(color.RedString(fmt.Sprintf("FAIL: %s", err.Error())))
 		return
 	}
 	if chart.Engine.Version != 12 {

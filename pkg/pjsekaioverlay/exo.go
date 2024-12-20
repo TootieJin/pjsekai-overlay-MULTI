@@ -36,14 +36,9 @@ func encodeString(str string) string {
 //go:embed main.exo
 var rawBaseExo []byte
 
-//go:embed main_en.exo
-var rawBaseExoEn []byte
-
 func WriteExoFiles(assets string, destDir string, title string, description string) error {
 	baseExo := string(rawBaseExo)
-	baseExoEn := string(rawBaseExoEn)
 	replacedExo := baseExo
-	replacedExoEn := baseExoEn
 	mapping := []string{
 		"{assets}", strings.ReplaceAll(assets, "\\", "/"),
 		"{dist}", strings.ReplaceAll(destDir, "\\", "/"),
@@ -57,33 +52,18 @@ func WriteExoFiles(assets string, destDir string, title string, description stri
 			continue
 		}
 		if !strings.Contains(replacedExo, mapping[i-1]) {
-			panic(fmt.Sprintf("[JP] exoファイルの生成に失敗しました（%sが見つかりません）", mapping[i-1]))
-		}
-		if !strings.Contains(replacedExoEn, mapping[i-1]) {
-			panic(fmt.Sprintf("[EN] Failed to generate exo file (%s not found)", mapping[i-1]))
+			panic(fmt.Sprintf("exoファイルの生成に失敗しました (Failed to generate exo file) [Missing: %s]", mapping[i-1]))
 		}
 		replacedExo = strings.ReplaceAll(replacedExo, mapping[i-1], mapping[i])
-		replacedExoEn = strings.ReplaceAll(replacedExoEn, mapping[i-1], mapping[i])
 	}
 	replacedExo = strings.ReplaceAll(replacedExo, "\n", "\r\n")
-	replacedExoEn = strings.ReplaceAll(replacedExoEn, "\n", "\r\n")
 	encodedExo, err := io.ReadAll(transform.NewReader(
 		strings.NewReader(replacedExo), japanese.ShiftJIS.NewEncoder()))
 	if err != nil {
 		return fmt.Errorf("エンコードに失敗しました (Encoding failed) [%w]", err)
 	}
-	encodedExoEn, err := io.ReadAll(transform.NewReader(
-		strings.NewReader(replacedExoEn), japanese.ShiftJIS.NewEncoder()))
-	if err != nil {
-		return fmt.Errorf("エンコードに失敗しました (Encoding failed) [%w]", err)
-	}
 	if err := os.WriteFile(filepath.Join(destDir, "main.exo"),
 		encodedExo,
-		0644); err != nil {
-		return fmt.Errorf("ファイルの書き込みに失敗しました (Failed to write file) [%w]", err)
-	}
-	if err := os.WriteFile(filepath.Join(destDir, "main_en.exo"),
-		encodedExoEn,
 		0644); err != nil {
 		return fmt.Errorf("ファイルの書き込みに失敗しました (Failed to write file) [%w]", err)
 	}

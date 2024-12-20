@@ -11,6 +11,8 @@
 *.dll
 *.so
 *.dylib
+*.zip
+*.rar
 
 # Test binary, built with `go test -c`
 *.test
@@ -29,3 +31,4 @@ go.work
 dist/*
 *.aup
 .update-check
+pkg/pjsekaioverlay/main_en.exo

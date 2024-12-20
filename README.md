@@ -5,17 +5,17 @@ https://github.com/user-attachments/assets/148e315c-b737-4ccc-90cc-b5311a00b07e
 Fork of [pjsekai-overlay](https://github.com/sevenc-nanashi/pjsekai-overlay) by [TootieJin](https://tootiejin.com).
 
 > [!CAUTION]
-> **For English users:** This tool is primary only for Japanese users, people with technical know-how and basic knowledge of AviUtl.
+> **For English users:** This tool is primary only for Japanese users, people with technical know-how and basic knowledge of AviUtl, as this repo **ONLY WORKS IN _AviUtl JP_.**
 > Only use this tool if you can figure it out yourself. **DO NOT open issues, DM me, or request help in Sonolus / Chart Cyanvas Discord servers about this**.
 
 This is a forked version of pjsekai-overlay with additional features originally not in the main repo, including:
   - [Extra assets](./assets/extra%20assets) (thank you [ReiyuN](https://discordid.netlify.app/?id=383636820409188374) for the contribution!)
   - Added/adjusted elements to look identical to the official photography
-  - Make 1080p videos quickly
+  - Quickly make 1080p videos
 
 ## Requirements
 
-- [AviUtl](https://spring-fragrance.mints.ne.jp/aviutl/aviutl110.zip) + [English Mod](https://drive.google.com/file/d/1ZgUX-qME7LqOkhCwqsE6e67ZzztmIPdj/view?usp=sharing) + [L-SMASH Works](https://github.com/Mr-Ojii/L-SMASH-Works-Auto-Builds/releases/latest)
+- - [AviUtl](http://spring-fragrance.mints.ne.jp/aviutl/) + [Advanced Editing plug-in](http://spring-fragrance.mints.ne.jp/aviutl/) + [L-SMASH Works](https://github.com/Mr-Ojii/L-SMASH-Works-Auto-Builds/releases/latest)
     (Recommended: [patch.aul](https://scrapbox.io/ePi5131/patch.aul))
 - [Unmult](https://github.com/mes51/AVIUtl_Unmult)
 - Basic knowledge of AviUtl

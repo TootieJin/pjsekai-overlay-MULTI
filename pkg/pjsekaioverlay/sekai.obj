@@ -34,11 +34,11 @@ if obj.track1 ~= 1 or not PED_DATA or PED_DATA.file ~= file then
             rank = nmatch[5],
             combo = tonumber(nmatch[6])
           }
-        elseif header == "p" then -- パス
+        elseif header == "p" then -- Pass
           PED_DATA.path = data
         elseif header == "a" then -- AP
           PED_DATA.ap = data == "true"
-        elseif header == "v" then -- バージョン
+        elseif header == "v" then -- Version
           PED_DATA.version = data
         end
       end
