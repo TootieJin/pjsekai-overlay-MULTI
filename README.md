@@ -41,9 +41,7 @@ This is a forked version of pjsekai-overlay with additional features originally 
 4. Open `pjsekai-overlay.exe`
 5. Input the chart ID.
    - Potato Leaves prefix: `ptlv-`, Chart Cyanvas prefix: `chcy-`
-6. Import object file by navigating to your `pjsekai-overlay/dist/[chart ID]` directory, and select the exo file depending on which AviUtl you're running at:
-   - `main.exo` is for the JP original version
-   - `main_en.exo` is for the EN modded version
+6. Import exo file by navigating to your `pjsekai-overlay/dist/[chart ID]` directory
 
 ## Usage Guide (AviUtl JP)
 
@@ -110,7 +108,7 @@ PJSekai-style video creation tool:
 
 ## 利用方法
 
-0. 1280x720, 60fps で aviutl のプロジェクトを作成する
+0. 1920x1080, 60fps で aviutl のプロジェクトを作成する
 1. 右の Releases から最新のバージョンの zip をダウンロードする
 2. zip を解凍する
 3. AviUtl を起動する
@@ -118,9 +116,7 @@ PJSekai-style video creation tool:
 4. `pjsekai-overlay.exe` を起動する
 5. 譜面 ID を入力する
    - Potato Leaves の場合は `ptlv-` を、Chart Cyanvas の場合は `chcy-` を先頭につけたまま入力してください。
-6. `pjsekai-overlay/dist/[譜面ID]`ディレクトリに移動して、オブジェクトファイルをインポートします：
-   - `main.exo`はJPバージョン用です。
-   - `main_en.exo`はENモディファイ版です。
+6. `pjsekai-overlay/dist/[譜面ID]`ディレクトリに移動して、exoファイルをインポートします。
 
 ## 利用規約
 
