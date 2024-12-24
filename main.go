@@ -117,8 +117,8 @@ func origMain(isOptionSpecified bool) {
 		fmt.Println(color.RedString(fmt.Sprintf("FAIL: %s", err.Error())))
 		return
 	}
-	if chart.Engine.Version != 4 {
-		fmt.Println(color.RedString(fmt.Sprintf("失敗：エンジンのバージョンが古い。 pjsekai-overlay-APPENDを最新バージョンに更新してください。\n(FAIL: Outdated engine version. Update pjsekai-overlay-APPEND to the latest version.) - [ver.%d] =", chart.Engine.Version)))
+	if chart.Engine.Version != 12 {
+		fmt.Println(color.RedString(fmt.Sprintf("失敗：エンジンのバージョンが古い。\n(FAIL: Unsupported engine version.) - [ver.%d]", chart.Engine.Version)))
 		return
 	}
 
