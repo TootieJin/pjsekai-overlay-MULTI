@@ -88,10 +88,6 @@ PJSekai-style video creation tool:
    (https://github.com/sevenc-nanashi/pjsekai-overlay)
 ```
 
-## Video Example
-
-[![](https://res.cloudinary.com/marcomontalbano/image/upload/v1732454510/video_to_markdown/images/youtube--JVKMuscJf8c-c05b58ac6eb4c4700831b2b3070cd403.jpg)](https://youtu.be/JVKMuscJf8c "")
-
 ---------------------------------------------------------------------------------------
 
 # pjsekai-overlay-APPEND / フォークプロセカ風動画作成補助ツール (日本語)
@@ -173,7 +169,3 @@ PJSekai-style video creation tool:
 - 名無し｡ (https://sevenc7c.com) オリジナル版
    (https://github.com/sevenc-nanashi/pjsekai-overlay)
 ```
-
-## 動画の例
-
-[![](https://res.cloudinary.com/marcomontalbano/image/upload/v1732454510/video_to_markdown/images/youtube--JVKMuscJf8c-c05b58ac6eb4c4700831b2b3070cd403.jpg)](https://youtu.be/JVKMuscJf8c "")
