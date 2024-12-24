@@ -39,10 +39,3 @@ jobs:
         run: cp -r assets release/assets
       - name: Build zip
         run: cd release && zip -r ../pjsekai-overlay-APPEND.zip .
-
-      - name: Create Release
-        uses: softprops/action-gh-release@v1
-        with:
-          prerelease: ${{ steps.get_version.outputs.IS_PRERELEASE }}
-          files: |
-            pjsekai-overlay-APPEND.zip
