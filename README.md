@@ -1,10 +1,14 @@
 [**日本語セクション**](#pjsekai-overlay-append--フォークプロセカ風動画作成補助ツール-日本語)
-
-https://github.com/user-attachments/assets/148e315c-b737-4ccc-90cc-b5311a00b07e
-
 # pjsekai-overlay-APPEND / Forked PJSekai-style video creation tool (English)
-
 Fork of [pjsekai-overlay](https://github.com/sevenc-nanashi/pjsekai-overlay) by [TootieJin](https://tootiejin.com), an open-sourced tool to make Project Sekai Fanmade (custom chart) videos.
+
+- **16:9**
+
+https://github.com/user-attachments/assets/5e0eb5c9-cc6d-4d0b-a8a6-409d141e2e8e
+
+- **4:3**
+
+https://github.com/user-attachments/assets/bf82fc81-ca4e-4f07-a7c7-cfe34080432e
 
 > [!CAUTION]
 > **For English users:** This tool is primary only for Japanese users, people with technical know-how and basic knowledge of AviUtl, as this repo **ONLY WORKS IN _AviUtl JP_.**\
