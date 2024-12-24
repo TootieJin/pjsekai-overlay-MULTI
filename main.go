@@ -11,9 +11,9 @@ import (
 	"strings"
 	"time"
 
+	"github.com/TootieJin/pjsekai-overlay-APPEND/pkg/pjsekaioverlay"
 	"github.com/fatih/color"
 	"github.com/google/go-github/v57/github"
-	"github.com/sevenc-nanashi/pjsekai-overlay/pkg/pjsekaioverlay"
 	"github.com/srinathh/gokilo/rawmode"
 	"golang.org/x/sys/windows"
 )
@@ -117,8 +117,8 @@ func origMain(isOptionSpecified bool) {
 		fmt.Println(color.RedString(fmt.Sprintf("FAIL: %s", err.Error())))
 		return
 	}
-	if chart.Engine.Version != 12 {
-		fmt.Println(color.RedString(fmt.Sprintf("失敗：このエンジンはサポートされていません。(FAIL: Unsupported Engine version.) - (ver.%d) =", chart.Engine.Version)))
+	if chart.Engine.Version != 4 {
+		fmt.Println(color.RedString(fmt.Sprintf("失敗：エンジンのバージョンが古い。 pjsekai-overlay-APPENDを最新バージョンに更新してください。\n(FAIL: Outdated engine version. Update pjsekai-overlay-APPEND to the latest version.) - [ver.%d] =", chart.Engine.Version)))
 		return
 	}
 

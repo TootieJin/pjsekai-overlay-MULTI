@@ -4,7 +4,7 @@ https://github.com/user-attachments/assets/148e315c-b737-4ccc-90cc-b5311a00b07e
 
 # pjsekai-overlay-APPEND / Forked PJSekai-style video creation tool (English)
 
-Fork of [pjsekai-overlay](https://github.com/sevenc-nanashi/pjsekai-overlay) by [TootieJin](https://tootiejin.com).
+Fork of [pjsekai-overlay](https://github.com/sevenc-nanashi/pjsekai-overlay) by [TootieJin](https://tootiejin.com), an open-sourced tool to make Project Sekai Fanmade (custom chart) videos.
 
 > [!CAUTION]
 > **For English users:** This tool is primary only for Japanese users, people with technical know-how and basic knowledge of AviUtl, as this repo **ONLY WORKS IN _AviUtl JP_.**\
@@ -14,6 +14,7 @@ This is a forked version of pjsekai-overlay with additional features originally 
   - [Extra assets](./assets/extra%20assets) (thank you [ReiyuN](https://discordid.netlify.app/?id=383636820409188374) for the contribution!)
   - Added/adjusted elements to look identical to the official photography
   - Quickly make 1080p videos
+  - iPad (4:3) video support
 
 ## Requirements
 
@@ -26,26 +27,37 @@ This is a forked version of pjsekai-overlay with additional features originally 
 
 1. [Make your chart first.](https://cc.sevenc7c.com)
 2. Go to [Sonolus](https://sonolus.com/) to find your chart.
-   - Turn on「Hide UI」
-3. Transfer the video file to your computer.
+3. Screen record the video with **BLACK background** and「Hide UI」turned on
+4. Transfer the video file to your computer.
    - Download the [ffmpeg](https://www.ffmpeg.org/) encoder if you haven't.
-4. Once done, refer to the usage guide below.
+5. Once done, refer to the usage guide below.
 
 ## Usage Guide (pjsekai-overlay-APPEND)
 
-0. Create an AviUtl project with 1920x1080, 60fps
+0. Create an AviUtl project with specifications below:
+   - **For phone users:** 1920x1080, 60fps
+   - **For iPad users:** 1440x1080, 60fps
 1. Download the latest version of pjsekai-overlay-APPEND [here](https://github.com/TootieJin/pjsekai-overlay-APPEND/releases/latest/).
 2. Unzip the file
-3. Open AviUtl
+3. Import ALL files & folders in the [`depenencies/aviutl animation`](./depenencies/aviutl%20animation) folder into here:
+```
+   aviutl
+      ⌞Plugins
+         ⌞script
+```
+   - *If a folder is missing, make a new folder with said name.*
+4. Open AviUtl
    - **Note: You must open AviUtl before opening pjsekai-overlay-APPEND to install objects.**
-4. Open `pjsekai-overlay.exe`
-5. Input the chart ID.
+5. Open `pjsekai-overlay.exe`
+6. Input the chart ID.
    - Potato Leaves prefix: `ptlv-`, Chart Cyanvas prefix: `chcy-`
-6. Import exo file by navigating to your `pjsekai-overlay/dist/[chart ID]` directory
+7. Import specified exo file by navigating to your `pjsekai-overlay/dist/[chart ID]` directory:
+   - **For phone users:** main_16-9_1920x1080.exo
+   - **For iPad users:** main_4-3_1440x1080.exo
 
 ## Usage Guide (AviUtl JP)
 
-Refer to this [guide](https://github.com/Khronophobia/pjsekai-overlay-english/wiki/Usage-Guide) on how to use AviUtl (English).
+Refer to this [English guide](https://github.com/Khronophobia/pjsekai-overlay-english/wiki/Usage-Guide) on how to use AviUtl.
 
 ## Terms of Use
 
@@ -81,11 +93,13 @@ PJSekai-style video creation tool:
 # pjsekai-overlay-APPEND / フォークプロセカ風動画作成補助ツール (日本語)
 
 [TootieJin](https://tootiejin.com)氏による[pjsekai-overlay](https://github.com/sevenc-nanashi/pjsekai-overlay)用フォーク。
+pjsekai-overlay(-APPEND) は、プロセカの創作譜面をプロセカ風の動画にするためのオープンソースのツールです。
 
 これはpjsekai-overlayのフォーク版で、元々メインレポにはない以下のような追加機能があります：
   - [追加アセット](./assets/extra%20assets/) ([ReiyuN](https://discordid.netlify.app/?id=383636820409188374)、ご寄稿ありがとうございました。)
   - 本家撮影と同じように見えるように要素を追加/調整
   - 1080p動画を素早く作成
+  - iPad（4:3）動画対応
 
 ## 必須事項
 
@@ -98,25 +112,35 @@ PJSekai-style video creation tool:
 
 1. [譜面を作る](https://wiki.purplepalette.net/create-charts)
 2. [Sonolus](https://sonolus.com/)で譜面を撮影する
-   - [Potato Leaves](https://github.com/sevenc-nanashi/potato_leaves)、または [Chart Cyanvas](https://cc.sevenc7c.com)で撮影してください。
-   - 「Hide UI」をオンにしてください。
-3. 撮影したプレイ動画のファイルをパソコンに転送する
+3. **背景を黒**にし、「Hide UI」をONにして、動画をスクリーン録画します。
+4. 撮影したプレイ動画のファイルをパソコンに転送する
    - Google Drive など
-4. [ffmpeg](https://www.ffmpeg.org/)で再エンコードする
+5. [ffmpeg](https://www.ffmpeg.org/)で再エンコードする
    - AviUtl で読み込むため
-5. 下の利用方法に従って UI を後付けする
+6. 下の利用方法に従って UI を後付けする
 
 ## 利用方法
 
-0. 1920x1080, 60fps で aviutl のプロジェクトを作成する
+0. 以下の仕様でAviUtlプロジェクトを作成してください：
+   - **スマホユーザー向け:** 1920x1080, 60fps
+   - **iPadユーザー向け:** 1440x1080、60fps
 1. 右の Releases から最新のバージョンの zip をダウンロードする
 2. zip を解凍する
-3. AviUtl を起動する
-   - pjsekai-overlay が起動する前に AviUtl を起動するとオブジェクトのインストールが行われます。
-4. `pjsekai-overlay.exe` を起動する
-5. 譜面 ID を入力する
+3. [`depenencies/aviutl animation`](./depenencies/aviutl%20animation)フォルダ内のすべてのファイルとフォルダをここにインポートします：
+```
+   aviutl
+      ⌞Plugins
+         ⌞script
+```
+   - *フォルダがない場合は、その名前で新しいフォルダを作ってください。*
+4. AviUtl を起動する
+   - **pjsekai-overlay が起動する前に AviUtl を起動するとオブジェクトのインストールが行われます。**
+5. `pjsekai-overlay.exe` を起動する
+6. 譜面 ID を入力する
    - Potato Leaves の場合は `ptlv-` を、Chart Cyanvas の場合は `chcy-` を先頭につけたまま入力してください。
-6. `pjsekai-overlay/dist/[譜面ID]`ディレクトリに移動して、exoファイルをインポートします。
+7. `pjsekai-overlay/dist/[譜面ID]`ディレクトリに移動して、指定したexoファイルをインポートします：
+   - **スマホユーザー向け:** main_16-9_1920x1080.exo
+   - **iPadユーザー向け:** main_4-3_1440x1080.exo
 
 ## 利用規約
 

@@ -1,8 +1,8 @@
-module github.com/sevenc-nanashi/pjsekai-overlay
+module github.com/TootieJin/pjsekai-overlay-APPEND
 
 go 1.20
 
-replace github.com/sevenc-nanashi/pjsekai-overlay => ./
+replace github.com/TootieJin/pjsekai-overlay-APPEND => ./
 
 require (
 	github.com/lithammer/dedent v1.1.0

@@ -1,0 +1,14 @@
+--[[
+unmult.anm + unmult_dll.dll v0.1.1
+
+https://github.com/sevenc-nanashi/unmult.anm
+
+]]--
+
+require("Unmult_dll")
+
+data, w, h = obj.getpixeldata()
+
+Unmult_dll.unmult_color(data, w, h)
+
+obj.putpixeldata(data)

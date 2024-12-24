@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"strings"
 
+	"github.com/TootieJin/pjsekai-overlay-APPEND/pkg/pjsekaioverlay"
 	"github.com/lithammer/dedent"
-	"github.com/sevenc-nanashi/pjsekai-overlay/pkg/pjsekaioverlay"
 )
 
 func Title() {
