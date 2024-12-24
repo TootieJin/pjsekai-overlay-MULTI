@@ -48,7 +48,7 @@ This is a forked version of pjsekai-overlay with additional features originally 
    - *If a folder is missing, make a new folder with said name.*
 4. Open AviUtl
    - **Note: You must open AviUtl before opening pjsekai-overlay-APPEND to install objects.**
-5. Open `pjsekai-overlay.exe`
+5. Open `pjsekai-overlay-APPEND.exe`
 6. Input the chart ID.
    - Potato Leaves prefix: `ptlv-`, Chart Cyanvas prefix: `chcy-`
 7. Import specified exo file by navigating to your `pjsekai-overlay/dist/[chart ID]` directory:
@@ -135,7 +135,7 @@ pjsekai-overlay(-APPEND) は、プロセカの創作譜面をプロセカ風の�
    - *フォルダがない場合は、その名前で新しいフォルダを作ってください。*
 4. AviUtl を起動する
    - **pjsekai-overlay が起動する前に AviUtl を起動するとオブジェクトのインストールが行われます。**
-5. `pjsekai-overlay.exe` を起動する
+5. `pjsekai-overlay-APPEND.exe` を起動する
 6. 譜面 ID を入力する
    - Potato Leaves の場合は `ptlv-` を、Chart Cyanvas の場合は `chcy-` を先頭につけたまま入力してください。
 7. `pjsekai-overlay/dist/[譜面ID]`ディレクトリに移動して、指定したexoファイルをインポートします：
