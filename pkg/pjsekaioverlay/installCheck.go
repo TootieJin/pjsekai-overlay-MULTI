@@ -17,6 +17,9 @@ import (
 //go:embed sekai.obj
 var sekaiObj []byte
 
+//go:embed sekai-en.obj
+var sekaiObjEn []byte
+
 func TryInstallObject() bool {
 	processes, _ := wapi.ProcessList()
 	var aviutlProcess *so.Process
@@ -52,6 +55,16 @@ func TryInstallObject() bool {
 			return false
 		}
 	}
+	var sekaiObjPathEn = filepath.Join(exeditRoot, "script", "@pjsekai-overlay-en.obj")
+	if _, err := os.Stat(sekaiObjPathEn); err == nil {
+		var sekaiObjFileEn, _ = os.OpenFile(sekaiObjPathEn, os.O_RDONLY, 0755)
+		defer sekaiObjFileEn.Close()
+		var sekaiObjDecoderEn = japanese.ShiftJIS.NewDecoder()
+		var existingSekaiObjEn, _ = io.ReadAll(transform.NewReader(sekaiObjFileEn, sekaiObjDecoderEn))
+		if strings.Contains(string(existingSekaiObjEn), "--version: "+Version) && Version != "0.0.0" {
+			return false
+		}
+	}
 	err := os.MkdirAll(filepath.Join(exeditRoot, "script"), 0755)
 	if err != nil {
 		return false
@@ -62,7 +75,14 @@ func TryInstallObject() bool {
 	}
 	defer sekaiObjFile.Close()
 
+	sekaiObjFileEn, err := os.Create(sekaiObjPathEn)
+	if err != nil {
+		return false
+	}
+	defer sekaiObjFileEn.Close()
+
 	var sekaiObjWriter = transform.NewWriter(sekaiObjFile, japanese.ShiftJIS.NewEncoder())
+	var sekaiObjWriterEn = transform.NewWriter(sekaiObjFileEn, japanese.ShiftJIS.NewEncoder())
 
 	strings.NewReader(strings.NewReplacer(
 		"\r\n", "\r\n",
@@ -70,5 +90,12 @@ func TryInstallObject() bool {
 		"\n", "\r\n",
 		"{version}", Version,
 	).Replace(string(sekaiObj))).WriteTo(sekaiObjWriter)
+
+	strings.NewReader(strings.NewReplacer(
+		"\r\n", "\r\n",
+		"\r", "\r\n",
+		"\n", "\r\n",
+		"{version}", Version,
+	).Replace(string(sekaiObjEn))).WriteTo(sekaiObjWriterEn)
 	return true
 }

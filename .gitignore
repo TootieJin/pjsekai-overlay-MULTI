@@ -31,4 +31,3 @@ go.work
 dist/*
 *.aup
 .update-check
-pkg/pjsekaioverlay/main_en.exo

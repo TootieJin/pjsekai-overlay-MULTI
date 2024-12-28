@@ -28,7 +28,7 @@ var WEIGHT_MAP = map[string]float64{
 	"Stage":          0,
 
 	"NormalTapNote":   1,
-	"CriticalTapNote": 3,
+	"CriticalTapNote": 2,
 
 	"NormalFlickNote":   1,
 	"CriticalFlickNote": 3,
@@ -44,11 +44,11 @@ var WEIGHT_MAP = map[string]float64{
 
 	"HiddenSlideTickNote":   0,
 	"NormalSlideTickNote":   0.1,
-	"CriticalSlideTickNote": 0.1,
+	"CriticalSlideTickNote": 0.2,
 
 	"IgnoredSlideTickNote":          0.1,
 	"NormalAttachedSlideTickNote":   0.1,
-	"CriticalAttachedSlideTickNote": 0.1,
+	"CriticalAttachedSlideTickNote": 0.2,
 
 	"NormalSlideConnector":   0,
 	"CriticalSlideConnector": 0,
@@ -65,7 +65,7 @@ var WEIGHT_MAP = map[string]float64{
 	"CriticalSlotGlowEffect": 0,
 
 	"NormalTraceNote":   0.1,
-	"CriticalTraceNote": 0.1,
+	"CriticalTraceNote": 0.2,
 
 	"NormalTraceSlotEffect":     0,
 	"NormalTraceSlotGlowEffect": 0,
@@ -74,14 +74,14 @@ var WEIGHT_MAP = map[string]float64{
 	"DamageSlotEffect":     0,
 	"DamageSlotGlowEffect": 0,
 
-	"NormalTraceFlickNote":         0.5,
-	"CriticalTraceFlickNote":       0.5,
-	"NonDirectionalTraceFlickNote": 0.5,
+	"NormalTraceFlickNote":         1,
+	"CriticalTraceFlickNote":       3,
+	"NonDirectionalTraceFlickNote": 1,
 
 	"NormalTraceSlideStartNote":   0.1,
 	"NormalTraceSlideEndNote":     0.1,
-	"CriticalTraceSlideStartNote": 0.1,
-	"CriticalTraceSlideEndNote":   0.1,
+	"CriticalTraceSlideStartNote": 0.2,
+	"CriticalTraceSlideEndNote":   0.2,
 
 	"TimeScaleGroup":  0,
 	"TimeScaleChange": 0,

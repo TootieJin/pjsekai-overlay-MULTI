@@ -1,9 +1,9 @@
 --version: {version}
 
-@設定
+@Root
 --file:
---track0:オフセット,-10000,10000,0,1
---track1:キャッシュ,0,1,1,1
+--track0:Offset,-10000,10000,0,1
+--track1:Cache,0,1,1,1
 
 if obj.track1 ~= 1 or not PED_DATA or PED_DATA.file ~= file then
   debug_print("[pjsekai-overlay] Loading ped data in " .. file)
@@ -77,25 +77,25 @@ else
     obj.load(
       "text",
       "<s32,メイリオ,B>(! ERROR !)\n<s>"..
-      "pedファイルが見付かりません！"
+      "ped file not found!"
     )
   elseif PED_DATA.loaded == "invalid" then
     obj.load(
       "text",
       "<s32,メイリオ,B>(! ERROR !)\n<s>"..
-      "pedファイルを読み取れません！"
+      "Unable to read ped file!"
     )
   elseif PED_DATA.version == nil then
     obj.load(
       "text",
       "<s32,メイリオ,B>(! ERROR !)\n<s>"..
-      "pedファイルのバージョンが設定されていません！"
+      "Version of the ped file is not set!"
     )
   else
     obj.load(
       "text",
       "<s32,メイリオ,B>(! ERROR !)\n<s>"..
-      "pedファイルとのバージョンが違います！\n"..
+      "The version of the ped file is different!\n"..
       "[.obj: {version}, .ped: "..PED_DATA.version.."]"
     )
   end
@@ -103,14 +103,14 @@ else
   PED_DATA.version_status = "ng"
 end
 ----------------------------------------------------------------
-@スコア
+@Score
 
 if PED_DATA and PED_DATA.version_status == "ok" then
   obj.setoption("drawtarget", "tempbuffer", 357, 18)
   obj.load("image", PED_DATA.path.."/score/bar.png")
   obj.draw(0, 0, 0, 1)
   obj.setoption("blend", "alpha_sub")
-  obj.load("figure", "背景")
+  obj.load("figure", "Background")
   obj.drawpoly(
     357 * (PED_DATA.current.width - 0.5), -9, 0,
     357, -9, 0,
@@ -207,7 +207,7 @@ if PED_DATA and PED_DATA.version_status == "ok" then
   obj.copybuffer("obj", "tmp")
 end
 ----------------------------------------------------------------
-@コンボ
+@Combo
 if PED_DATA and PED_DATA.version_status == "ok" then
   local ap_alpha = (math.sin(obj.time * math.pi) + 1) * (1 / 2)
   if ap_alpha > 1 then
@@ -268,11 +268,11 @@ if PED_DATA and PED_DATA.version_status == "ok" then
           obj.draw(shift * 71 * shift_fax, 0, 0, 0.70 * shift_fax, ap_alpha * alpha)
           obj.load("image", PED_DATA.path.."/combo/p"..digit..".png")
           if progress > 8 and progress < 12 then
-            obj.effect("グロー", "強さ",  progress, "ぼかし", 5)
-            obj.effect("ライト", "強さ",  progress * 4, "逆光", 1)
+            obj.effect("Glow", "Strength",  progress, "Blur", 5)
+            obj.effect("Light", "Strength",  progress * 4, "Backlight", 1)
           elseif progress >= 12 and progress < 16 then
-            obj.effect("グロー", "強さ",  3 * (1 - (progress - 13) / 0.5), "ぼかし", 5)
-            obj.effect("ライト", "強さ",  15 * (1 - (progress - 13) / 0.5), "逆光", 1)
+            obj.effect("Glow", "Strength",  3 * (1 - (progress - 13) / 0.5), "Blur", 5)
+            obj.effect("Light", "Strength",  15 * (1 - (progress - 13) / 0.5), "Backlight", 1)
           end
         else
           obj.load("image", PED_DATA.path.."/combo/b"..digit..".png")
@@ -280,11 +280,11 @@ if PED_DATA and PED_DATA.version_status == "ok" then
           obj.draw(shift * 71 * shift_fax, 0, 0, 0.70 * shift_fax, 0)
           obj.load("image", PED_DATA.path.."/combo/n"..digit..".png")
           if progress > 8 and progress < 12 then
-            obj.effect("グロー", "強さ",  progress, "ぼかし", 5)
-            obj.effect("ライト", "強さ",  progress * 4, "逆光", 1)
+            obj.effect("Glow", "Strength",  progress, "Blur", 5)
+            obj.effect("Light", "Strength",  progress * 4, "Backlight", 1)
           elseif progress >= 12 and progress < 16 then
-            obj.effect("グロー", "強さ",  3 * (1 - (progress - 13) / 0.5), "ぼかし", 5)
-            obj.effect("ライト", "強さ",  15 * (1 - (progress - 13) / 0.5), "逆光", 1)
+            obj.effect("Glow", "Strength",  3 * (1 - (progress - 13) / 0.5), "Blur", 5)
+            obj.effect("Light", "Strength",  15 * (1 - (progress - 13) / 0.5), "Backlight", 1)
           end
         end
         obj.draw(shift * 71 * shift_fax, 0, 0, 0.70 * shift_fax, alpha)
@@ -295,7 +295,7 @@ if PED_DATA and PED_DATA.version_status == "ok" then
   end
 end
 ----------------------------------------------------------------
-@判定
+@Judgement
 if PED_DATA and PED_DATA.version_status == "ok" then
   if PED_DATA.current.time > 0 then
     local progress = ((obj.frame - OFFSET) - (PED_DATA.current.time * obj.framerate))
