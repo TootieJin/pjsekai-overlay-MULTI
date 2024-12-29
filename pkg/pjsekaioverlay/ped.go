@@ -133,6 +133,7 @@ func CalculateScore(levelInfo sonolus.LevelInfo, levelData sonolus.LevelData, po
 	frames = append(frames, PedFrame{Time: 0, Score: 0})
 	bpmChanges := ([]BpmChange{})
 	levelFax := float64(rating-5)*0.005 + 1
+	comboFax := 1.0
 
 	score := 0
 	entityCounter := 0
@@ -166,6 +167,12 @@ func CalculateScore(levelInfo sonolus.LevelInfo, levelData sonolus.LevelData, po
 	for _, entity := range noteEntities {
 		weight := WEIGHT_MAP[entity.Archetype]
 		entityCounter += 1
+		if entityCounter%100 == 0 {
+			comboFax += 0.01
+		}
+		if comboFax > 1.1 {
+			comboFax = 1.1
+		}
 
 		score += int(
 			(float64(power) / weightedNotesCount) * // Team power / weighted notes count
@@ -173,7 +180,7 @@ func CalculateScore(levelInfo sonolus.LevelInfo, levelData sonolus.LevelData, po
 				weight * // Note weight
 				1 * // Judge weight (Always 1)
 				levelFax * // Level fax
-				(float64(entityCounter/100)/100 + 1) * // Combo fax
+				comboFax * // Combo fax
 				1, // Skill fax (Always 1)
 		)
 		beat, err := getValueFromData(entity.Data, "#BEAT")
