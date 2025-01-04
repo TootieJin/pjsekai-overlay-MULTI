@@ -23,27 +23,22 @@ This is a forked version of pjsekai-overlay with additional features originally 
 
 ## Terms of Use
 
-In the description of your video, please include the following:
-- The name `名無し｡`
-- A link to [***the original*** repo](https://github.com/sevenc-nanashi/pjsekai-overlay) (not this fork)
-- A link to `https://sevenc7c.com`
-
-#### Example
+In the description of your video, please copy the text here:
 **EN**
 ```
 PJSekai-style video creation tool:
-- Forked ver. by TootieJin (https://tootiejin.com)
-   (https://github.com/TootieJin/pjsekai-overlay-APPEND)
-- Original by 名無し｡ (https://sevenc7c.com) 
-   (https://github.com/sevenc-nanashi/pjsekai-overlay)
+- Forked ver. by TootieJin ( https://tootiejin.com )
+   https://github.com/TootieJin/pjsekai-overlay-APPEND
+- Original by 名無し｡ ( https://sevenc7c.com ) 
+   https://github.com/sevenc-nanashi/pjsekai-overlay
 ```
 **JP**
 ```
 プロセカ風動画作成補助ツール：
 - TootieJin (https://tootiejin.com) フォーク版
-   (https://github.com/TootieJin/pjsekai-overlay-APPEND)
+   https://github.com/TootieJin/pjsekai-overlay-APPEND
 - 名無し｡ (https://sevenc7c.com) オリジナル版
-   (https://github.com/sevenc-nanashi/pjsekai-overlay)
+   https://github.com/sevenc-nanashi/pjsekai-overlay
 ```
 
 ## Requirements
@@ -102,30 +97,23 @@ pjsekai-overlay(-APPEND) は、プロセカの創作譜面をプロセカ風の�
 
 ## 利用規約
 
-動画の概要欄などに、
-
-- `名無し｡`という名前
-- このリポジトリへのリンク
-- `https://sevenc7c.com`へのリンク
-
-が含まれている文章を載せて下さい。
-
+動画の説明文に、こちらのテキストをコピーしてください：
 #### 例
 **EN**
 ```
 PJSekai-style video creation tool:
-- Forked ver. by TootieJin (https://tootiejin.com)
-   (https://github.com/TootieJin/pjsekai-overlay-APPEND)
-- Original by 名無し｡ (https://sevenc7c.com) 
-   (https://github.com/sevenc-nanashi/pjsekai-overlay)
+- Forked ver. by TootieJin ( https://tootiejin.com )
+   https://github.com/TootieJin/pjsekai-overlay-APPEND
+- Original by 名無し｡ ( https://sevenc7c.com ) 
+   https://github.com/sevenc-nanashi/pjsekai-overlay
 ```
 **JP**
 ```
 プロセカ風動画作成補助ツール：
 - TootieJin (https://tootiejin.com) フォーク版
-   (https://github.com/TootieJin/pjsekai-overlay-APPEND)
+   https://github.com/TootieJin/pjsekai-overlay-APPEND
 - 名無し｡ (https://sevenc7c.com) オリジナル版
-   (https://github.com/sevenc-nanashi/pjsekai-overlay)
+   https://github.com/sevenc-nanashi/pjsekai-overlay
 ```
 
 ## 必須事項
