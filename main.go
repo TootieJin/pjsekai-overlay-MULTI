@@ -48,6 +48,9 @@ func checkUpdate() {
 	}
 
 	executablePath, err := os.Executable()
+	if err != nil {
+		return
+	}
 	updateCheckFile, err := os.OpenFile(filepath.Join(filepath.Dir(executablePath), ".update-check"), os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0666)
 	if err != nil {
 		return
@@ -101,7 +104,7 @@ func origMain(isOptionSpecified bool) {
 		chartId = flag.Arg(0)
 		fmt.Printf("譜面ID (Chart ID): %s\n", color.GreenString(chartId))
 	} else {
-		fmt.Print("譜面IDをプレフィックス込みで入力して下さい。\nEnter the chart ID including the prefix.\n\n'chcy-': Chart Cyanvas (cc.sevenc7c.com)\n> ")
+		fmt.Print("譜面IDをプレフィックス込みで入力して下さい。\nEnter the chart ID including the prefix.\n\n'chcy-': Chart Cyanvas (cc.sevenc7c.com)\n'ptlv-': Potato Leaves (ptlv.sevenc7c.com)\n> ")
 		fmt.Scanln(&chartId)
 		fmt.Printf("\033[A\033[2K\r> %s\n", color.GreenString(chartId))
 	}
@@ -214,7 +217,7 @@ func origMain(isOptionSpecified bool) {
 
 	fmt.Print("- pedファイルを生成中 (Generating ped file)... ")
 
-	err = pjsekaioverlay.WritePedFile(scoreData, assets, apCombo, filepath.Join(formattedOutDir, "data.ped"), levelInfo)
+	err = pjsekaioverlay.WritePedFile(scoreData, assets, apCombo, filepath.Join(formattedOutDir, "data.ped"), sonolus.LevelInfo{Rating: chart.Rating})
 
 	if err != nil {
 		fmt.Println(color.RedString(fmt.Sprintf("FAIL:%s", err.Error())))

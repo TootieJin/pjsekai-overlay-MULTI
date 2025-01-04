@@ -180,9 +180,7 @@ func DownloadBackground(source Source, level sonolus.LevelInfo, destPath string)
 
 	defer file.Close()
 
-	io.Copy(file, resp.Body)
-
-	if err != nil {
+	if _, err := io.Copy(file, resp.Body); err != nil {
 		return fmt.Errorf("ファイルの書き込みに失敗しました。(Failed to write file.) [%s]", err)
 	}
 

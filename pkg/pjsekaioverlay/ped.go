@@ -248,19 +248,19 @@ func WritePedFile(frames []PedFrame, assets string, ap bool, path string, levelI
 			scoreX = 357
 		} else if score >= rankS {
 			rank = "s"
-			scoreX = float64((score-rankS))/(rankBorder-rankS)*37 + 320
+			scoreX = float64(score-rankS)/float64(rankBorder-rankS)*37 + 320
 		} else if score >= rankA {
 			rank = "a"
-			scoreX = float64((score-rankA))/(rankS-rankA)*53 + 267
+			scoreX = float64((score-rankA)/(rankS-rankA))*53 + 267
 		} else if score >= rankB {
 			rank = "b"
-			scoreX = float64((score-rankB))/(rankA-rankB)*53 + 215
+			scoreX = float64((score-rankB)/(rankA-rankB))*53 + 215
 		} else if score >= rankC {
 			rank = "c"
-			scoreX = float64((score-rankC))/(rankB-rankC)*54 + 161
+			scoreX = float64((score-rankC)/(rankB-rankC))*54 + 161
 		} else {
 			rank = "d"
-			scoreX = float64(score) / rankC * 160
+			scoreX = float64(score/rankC) * 160
 		}
 
 		writer.Write([]byte(fmt.Sprintf("s|%f:%d:%d:%f:%s:%d\n", frame.Time, score, frameScore, scoreX/357, rank, i)))
