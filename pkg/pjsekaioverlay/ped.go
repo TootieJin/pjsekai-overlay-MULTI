@@ -248,7 +248,7 @@ func WritePedFile(frames []PedFrame, assets string, ap bool, path string, levelI
 			scoreX = 357
 		} else if score >= rankS {
 			rank = "s"
-			scoreX = float64(score-rankS)/float64(rankBorder-rankS)*37 + 320
+			scoreX = float64((score-rankS)/(rankBorder-rankS))*37 + 320
 		} else if score >= rankA {
 			rank = "a"
 			scoreX = float64((score-rankA)/(rankS-rankA))*53 + 267
