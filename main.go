@@ -12,6 +12,7 @@ import (
 	"time"
 
 	"github.com/TootieJin/pjsekai-overlay-APPEND/pkg/pjsekaioverlay"
+	"github.com/TootieJin/pjsekai-overlay-APPEND/pkg/sonolus"
 	"github.com/fatih/color"
 	"github.com/google/go-github/v57/github"
 	"github.com/srinathh/gokilo/rawmode"
@@ -213,7 +214,7 @@ func origMain(isOptionSpecified bool) {
 
 	fmt.Print("- pedファイルを生成中 (Generating ped file)... ")
 
-	err = pjsekaioverlay.WritePedFile(scoreData, assets, apCombo, filepath.Join(formattedOutDir, "data.ped"))
+	err = pjsekaioverlay.WritePedFile(scoreData, assets, apCombo, filepath.Join(formattedOutDir, "data.ped"), levelInfo)
 
 	if err != nil {
 		fmt.Println(color.RedString(fmt.Sprintf("FAIL:%s", err.Error())))
