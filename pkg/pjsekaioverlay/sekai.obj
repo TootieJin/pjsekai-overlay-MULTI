@@ -129,7 +129,7 @@ if PED_DATA and PED_DATA.version_status == "ok" then
   obj.draw(35, -3.5, 0)
 
   obj.load("image", PED_DATA.path.."/score/rank/txt/"..PED_DATA.current.rank..".png")
-  obj.draw(-187, 34, 0, 0.3)
+  obj.draw(-187, 34, 0, 0.35)
 
   if PED_DATA.current.score > 0 then
     obj.load("image", PED_DATA.path.."/score/rank/chr/"..PED_DATA.current.rank..".png")
@@ -246,12 +246,12 @@ if PED_DATA and PED_DATA.version_status == "ok" then
       if PED_DATA.ap then
         obj.load("image", PED_DATA.path.."/combo/b"..digit..".png")
         obj.setoption("blend", 0)
-        obj.draw(shift * 71 * shift_fax, 0, 0, 0.70 * shift_fax, ap_alpha)
+        obj.draw(shift * 72 * shift_fax, 0, 0, 0.70 * shift_fax, ap_alpha)
         obj.load("image", PED_DATA.path.."/combo/p"..digit..".png")
       else
         obj.load("image", PED_DATA.path.."/combo/n"..digit..".png")
       end
-      obj.draw(shift * 71 * shift_fax, 0, 0, 0.70 * shift_fax)
+      obj.draw(shift * 72 * shift_fax, 0, 0, 0.70 * shift_fax)
     end
     obj.setoption("blend", 1)
     if progress < 16 then
@@ -265,7 +265,7 @@ if PED_DATA and PED_DATA.version_status == "ok" then
         if PED_DATA.ap then
           obj.load("image", PED_DATA.path.."/combo/b"..digit..".png")
           obj.setoption("blend", 0)
-          obj.draw(shift * 71 * shift_fax, 0, 0, 0.70 * shift_fax, ap_alpha * alpha)
+          obj.draw(shift * 72 * shift_fax, 0, 0, 0.70 * shift_fax, ap_alpha * alpha)
           obj.load("image", PED_DATA.path.."/combo/p"..digit..".png")
           if progress > 8 and progress < 12 then
             obj.effect("グロー", "強さ",  progress, "ぼかし", 5)
@@ -277,7 +277,7 @@ if PED_DATA and PED_DATA.version_status == "ok" then
         else
           obj.load("image", PED_DATA.path.."/combo/b"..digit..".png")
           obj.setoption("blend", 0)
-          obj.draw(shift * 71 * shift_fax, 0, 0, 0.70 * shift_fax, 0)
+          obj.draw(shift * 72 * shift_fax, 0, 0, 0.70 * shift_fax, 0)
           obj.load("image", PED_DATA.path.."/combo/n"..digit..".png")
           if progress > 8 and progress < 12 then
             obj.effect("グロー", "強さ",  progress, "ぼかし", 5)
@@ -287,7 +287,7 @@ if PED_DATA and PED_DATA.version_status == "ok" then
             obj.effect("ライト", "強さ",  15 * (1 - (progress - 13) / 0.5), "逆光", 1)
           end
         end
-        obj.draw(shift * 71 * shift_fax, 0, 0, 0.70 * shift_fax, alpha)
+        obj.draw(shift * 72 * shift_fax, 0, 0, 0.70 * shift_fax, alpha)
       end
     end
     obj.setoption("blend", 0)

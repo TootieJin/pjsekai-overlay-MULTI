@@ -223,7 +223,7 @@ func WritePedFile(frames []PedFrame, assets string, ap bool, path string, levelI
 		scoreX := 0.0
 
 		// rank
-		rankBorder := 1200000 + (rating-5)*4000
+		rankBorder := 1200000 + (rating-5)*4100
 		rankS := 1040000 + (rating-5)*5200
 		rankA := 840000 + (rating-5)*4200
 		rankB := 400000 + (rating-5)*2000
@@ -235,7 +235,7 @@ func WritePedFile(frames []PedFrame, assets string, ap bool, path string, levelI
 			rankB = 400000
 			rankC = 20000
 		} else if rating > 40 {
-			rankBorder = 1340000
+			rankBorder = 1343500
 			rankS = 1222000
 			rankA = 987000
 			rankB = 470000
@@ -248,16 +248,16 @@ func WritePedFile(frames []PedFrame, assets string, ap bool, path string, levelI
 			scoreX = 357
 		} else if score >= rankS {
 			rank = "s"
-			scoreX = float64((score-rankS)/(rankBorder-rankS))*37 + 320
+			scoreX = (float64((score-rankS))/float64((rankBorder-rankS)))*37 + 320
 		} else if score >= rankA {
 			rank = "a"
-			scoreX = float64((score-rankA)/(rankS-rankA))*53 + 267
+			scoreX = (float64((score-rankA))/float64((rankS-rankA)))*53 + 267
 		} else if score >= rankB {
 			rank = "b"
-			scoreX = float64((score-rankB)/(rankA-rankB))*53 + 215
+			scoreX = (float64((score-rankB))/float64((rankA-rankB)))*53 + 215
 		} else if score >= rankC {
 			rank = "c"
-			scoreX = float64((score-rankC)/(rankB-rankC))*54 + 161
+			scoreX = (float64((score-rankC))/float64((rankB-rankC)))*54 + 161
 		} else {
 			rank = "d"
 			scoreX = float64(score/rankC) * 160
