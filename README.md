@@ -24,6 +24,7 @@ This is a forked version of pjsekai-overlay with additional features originally 
 ## Terms of Use
 
 In the description of your video, please copy the text here:
+
 **EN**
 ```
 PJSekai-style video creation tool:
@@ -32,6 +33,7 @@ PJSekai-style video creation tool:
 - Original by 名無し｡ ( https://sevenc7c.com ) 
    https://github.com/sevenc-nanashi/pjsekai-overlay
 ```
+
 **JP**
 ```
 プロセカ風動画作成補助ツール：
@@ -99,6 +101,7 @@ pjsekai-overlay(-APPEND) は、プロセカの創作譜面をプロセカ風の�
 
 動画の説明文に、こちらのテキストをコピーしてください：
 #### 例
+
 **EN**
 ```
 PJSekai-style video creation tool:
@@ -107,6 +110,7 @@ PJSekai-style video creation tool:
 - Original by 名無し｡ ( https://sevenc7c.com ) 
    https://github.com/sevenc-nanashi/pjsekai-overlay
 ```
+
 **JP**
 ```
 プロセカ風動画作成補助ツール：
