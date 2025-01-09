@@ -129,7 +129,7 @@ if PED_DATA and PED_DATA.version_status == "ok" then
   obj.draw(35, -3.5, 0)
 
   obj.load("image", PED_DATA.path.."/score/rank/txt/"..PED_DATA.current.rank..".png")
-  obj.draw(-187, 34, 0, 0.35)
+  obj.draw(-187, 35, 0, 0.34)
 
   if PED_DATA.current.score > 0 then
     obj.load("image", PED_DATA.path.."/score/rank/chr/"..PED_DATA.current.rank..".png")

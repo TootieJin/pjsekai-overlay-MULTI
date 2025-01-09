@@ -260,7 +260,7 @@ func WritePedFile(frames []PedFrame, assets string, ap bool, path string, levelI
 			scoreX = (float64((score-rankC))/float64((rankB-rankC)))*54 + 161
 		} else {
 			rank = "d"
-			scoreX = float64(score/rankC) * 160
+			scoreX = (float64(score) / float64(rankC)) * 160
 		}
 
 		writer.Write([]byte(fmt.Sprintf("s|%f:%d:%d:%f:%s:%d\n", frame.Time, score, frameScore, scoreX/357, rank, i)))
