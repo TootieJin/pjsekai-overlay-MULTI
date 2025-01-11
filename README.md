@@ -42,9 +42,9 @@ PJSekai-style video creation tool:
 **JP**
 ```
 プロセカ風動画作成補助ツール：
-- TootieJin (https://tootiejin.com) フォーク版
+- TootieJin ( https://tootiejin.com ) フォーク版
    https://github.com/TootieJin/pjsekai-overlay-APPEND
-- 名無し｡ (https://sevenc7c.com) オリジナル版
+- 名無し｡ ( https://sevenc7c.com ) オリジナル版
    https://github.com/sevenc-nanashi/pjsekai-overlay
 ```
 
@@ -105,7 +105,6 @@ pjsekai-overlay(-APPEND) は、プロセカの創作譜面をプロセカ風の�
 ## 利用規約
 
 動画の説明文に、こちらのテキストをコピーしてください：
-#### 例
 
 **EN**
 ```
@@ -119,9 +118,9 @@ PJSekai-style video creation tool:
 **JP**
 ```
 プロセカ風動画作成補助ツール：
-- TootieJin (https://tootiejin.com) フォーク版
+- TootieJin ( https://tootiejin.com ) フォーク版
    https://github.com/TootieJin/pjsekai-overlay-APPEND
-- 名無し｡ (https://sevenc7c.com) オリジナル版
+- 名無し｡ ( https://sevenc7c.com ) オリジナル版
    https://github.com/sevenc-nanashi/pjsekai-overlay
 ```
 
