@@ -269,10 +269,10 @@ if PED_DATA and PED_DATA.version_status == "ok" then
           obj.load("image", PED_DATA.path.."/combo/p"..digit..".png")
           if progress > 8 and progress < 12 then
             obj.effect("Glow", "Strength",  progress, "Blur", 5)
-            obj.effect("Light", "Strength",  progress * 4, "Backlight", 1)
+            obj.effect("Light", "Strength",  progress * 8, "Backlight", 1)
           elseif progress >= 12 and progress < 16 then
             obj.effect("Glow", "Strength",  3 * (1 - (progress - 13) / 0.5), "Blur", 5)
-            obj.effect("Light", "Strength",  15 * (1 - (progress - 13) / 0.5), "Backlight", 1)
+            obj.effect("Light", "Strength",  16 * (3 - (progress - 13) / 0.5), "Backlight", 1)
           end
         else
           obj.load("image", PED_DATA.path.."/combo/b"..digit..".png")
@@ -284,7 +284,7 @@ if PED_DATA and PED_DATA.version_status == "ok" then
             obj.effect("Light", "Strength",  progress * 4, "Backlight", 1)
           elseif progress >= 12 and progress < 16 then
             obj.effect("Glow", "Strength",  3 * (1 - (progress - 13) / 0.5), "Blur", 5)
-            obj.effect("Light", "Strength",  15 * (1 - (progress - 13) / 0.5), "Backlight", 1)
+            obj.effect("Light", "Strength",  16 * (3 - (progress - 13) / 0.5), "Backlight", 1)
           end
         end
         obj.draw(shift * 72 * shift_fax, 0, 0, 0.70 * shift_fax, alpha)

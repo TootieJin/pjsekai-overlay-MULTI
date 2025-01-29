@@ -45,20 +45,17 @@ var rawBaseExoEN []byte
 //go:embed main_en_4-3_1440x1080.exo
 var rawBaseExoEN43 []byte
 
-func WriteExoFiles(assets string, destDir string, title string, description string) error {
+func WriteExoFiles(assets string, destDir string, title string, description string, extra string) error {
 	baseExoJP := string(rawBaseExoJP)
 	baseExoJP43 := string(rawBaseExoJP43)
 	baseExoEN := string(rawBaseExoEN)
 	baseExoEN43 := string(rawBaseExoEN43)
-	replacedExoJP := baseExoJP
-	replacedExoJP43 := baseExoJP43
-	replacedExoEN := baseExoEN
-	replacedExoEN43 := baseExoEN43
+
 	mapping := []string{
 		"{assets}", strings.ReplaceAll(assets, "\\", "/"),
 		"{dist}", strings.ReplaceAll(destDir, "\\", "/"),
 		"{text:difficulty}", encodeString("APPEND"),
-		"{text:extra}", encodeString("動画：TootieJin"),
+		"{text:extra}", encodeString(extra),
 		"{text:title}", encodeString(title),
 		"{text:description}", encodeString(description),
 	}
@@ -66,48 +63,49 @@ func WriteExoFiles(assets string, destDir string, title string, description stri
 		if i%2 == 0 {
 			continue
 		}
-		if !strings.Contains(replacedExoJP, mapping[i-1]) {
+		if !strings.Contains(baseExoJP, mapping[i-1]) {
 			panic(fmt.Sprintf("exoファイルの生成に失敗しました (Failed to generate exo file) [Missing: %s]", mapping[i-1]))
 		}
-		if !strings.Contains(replacedExoJP43, mapping[i-1]) {
+		if !strings.Contains(baseExoJP43, mapping[i-1]) {
 			panic(fmt.Sprintf("exoファイルの生成に失敗しました (Failed to generate exo file) [Missing: %s]", mapping[i-1]))
 		}
-		if !strings.Contains(replacedExoEN, mapping[i-1]) {
+		if !strings.Contains(baseExoEN, mapping[i-1]) {
 			panic(fmt.Sprintf("exoファイルの生成に失敗しました (Failed to generate exo file) [Missing: %s]", mapping[i-1]))
 		}
-		if !strings.Contains(replacedExoEN43, mapping[i-1]) {
+		if !strings.Contains(baseExoEN43, mapping[i-1]) {
 			panic(fmt.Sprintf("exoファイルの生成に失敗しました (Failed to generate exo file) [Missing: %s]", mapping[i-1]))
 		}
-		replacedExoJP = strings.ReplaceAll(replacedExoJP, mapping[i-1], mapping[i])
-		replacedExoJP43 = strings.ReplaceAll(replacedExoJP43, mapping[i-1], mapping[i])
-		replacedExoEN = strings.ReplaceAll(replacedExoEN, mapping[i-1], mapping[i])
-		replacedExoEN43 = strings.ReplaceAll(replacedExoEN43, mapping[i-1], mapping[i])
+		baseExoJP = strings.ReplaceAll(baseExoJP, mapping[i-1], mapping[i])
+		baseExoJP43 = strings.ReplaceAll(baseExoJP43, mapping[i-1], mapping[i])
+		baseExoEN = strings.ReplaceAll(baseExoEN, mapping[i-1], mapping[i])
+		baseExoEN43 = strings.ReplaceAll(baseExoEN43, mapping[i-1], mapping[i])
 	}
-	replacedExoJP = strings.ReplaceAll(replacedExoJP, "\n", "\r\n")
-	replacedExoJP43 = strings.ReplaceAll(replacedExoJP43, "\n", "\r\n")
-	replacedExoEN = strings.ReplaceAll(replacedExoEN, "\n", "\r\n")
-	replacedExoEN43 = strings.ReplaceAll(replacedExoEN43, "\n", "\r\n")
+	baseExoJP = strings.ReplaceAll(baseExoJP, "\n", "\r\n")
+	baseExoJP43 = strings.ReplaceAll(baseExoJP43, "\n", "\r\n")
+	baseExoEN = strings.ReplaceAll(baseExoEN, "\n", "\r\n")
+	baseExoEN43 = strings.ReplaceAll(baseExoEN43, "\n", "\r\n")
 
 	encodedExoJP, err := io.ReadAll(transform.NewReader(
-		strings.NewReader(replacedExoJP), japanese.ShiftJIS.NewEncoder()))
+		strings.NewReader(baseExoJP), japanese.ShiftJIS.NewEncoder()))
 	if err != nil {
 		return fmt.Errorf("エンコードに失敗しました (Encoding failed) [%w]", err)
 	}
 	encodedExoJP43, err := io.ReadAll(transform.NewReader(
-		strings.NewReader(replacedExoJP43), japanese.ShiftJIS.NewEncoder()))
+		strings.NewReader(baseExoJP43), japanese.ShiftJIS.NewEncoder()))
 	if err != nil {
 		return fmt.Errorf("エンコードに失敗しました (Encoding failed) [%w]", err)
 	}
 	encodedExoEN, err := io.ReadAll(transform.NewReader(
-		strings.NewReader(replacedExoEN), japanese.ShiftJIS.NewEncoder()))
+		strings.NewReader(baseExoEN), japanese.ShiftJIS.NewEncoder()))
 	if err != nil {
 		return fmt.Errorf("エンコードに失敗しました (Encoding failed) [%w]", err)
 	}
 	encodedExoEN43, err := io.ReadAll(transform.NewReader(
-		strings.NewReader(replacedExoEN43), japanese.ShiftJIS.NewEncoder()))
+		strings.NewReader(baseExoEN43), japanese.ShiftJIS.NewEncoder()))
 	if err != nil {
 		return fmt.Errorf("エンコードに失敗しました (Encoding failed) [%w]", err)
 	}
+
 	if err := os.WriteFile(filepath.Join(destDir, "main_jp_16-9_1920x1080.exo"),
 		encodedExoJP,
 		0644); err != nil {

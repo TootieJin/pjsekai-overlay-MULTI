@@ -3,12 +3,12 @@ width=1440
 height=1080
 rate=60
 scale=1
-length=3940
+length=4000
 audio_rate=44100
 audio_ch=2
 [0]
 start=1
-end=3920
+end=3980
 layer=1
 overlay=1
 camera=0
@@ -26,7 +26,7 @@ Rotation=0.00
 blend=0
 [1]
 start=1
-end=3920
+end=3980
 layer=2
 overlay=1
 camera=0
@@ -57,7 +57,7 @@ Rotation=0.00
 blend=0
 [2]
 start=1
-end=310
+end=370
 layer=3
 overlay=1
 camera=1
@@ -74,8 +74,8 @@ Affected by the upper group control=0
 Apply to objects in the same group=1
 range=11
 [3]
-start=311
-end=406
+start=371
+end=466
 layer=3
 overlay=1
 camera=1
@@ -96,7 +96,7 @@ _name=Clearness
 Clearness=100.0,0.0,1
 [4]
 start=1
-end=310
+end=370
 layer=4
 overlay=1
 camera=0
@@ -118,8 +118,8 @@ Clearness=20.0
 Rotation=0.00
 blend=0
 [5]
-start=1
-end=155
+start=61
+end=215
 layer=5
 overlay=1
 camera=0
@@ -136,8 +136,8 @@ Clearness=90.0
 Rotation=0.00
 blend=0
 [6]
-start=156
-end=310
+start=216
+end=370
 layer=5
 overlay=1
 camera=0
@@ -154,8 +154,8 @@ Clearness=90.0
 Rotation=0.00
 blend=0
 [7]
-start=311
-end=3920
+start=371
+end=3980
 layer=5
 overlay=1
 camera=0
@@ -164,7 +164,7 @@ _name=Image file
 file={assets}\lane_full.png
 [7.1]
 _name=Standard drawing
-X=0.0
+X=-1.0
 Y=66.6
 Z=0.0
 Zoom%=80.00
@@ -190,8 +190,8 @@ Affected by the upper group control=1
 Apply to objects in the same group=0
 range=2
 [9]
-start=281
-end=310
+start=341
+end=370
 layer=6
 overlay=1
 camera=1
@@ -211,8 +211,8 @@ range=8
 _name=Clearness
 Clearness=0.0,100.0,1
 [10]
-start=311
-end=406
+start=371
+end=466
 layer=6
 group=1
 overlay=1
@@ -245,8 +245,8 @@ Clearness=0.0
 Rotation=0.00
 blend=0
 [11]
-start=407
-end=466
+start=467
+end=526
 layer=6
 group=1
 overlay=1
@@ -274,8 +274,8 @@ Zoom%=100.00
 Clearness=0.0
 Rotation=0.00
 [12]
-start=467
-end=3559
+start=527
+end=3619
 layer=6
 group=1
 overlay=1
@@ -303,8 +303,8 @@ Zoom%=100.00
 Clearness=0.0
 Rotation=0.00
 [13]
-start=3560
-end=3920
+start=3620
+end=3980
 layer=6
 group=1
 overlay=1
@@ -333,7 +333,7 @@ Clearness=0.0
 Rotation=0.00
 [14]
 start=1
-end=310
+end=370
 layer=7
 overlay=1
 camera=0
@@ -350,8 +350,8 @@ Clearness=0.0
 Rotation=0.00
 blend=0
 [15]
-start=311
-end=3920
+start=371
+end=3980
 layer=7
 group=1
 overlay=1
@@ -369,13 +369,13 @@ Volume=100.0
 Left-Right=0.0
 [16]
 start=1
-end=310
+end=370
 layer=8
 overlay=1
 camera=0
 [16.0]
 _name=Text
-Size=21
+Size=84
 vDisplay=0.0
 1char1obj=0
 Show on motion coordinate=0
@@ -397,15 +397,15 @@ text={text:difficulty}
 [16.1]
 _name=Standard drawing
 X=-855.0
-Y=484.0
+Y=486.0
 Z=0.0
-Zoom%=150.00
+Zoom%=38.00
 Clearness=0.0
 Rotation=0.00
 blend=0
 [17]
-start=407
-end=3920
+start=467
+end=3980
 layer=8
 overlay=1
 camera=0
@@ -456,7 +456,7 @@ Apply to objects in the same group=1
 range=5
 [19]
 start=1
-end=310
+end=370
 layer=10
 overlay=1
 camera=0
@@ -491,8 +491,8 @@ Clearness=0.0
 Rotation=0.00
 blend=0
 [20]
-start=311
-end=3920
+start=371
+end=3980
 layer=10
 group=2
 overlay=1
@@ -519,13 +519,13 @@ Rotation=0.01
 blend=0
 [21]
 start=1
-end=310
+end=370
 layer=11
 overlay=1
 camera=0
 [21.0]
 _name=Text
-Size=18
+Size=72
 vDisplay=0.0
 1char1obj=0
 Show on motion coordinate=0
@@ -547,15 +547,15 @@ text={text:extra}
 [21.1]
 _name=Standard drawing
 X=-380.0
-Y=196.0
+Y=200.0
 Z=0.0
-Zoom%=150.00
+Zoom%=38.00
 Clearness=0.0
 Rotation=0.00
 blend=0
 [22]
-start=311
-end=3920
+start=371
+end=3980
 layer=11
 group=2
 overlay=1
@@ -574,13 +574,13 @@ Rotation=0.00
 blend=0
 [23]
 start=1
-end=310
+end=370
 layer=12
 overlay=1
 camera=0
 [23.0]
 _name=Text
-Size=24
+Size=96
 vDisplay=0.0
 1char1obj=0
 Show on motion coordinate=0
@@ -592,7 +592,7 @@ autoadjust=0
 soft=1
 monospace=0
 align=6
-spacing_x=4
+spacing_x=12
 spacing_y=0
 precision=1
 color=ffffff
@@ -602,15 +602,15 @@ text={text:title}
 [23.1]
 _name=Standard drawing
 X=-378.5
-Y=322.5
+Y=324.0
 Z=0.0
-Zoom%=150.00
+Zoom%=40.00
 Clearness=0.0
 Rotation=0.00
 blend=0
 [24]
-start=311
-end=3920
+start=371
+end=3980
 layer=12
 group=2
 overlay=1
@@ -629,7 +629,7 @@ param=
 [24.1]
 _name=Standard drawing
 X=-442.5
-Y=-486.0
+Y=-487.5
 Z=0.0
 Zoom%=112.00
 Clearness=0.0
@@ -637,13 +637,13 @@ Rotation=0.00
 blend=0
 [25]
 start=1
-end=310
+end=370
 layer=13
 overlay=1
 camera=0
 [25.0]
 _name=Text
-Size=18
+Size=72
 vDisplay=0.0
 1char1obj=0
 Show on motion coordinate=0
@@ -656,7 +656,7 @@ soft=1
 monospace=0
 align=0
 spacing_x=0
-spacing_y=8
+spacing_y=40
 precision=1
 color=ffffff
 color2=000000
@@ -667,13 +667,13 @@ _name=Standard drawing
 X=-380.0
 Y=364.5
 Z=0.0
-Zoom%=150.00
+Zoom%=37.50
 Clearness=0.0
 Rotation=0.00
 blend=0
 [26]
-start=311
-end=3920
+start=371
+end=3980
 layer=13
 group=2
 overlay=1
@@ -700,7 +700,7 @@ Rotation=0.00
 blend=0
 [27]
 start=1
-end=310
+end=370
 layer=14
 overlay=1
 camera=0
@@ -717,8 +717,8 @@ Clearness=0.0
 Rotation=0.00
 blend=0
 [28]
-start=311
-end=3920
+start=371
+end=3980
 layer=14
 group=2
 overlay=1
@@ -744,10 +744,10 @@ Clearness=0.0
 Rotation=0.00
 blend=0
 [29]
-start=3560
-end=3920
+start=1
+end=60
 layer=15
-group=3
+group=4
 overlay=1
 camera=0
 [29.0]
@@ -756,9 +756,33 @@ Size=100
 rAspect=0.0
 Line width=4000
 type=0
-color=000000
+color=ffffff
 name=
 [29.1]
+_name=Standard drawing
+X=0.0
+Y=0.0
+Z=0.0
+Zoom%=200.00
+Clearness=0.0,100.0,1
+Rotation=0.00
+blend=0
+[30]
+start=3620
+end=3980
+layer=15
+group=3
+overlay=1
+camera=0
+[30.0]
+_name=Graphic
+Size=100
+rAspect=0.0
+Line width=4000
+type=0
+color=000000
+name=
+[30.1]
 _name=Standard drawing
 X=0.0
 Y=-2.0
@@ -767,21 +791,21 @@ Zoom%=200.00
 Clearness=50.0,50.0,1
 Rotation=0.00
 blend=0
-[30]
-start=3560
-end=3920
+[31]
+start=3620
+end=3980
 layer=16
 group=3
 overlay=1
 camera=0
-[30.0]
+[31.0]
 _name=Video file
 Playback position=1
 vPlay=100.0
 Loop playback=0
 Import alpha channel=0
 file={assets}\ap.mp4
-[30.1]
+[31.1]
 _name=Animation effect
 track0=0.00
 track1=0.00
@@ -792,7 +816,7 @@ type=0
 filter=0
 name=unmult
 param=
-[30.2]
+[31.2]
 _name=Standard drawing
 X=0.0
 Y=0.0
@@ -801,32 +825,32 @@ Zoom%=75.00
 Clearness=0.0
 Rotation=0.00
 blend=0
-[31]
-start=3560
-end=3920
+[32]
+start=3620
+end=3980
 layer=17
 group=3
 overlay=1
 audio=1
-[31.0]
+[32.0]
 _name=Audio file
 Playback position=0.00
 vPlay=100.0
 Loop playback=0
 Sync with video files=1
 file={assets}\ap.mp4
-[31.1]
+[32.1]
 _name=Standard playback
 Volume=300.0
 Left-Right=0.0
-[32]
-start=3831
-end=3875
+[33]
+start=3891
+end=3935
 layer=18
 group=3
 overlay=1
 camera=1
-[32.0]
+[33.0]
 _name=Group control
 X=0.0
 Y=0.0
@@ -838,17 +862,17 @@ Z-Spin=0.00
 Affected by the upper group control=1
 Apply to objects in the same group=0
 range=1
-[32.1]
+[33.1]
 _name=Clearness
 Clearness=100.0,0.0,1
-[33]
-start=3831
-end=3940
+[34]
+start=3891
+end=4000
 layer=19
 group=3
 overlay=1
 camera=0
-[33.0]
+[34.0]
 _name=Graphic
 Size=100
 rAspect=0.0
@@ -856,10 +880,10 @@ Line width=4000
 type=0
 color=000000
 name=
-[33.1]
+[34.1]
 _name=Standard drawing
 X=0.0
-Y=-2.0
+Y=0.0
 Z=0.0
 Zoom%=200.00
 Clearness=0.0

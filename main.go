@@ -81,6 +81,9 @@ func origMain(isOptionSpecified bool) {
 	var apCombo bool
 	flag.BoolVar(&apCombo, "ap-combo", true, "コンボのAP表示を有効にします。(Enable AP display for combo.)")
 
+	var enUI bool
+	flag.BoolVar(&enUI, "en-ui", false, "イントロに英語を使う。 (Use English for the intro.)")
+
 	flag.Usage = func() {
 		fmt.Println("Usage: pjsekai-overlay [譜面ID] [オプション]")
 		flag.PrintDefaults()
@@ -104,7 +107,7 @@ func origMain(isOptionSpecified bool) {
 		chartId = flag.Arg(0)
 		fmt.Printf("譜面ID (Chart ID): %s\n", color.GreenString(chartId))
 	} else {
-		fmt.Print("譜面IDをプレフィックス込みで入力して下さい。\nEnter the chart ID including the prefix.\n\n'chcy-': Chart Cyanvas (cc.sevenc7c.com)\n'ptlv-': Potato Leaves (ptlv.sevenc7c.com)\n> ")
+		fmt.Print("\n譜面IDをプレフィックス込みで入力して下さい。\nEnter the chart ID including the prefix.\n\n'chcy-': Chart Cyanvas (cc.sevenc7c.com)\n'ptlv-': Potato Leaves (ptlv.sevenc7c.com)\n> ")
 		fmt.Scanln(&chartId)
 		fmt.Printf("\033[A\033[2K\r> %s\n", color.GreenString(chartId))
 	}
@@ -122,7 +125,7 @@ func origMain(isOptionSpecified bool) {
 		return
 	}
 	if chart.Engine.Version != 12 {
-		fmt.Println(color.RedString(fmt.Sprintf("失敗：エンジンのバージョンが古い。\nFAIL: Unsupported engine version. - [ver.%d]", chart.Engine.Version)))
+		fmt.Println(color.RedString(fmt.Sprintf("FAIL (ver.%d):エンジンのバージョンが古い。開発者にご相談ください。\nUnsupported engine version. Please contact TootieJin for assistance.", chart.Engine.Version)))
 		return
 	}
 
@@ -182,7 +185,7 @@ func origMain(isOptionSpecified bool) {
 	fmt.Println(color.GreenString("OK"))
 
 	if !isOptionSpecified {
-		fmt.Print("総合力を指定してください。\nInput your team's power.\n> ")
+		fmt.Print("\n総合力を指定してください。 (Input your team's power.)\n> ")
 		var tmpTeamPower string
 		fmt.Scanln(&tmpTeamPower)
 		teamPower, err = strconv.Atoi(tmpTeamPower)
@@ -191,16 +194,28 @@ func origMain(isOptionSpecified bool) {
 			return
 		}
 		fmt.Printf("\033[A\033[2K\r> %s\n", color.GreenString(tmpTeamPower))
-
 	}
 
 	fmt.Print("- スコアを計算中 (Calculating score)... ")
 	scoreData := pjsekaioverlay.CalculateScore(chart, levelData, teamPower)
 
 	fmt.Println(color.GreenString("OK"))
+	if !isOptionSpecified {
+		fmt.Print("\nイントロに英語を使いますか？ (Use English for the intro?) [y/n]\n> ")
+		before, _ := rawmode.Enable()
+		tmpEnableENByte, _ := bufio.NewReader(os.Stdin).ReadByte()
+		tmpEnableEN := string(tmpEnableENByte)
+		rawmode.Restore(before)
+		fmt.Printf("\n\033[A\033[2K\r> %s\n", color.GreenString(tmpEnableEN))
+		if tmpEnableEN == "Y" || tmpEnableEN == "y" || tmpEnableEN == "" {
+			enUI = true
+		} else {
+			enUI = false
+		}
+	}
 
 	if !isOptionSpecified {
-		fmt.Print("コンボのAP表示を有効にしますか？ (Enable AP indicator for combo?) [y/n]\n> ")
+		fmt.Print("\nコンボのAP表示を有効にしますか？ (Enable AP indicator for combo?) [y/n]\n> ")
 		before, _ := rawmode.Enable()
 		tmpEnableComboApByte, _ := bufio.NewReader(os.Stdin).ReadByte()
 		tmpEnableComboAp := string(tmpEnableComboApByte)
@@ -228,14 +243,25 @@ func origMain(isOptionSpecified bool) {
 
 	fmt.Print("- exoファイルを生成中 (Generating exo file)... ")
 
-	composerAndVocals := []string{chart.Artists, "？"}
+	composerAndVocals := []string{chart.Artists, "-"}
 	if separateAttempt := strings.Split(chart.Artists, " / "); chartSource.Id == "chart_cyanvas" && len(separateAttempt) <= 2 {
 		composerAndVocals = separateAttempt
 	}
 
-	artists := fmt.Sprintf("作詞：？    作曲：%s    編曲：？\r\nVo：%s   譜面作成：%s", composerAndVocals[0], composerAndVocals[1], chart.Author)
+	charter := []string{chart.Author, "-"}
+	if charterTag := strings.Split(chart.Author, "#"); chartSource.Id == "chart_cyanvas" && len(charterTag) <= 2 {
+		charter = charterTag
+	}
 
-	err = pjsekaioverlay.WriteExoFiles(assets, formattedOutDir, chart.Title, artists)
+	description := fmt.Sprintf("作詞：-    作曲：%s    編曲：-\r\nVo：%s    譜面作成：%s", composerAndVocals[0], composerAndVocals[1], charter[0])
+	extra := "[追加情報]"
+
+	if enUI {
+		description = fmt.Sprintf("Lyrics: -    Music: %s    Arrangement: -\r\nVo：%s    Chart Design: %s", composerAndVocals[0], composerAndVocals[1], charter[0])
+		extra = "[Additional Info]"
+	}
+
+	err = pjsekaioverlay.WriteExoFiles(assets, formattedOutDir, chart.Title, description, extra)
 
 	if err != nil {
 		fmt.Println(color.RedString(fmt.Sprintf("FAIL:%s", err.Error())))
@@ -244,7 +270,7 @@ func origMain(isOptionSpecified bool) {
 
 	fmt.Println(color.GreenString("OK"))
 
-	fmt.Println(color.GreenString("\n全ての処理が完了しました。READMEの規約を確認した上で、exoファイルをAviUtlにインポートして下さい。\nExecution complete! Please import the exo file into AviUtl after reviewing the README terms and conditions."))
+	fmt.Println(color.GreenString("\n全ての処理が完了しました。READMEの規約を確認した上で、exoファイルをAviUtlにインポートして下さい。\nExecution complete! Please import the exo file into AviUtl after reviewing the README Terms of Use."))
 }
 
 func main() {
