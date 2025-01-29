@@ -22,7 +22,7 @@ func Title() {
 	
     %s[CAUTION] This tool is primary only for people with technical know-how and basic knowledge of AviUtl. DO NOT open issues or request help about this. Refer to the README for how to set it up.%s
     %s-------------------------------------------------------------------------------------%s
-    `))+"\n\n",
+    `))+"\n",
 		RgbColorEscape(0x00afc7), RgbColorEscape(0xab93ff), RgbColorEscape(0xd388ed), RgbColorEscape(0xff8bf4), RgbColorEscape(0x00afc7), ResetEscape(),
 		RgbColorEscape(0x00afc7), ResetEscape(),
 		RgbColorEscape(0x0f6ea3), pjsekaioverlay.Version, ResetEscape(),
