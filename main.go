@@ -124,7 +124,7 @@ func origMain(isOptionSpecified bool) {
 		fmt.Println(color.RedString(fmt.Sprintf("FAIL: %s", err.Error())))
 		return
 	}
-	if chart.Engine.Version != 12 {
+	if chart.Engine.Version != 13 {
 		fmt.Println(color.RedString(fmt.Sprintf("FAIL (ver.%d):エンジンのバージョンが古い。開発者にご相談ください。\nUnsupported engine version. Please contact TootieJin for assistance.", chart.Engine.Version)))
 		return
 	}

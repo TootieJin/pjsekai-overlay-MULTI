@@ -72,7 +72,7 @@ PJSekai-style video creation tool:
 
 1. Download the latest version of pjsekai-overlay-APPEND [here](https://github.com/TootieJin/pjsekai-overlay-APPEND/releases/latest/).
 2. Unzip the file
-3. Import ALL files & folders in the [`depenencies/aviutl animation`](./depenencies/aviutl%20animation) folder into here:
+3. Import ALL files & folders in the [`depenencies/aviutl script`](./depenencies/aviutl%20script) folder into here:
 ```
    aviutl
       ⌞Plugins
@@ -146,7 +146,7 @@ PJSekai-style video creation tool:
 
 1. 右の Releases から最新のバージョンの zip をダウンロードする
 2. zip を解凍する
-3. [`depenencies/aviutl animation`](./depenencies/aviutl%20animation)フォルダ内のすべてのファイルとフォルダをここにインポートします：
+3. [`depenencies/aviutl script`](./depenencies/aviutl%20script)フォルダ内のすべてのファイルとフォルダをここにインポートします：
 ```
    aviutl
       ⌞Plugins

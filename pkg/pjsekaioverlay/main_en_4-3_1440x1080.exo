@@ -10,12 +10,26 @@ audio_ch=2
 start=1
 end=3980
 layer=1
+group=5
 overlay=1
 camera=0
 [0.0]
 _name=Image file
 file={assets}\background_full.png
 [0.1]
+_name=Mask
+X=0.0
+Y=0.0
+Rotation=0.00
+Size=2000
+rAspect=-55.0
+Blur=0
+Invert mask=1
+Match with original size=0
+type=2
+name=
+mode=0
+[0.2]
 _name=Standard drawing
 X=0.0
 Y=0.0
@@ -28,25 +42,13 @@ blend=0
 start=1
 end=3980
 layer=2
+group=5
 overlay=1
 camera=0
 [1.0]
 _name=Image file
 file={dist}\background.png
 [1.1]
-_name=Mask
-X=0.0
-Y=0.0
-Rotation=0.00
-Size=1000
-rAspect=-30.0
-Blur=30
-Invert mask=0
-Match with original size=0
-type=2
-name=
-mode=0
-[1.2]
 _name=Standard drawing
 X=0.0
 Y=0.0
@@ -345,7 +347,7 @@ _name=Standard drawing
 X=-661.5
 Y=288.0
 Z=0.0
-Zoom%=150.00
+Zoom%=39.26
 Clearness=0.0
 Rotation=0.00
 blend=0
