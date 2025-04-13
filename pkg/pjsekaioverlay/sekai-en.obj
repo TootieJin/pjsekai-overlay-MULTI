@@ -281,7 +281,7 @@ if PED_DATA and PED_DATA.version_status == "ok" then
           obj.load("image", PED_DATA.path.."/combo/n"..digit..".png")
           if progress > 8 and progress < 12 then
             obj.effect("Glow", "Strength",  progress, "Blur", 5)
-            obj.effect("Light", "Strength",  progress * 4, "Backlight", 1)
+            obj.effect("Light", "Strength",  progress * 8, "Backlight", 1)
           elseif progress >= 12 and progress < 16 then
             obj.effect("Glow", "Strength",  3 * (1 - (progress - 13) / 0.5), "Blur", 5)
             obj.effect("Light", "Strength",  16 * (3 - (progress - 13) / 0.5), "Backlight", 1)
