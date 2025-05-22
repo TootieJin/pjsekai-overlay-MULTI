@@ -12,8 +12,9 @@ import (
 )
 
 type PedFrame struct {
-	Time  float64
-	Score int
+	Time   float64
+	Score2 int
+	Score  int
 }
 
 type BpmChange struct {
@@ -136,6 +137,7 @@ func CalculateScore(levelInfo sonolus.LevelInfo, levelData sonolus.LevelData, po
 	comboFax := 1.0
 
 	score := 0
+	score2 := 0
 	entityCounter := 0
 	noteEntities := ([]sonolus.LevelDataEntity{})
 
@@ -183,13 +185,25 @@ func CalculateScore(levelInfo sonolus.LevelInfo, levelData sonolus.LevelData, po
 				comboFax * // Combo fax
 				1, // Skill fax (Always 1)
 		)
+
+		score2 += int(
+			(float64(power)/weightedNotesCount)* // Team power / weighted notes count
+				4* // Constant
+				weight* // Note weight
+				1* // Judge weight (Always 1)
+				levelFax* // Level fax
+				comboFax* // Combo fax
+				1, // Skill fax (Always 1)
+		) / 1000000000
+
 		beat, err := getValueFromData(entity.Data, "#BEAT")
 		if err != nil {
 			continue
 		}
 		frames = append(frames, PedFrame{
-			Time:  getTimeFromBpmChanges(bpmChanges, beat) + levelData.BgmOffset,
-			Score: score,
+			Time:   getTimeFromBpmChanges(bpmChanges, beat) + levelData.BgmOffset,
+			Score2: score2,
+			Score:  score,
 		})
 	}
 
@@ -213,8 +227,18 @@ func WritePedFile(frames []PedFrame, assets string, ap bool, path string, levelI
 	lastScore := 0
 	rating := levelInfo.Rating
 	for i, frame := range frames {
-		score := frame.Score
-		frameScore := score - lastScore
+		// 2-variable scoring
+		score := frame.Score % 1000000000
+		score2 := 0
+
+		if frame.Score/1000000000 != 0 {
+			score2 += frame.Score / 1000000000
+		}
+		if score < 0 {
+			score = -score
+		}
+
+		frameScore := (score + (score2 * 1000000000)) - lastScore
 		lastScore = frame.Score
 
 		// 161, 215, 267, 320, 357
@@ -236,7 +260,10 @@ func WritePedFile(frames []PedFrame, assets string, ap bool, path string, levelI
 		rankC := 20000 + (rating-5)*100
 
 		// bar
-		if score >= rankBorder {
+		if score2 < 0 {
+			rank = "d"
+			scoreX = 0
+		} else if score >= rankBorder || score2 > 0 {
 			rank = "s"
 			scoreX = 357
 		} else if score >= rankS {
@@ -256,7 +283,7 @@ func WritePedFile(frames []PedFrame, assets string, ap bool, path string, levelI
 			scoreX = (float64(score) / float64(rankC)) * 160
 		}
 
-		writer.Write([]byte(fmt.Sprintf("s|%f:%d:%d:%f:%s:%d\n", frame.Time, score, frameScore, scoreX/357, rank, i)))
+		writer.Write(fmt.Appendf(nil, "s|%f:%d:%d:%d:%f:%s:%d\n", frame.Time, score2, score, frameScore, scoreX/357, rank, i))
 	}
 
 	return nil

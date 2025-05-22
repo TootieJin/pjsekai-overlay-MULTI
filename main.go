@@ -114,7 +114,7 @@ func origMain(isOptionSpecified bool) {
 
 	chartSource, err := pjsekaioverlay.DetectChartSource(chartId)
 	if err != nil {
-		fmt.Println(color.RedString("譜面のサーバーを判別できませんでした。プレフィックスも込め、正しい譜面IDを入力して下さい。\nThe specified chart doesn't exist. Please enter the correct chart ID including the prefix."))
+		fmt.Println(color.RedString("FAIL: ええと...譜面のサーバーを判別できませんでした。プレフィックスも込め、正しい譜面IDを入力して下さい。\nUhh... I can't find the chart you're looking for. Please enter the correct chart ID including the prefix."))
 		return
 	}
 	fmt.Printf("- 譜面を取得中 (Getting chart): %s%s%s ", RgbColorEscape(chartSource.Color), chartSource.Name, ResetEscape())
@@ -125,7 +125,7 @@ func origMain(isOptionSpecified bool) {
 		return
 	}
 	if chart.Engine.Version != 13 {
-		fmt.Println(color.RedString(fmt.Sprintf("FAIL (ver.%d):エンジンのバージョンが古い。開発者にご相談ください。\nUnsupported engine version. Please contact TootieJin for assistance.", chart.Engine.Version)))
+		fmt.Println(color.RedString(fmt.Sprintf("FAIL (ver.%d):エンジンのバージョンが古い。pjsekai-overlay-APPENDを最新版に更新してください。\nUnsupported engine version. Please update pjsekai-overlay-APPEND to latest version.", chart.Engine.Version)))
 		return
 	}
 
@@ -140,7 +140,7 @@ func origMain(isOptionSpecified bool) {
 	fmt.Printf("- exeのパスを取得中 (Getting executable path)... ")
 	executablePath, err := os.Executable()
 	if err != nil {
-		fmt.Println(color.RedString(fmt.Sprintf("FAIL:%s", err.Error())))
+		fmt.Println(color.RedString(fmt.Sprintf("FAIL: %s", err.Error())))
 		return
 	}
 
@@ -149,7 +149,7 @@ func origMain(isOptionSpecified bool) {
 	cwd, err := os.Getwd()
 
 	if err != nil {
-		fmt.Println(color.RedString(fmt.Sprintf("FAIL:%s", err.Error())))
+		fmt.Println(color.RedString(fmt.Sprintf("FAIL: %s", err.Error())))
 		return
 	}
 
@@ -159,7 +159,7 @@ func origMain(isOptionSpecified bool) {
 	fmt.Print("- ジャケットをダウンロード中 (Downloading jacket)... ")
 	err = pjsekaioverlay.DownloadCover(chartSource, chart, formattedOutDir)
 	if err != nil {
-		fmt.Println(color.RedString(fmt.Sprintf("FAIL:%s", err.Error())))
+		fmt.Println(color.RedString(fmt.Sprintf("FAIL: %s", err.Error())))
 		return
 	}
 
@@ -168,7 +168,7 @@ func origMain(isOptionSpecified bool) {
 	fmt.Print("- 背景をダウンロード中 (Downloading background)... ")
 	err = pjsekaioverlay.DownloadBackground(chartSource, chart, formattedOutDir)
 	if err != nil {
-		fmt.Println(color.RedString(fmt.Sprintf("FAIL:%s", err.Error())))
+		fmt.Println(color.RedString(fmt.Sprintf("FAIL: %s", err.Error())))
 		return
 	}
 
@@ -178,20 +178,24 @@ func origMain(isOptionSpecified bool) {
 	levelData, err := pjsekaioverlay.FetchLevelData(chartSource, chart)
 
 	if err != nil {
-		fmt.Println(color.RedString(fmt.Sprintf("FAIL:%s", err.Error())))
+		fmt.Println(color.RedString(fmt.Sprintf("FAIL: %s", err.Error())))
 		return
 	}
 
 	fmt.Println(color.GreenString("OK"))
 
 	if !isOptionSpecified {
-		fmt.Print("\n総合力を指定してください。 (Input your team's power.)\n> ")
+		fmt.Print("\n総合力を指定してください。 (Input your team's power.)\n\nおすすめ (Recommended): 250000 - 300000\n制限 (Limit): 0 - 9223372036854775807\n> ")
 		var tmpTeamPower string
 		fmt.Scanln(&tmpTeamPower)
 		teamPower, err = strconv.Atoi(tmpTeamPower)
 		if err != nil {
-			fmt.Println(color.RedString(fmt.Sprintf("FAIL:%s", err.Error())))
-			return
+			if numErr, ok := err.(*strconv.NumError); ok && numErr.Err == strconv.ErrRange {
+				fmt.Println(color.RedString("FAIL: あなたのPCがその総合力で計算できないのは残念だ。説明書を読んで再実行してください。\nToo bad your PC can't calculate with that team power. Read the instructions and rerun it."))
+			} else {
+				fmt.Println(color.RedString(fmt.Sprintf("FAIL: %s", err.Error())))
+				return
+			}
 		}
 		fmt.Printf("\033[A\033[2K\r> %s\n", color.GreenString(tmpTeamPower))
 	}
@@ -235,7 +239,7 @@ func origMain(isOptionSpecified bool) {
 	err = pjsekaioverlay.WritePedFile(scoreData, assets, apCombo, filepath.Join(formattedOutDir, "data.ped"), sonolus.LevelInfo{Rating: chart.Rating})
 
 	if err != nil {
-		fmt.Println(color.RedString(fmt.Sprintf("FAIL:%s", err.Error())))
+		fmt.Println(color.RedString(fmt.Sprintf("FAIL: %s", err.Error())))
 		return
 	}
 
@@ -257,14 +261,14 @@ func origMain(isOptionSpecified bool) {
 	extra := "[追加情報]"
 
 	if enUI {
-		description = fmt.Sprintf("Lyrics: -    Music: %s    Arrangement: -\r\nVo：%s    Chart Design: %s", composerAndVocals[0], composerAndVocals[1], charter[0])
+		description = fmt.Sprintf("Lyrics: -    Music: %s    Arrangement: -\r\nVo: %s    Chart Design: %s", composerAndVocals[0], composerAndVocals[1], charter[0])
 		extra = "[Additional Info]"
 	}
 
 	err = pjsekaioverlay.WriteExoFiles(assets, formattedOutDir, chart.Title, description, extra)
 
 	if err != nil {
-		fmt.Println(color.RedString(fmt.Sprintf("FAIL:%s", err.Error())))
+		fmt.Println(color.RedString(fmt.Sprintf("FAIL: %s", err.Error())))
 		return
 	}
 
