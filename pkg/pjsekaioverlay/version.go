@@ -1,3 +1,3 @@
 package pjsekaioverlay
 
-const Version = "0.4.0+.2"
+const Version = "0.0.0"

@@ -234,7 +234,7 @@ func WritePedFile(frames []PedFrame, assets string, ap bool, path string, levelI
 		if frame.Score/1000000000 != 0 {
 			score2 += frame.Score / 1000000000
 		}
-		if score < 0 {
+		if score < 0 && score2 >= 0 {
 			score = -score
 		}
 
@@ -260,7 +260,7 @@ func WritePedFile(frames []PedFrame, assets string, ap bool, path string, levelI
 		rankC := 20000 + (rating-5)*100
 
 		// bar
-		if score2 < 0 {
+		if score2 < 0 || score < 0 {
 			rank = "d"
 			scoreX = 0
 		} else if score >= rankBorder || score2 > 0 {
