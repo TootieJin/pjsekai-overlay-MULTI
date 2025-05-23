@@ -26,8 +26,8 @@ This is a forked version of pjsekai-overlay with additional features originally 
   - iPad (4:3) video support
   - Ability to use the English AviUtl
   - Increased score integer limit 
-  ![pjsekai-overlay-APPEND_minint](https://github.com/user-attachments/assets/80eb8fc1-6602-4c26-ac47-4e8e07fb99c2)
-  ![pjsekai-overlay-APPEND_maxint](https://github.com/user-attachments/assets/45a49c19-7883-402c-b016-58f02f72f0b6)
+  [![pjsekai-overlay-APPEND_minint](https://github.com/user-attachments/assets/80eb8fc1-6602-4c26-ac47-4e8e07fb99c2)]()
+  [![pjsekai-overlay-APPEND_maxint](https://github.com/user-attachments/assets/45a49c19-7883-402c-b016-58f02f72f0b6)]()
 
 ## Terms of Use
 
@@ -105,8 +105,8 @@ pjsekai-overlay(-APPEND) は、プロセカの創作譜面をプロセカ風の�
   - iPad（4:3）動画対応
   - 英語版AviUtlの使用機能
   - スコアの主な変更点
-  ![pjsekai-overlay-APPEND_minint](https://github.com/user-attachments/assets/80eb8fc1-6602-4c26-ac47-4e8e07fb99c2)
-  ![pjsekai-overlay-APPEND_maxint](https://github.com/user-attachments/assets/45a49c19-7883-402c-b016-58f02f72f0b6)
+  [![pjsekai-overlay-APPEND_minint](https://github.com/user-attachments/assets/80eb8fc1-6602-4c26-ac47-4e8e07fb99c2)]()
+  [![pjsekai-overlay-APPEND_maxint](https://github.com/user-attachments/assets/45a49c19-7883-402c-b016-58f02f72f0b6)]()
 
 
 ## 利用規約
