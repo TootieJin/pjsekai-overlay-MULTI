@@ -10,6 +10,10 @@ https://github.com/user-attachments/assets/f4a85c6b-e452-4323-aae7-76a5a5611074
 
 https://github.com/user-attachments/assets/b23682fc-cd61-4f43-92f9-8c7e1d0380b0
 
+- **v1 Skin (w/ AP video & maximum power)**
+
+https://github.com/user-attachments/assets/80220cbf-de40-4e39-8b8d-9d14297772f9
+
 - **Video Example**
 
 *(Click the image to watch it)*\
