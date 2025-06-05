@@ -12,9 +12,8 @@ import (
 )
 
 type PedFrame struct {
-	Time   float64
-	Score2 int
-	Score  int
+	Time  float64
+	Score int
 }
 
 type BpmChange struct {
@@ -137,7 +136,6 @@ func CalculateScore(levelInfo sonolus.LevelInfo, levelData sonolus.LevelData, po
 	comboFax := 1.0
 
 	score := 0
-	score2 := 0
 	entityCounter := 0
 	noteEntities := ([]sonolus.LevelDataEntity{})
 
@@ -169,7 +167,7 @@ func CalculateScore(levelInfo sonolus.LevelInfo, levelData sonolus.LevelData, po
 	for _, entity := range noteEntities {
 		weight := WEIGHT_MAP[entity.Archetype]
 		entityCounter += 1
-		if entityCounter%100 == 0 {
+		if entityCounter%100 == 1 && entityCounter > 1 {
 			comboFax += 0.01
 		}
 		if comboFax > 1.1 {
@@ -186,24 +184,13 @@ func CalculateScore(levelInfo sonolus.LevelInfo, levelData sonolus.LevelData, po
 				1, // Skill fax (Always 1)
 		)
 
-		score2 += int(
-			(float64(power)/weightedNotesCount)* // Team power / weighted notes count
-				4* // Constant
-				weight* // Note weight
-				1* // Judge weight (Always 1)
-				levelFax* // Level fax
-				comboFax* // Combo fax
-				1, // Skill fax (Always 1)
-		) / 1000000000
-
 		beat, err := getValueFromData(entity.Data, "#BEAT")
 		if err != nil {
 			continue
 		}
 		frames = append(frames, PedFrame{
-			Time:   getTimeFromBpmChanges(bpmChanges, beat) + levelData.BgmOffset,
-			Score2: score2,
-			Score:  score,
+			Time:  getTimeFromBpmChanges(bpmChanges, beat) + levelData.BgmOffset,
+			Score: score,
 		})
 	}
 
@@ -245,6 +232,7 @@ func WritePedFile(frames []PedFrame, assets string, ap bool, path string, levelI
 
 		rank := "n"
 		scoreX := 0.0
+		scoreXv1 := 0.0
 
 		// rank
 		if rating < 5 {
@@ -263,27 +251,34 @@ func WritePedFile(frames []PedFrame, assets string, ap bool, path string, levelI
 		if score2 < 0 || score < 0 {
 			rank = "d"
 			scoreX = 0
+			scoreXv1 = 0
 		} else if score >= rankBorder || score2 > 0 {
 			rank = "s"
 			scoreX = 357
+			scoreXv1 = 1
 		} else if score >= rankS {
 			rank = "s"
 			scoreX = (float64((score-rankS))/float64((rankBorder-rankS)))*37 + 320
+			scoreXv1 = (float64((score-rankS))/float64((rankBorder-rankS)))*0.110 + 0.890
 		} else if score >= rankA {
 			rank = "a"
 			scoreX = (float64((score-rankA))/float64((rankS-rankA)))*53 + 267
+			scoreXv1 = (float64((score-rankA))/float64((rankS-rankA)))*0.148 + 0.742
 		} else if score >= rankB {
 			rank = "b"
 			scoreX = (float64((score-rankB))/float64((rankA-rankB)))*53 + 215
+			scoreXv1 = (float64((score-rankB))/float64((rankA-rankB)))*0.151 + 0.591
 		} else if score >= rankC {
 			rank = "c"
 			scoreX = (float64((score-rankC))/float64((rankB-rankC)))*54 + 161
+			scoreXv1 = (float64((score-rankC))/float64((rankB-rankC)))*0.144 + 0.447
 		} else {
 			rank = "d"
 			scoreX = (float64(score) / float64(rankC)) * 160
+			scoreXv1 = (float64(score) / float64(rankC)) * 0.447
 		}
 
-		writer.Write(fmt.Appendf(nil, "s|%f:%d:%d:%d:%f:%s:%d\n", frame.Time, score2, score, frameScore, scoreX/357, rank, i))
+		writer.Write(fmt.Appendf(nil, "s|%f:%d:%d:%d:%f:%f:%s:%d\n", frame.Time, score2, score, frameScore, scoreX/357, scoreXv1, rank, i))
 	}
 
 	return nil

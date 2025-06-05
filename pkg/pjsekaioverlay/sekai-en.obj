@@ -25,15 +25,16 @@ if obj.track1 ~= 1 or not PED_DATA or PED_DATA.file ~= file then
       if header ~= nil then
         PED_DATA.loaded = "ok"
         if header == "s" then
-          local nmatch = {string.match(data, "([%-0-9.]+):([%-0-9.]+):([%-0-9.]+):([%-0-9.]+):([%-0-9.]+):([abcds]+):([%-0-9.]+)")}
+          local nmatch = {string.match(data, "([%-0-9.]+):([%-0-9.]+):([%-0-9.]+):([%-0-9.]+):([%-0-9.]+):([%-0-9.]+):([abcds]+):([%-0-9.]+)")}
           PED_DATA.frames[#PED_DATA.frames + 1] = {
             time = tonumber(nmatch[1]),
             score2 = tonumber(nmatch[2]),
             score = tonumber(nmatch[3]);
             offset = tonumber(nmatch[4]),
             width = tonumber(nmatch[5]),
-            rank = nmatch[6],
-            combo = tonumber(nmatch[7])
+            widthv1 = tonumber(nmatch[6]),
+            rank = nmatch[7],
+            combo = tonumber(nmatch[8])
           }
         elseif header == "p" then -- Pass
           PED_DATA.path = data
@@ -62,6 +63,7 @@ if PED_DATA.version == "{version}" or "{version}" == "0.0.0" or "{version}" == "
     score = 0,
     offset = 0,
     width = 0,
+    widthv1 = 0,
     rank = "d",
     combo = 0,
   }

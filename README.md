@@ -14,6 +14,7 @@ https://github.com/user-attachments/assets/b23682fc-cd61-4f43-92f9-8c7e1d0380b0
 
 *(Click the image to watch it)*\
 [![【Project Sekai x Honkai: Star Rail】Nameless Faces - HOYO-MiX feat. Lilas Ikuta (Fanmade)](https://img.youtube.com/vi/uXx1OZDQZOI/maxresdefault.jpg)](https://youtu.be/uXx1OZDQZOI)
+[![【Project Sekai Fanmade? (v3→v1)】Hello, SEKAI - DECO*27【ETERNAL Lv32】](https://img.youtube.com/vi/BHVNuwxA1ek/maxresdefault.jpg)](https://youtu.be/BHVNuwxA1ek)
 
 > [!CAUTION]
 > **For English users:** This tool is primary only for people with technical know-how and basic knowledge of AviUtl.\
@@ -25,6 +26,7 @@ This is a forked version of pjsekai-overlay with additional features originally 
   - Quickly make 1080p videos
   - iPad (4:3) video support
   - Ability to use the English AviUtl
+  - v1 UI (gameplay) skin
   - Increased score integer limit 
   [![pjsekai-overlay-APPEND_minint](https://github.com/user-attachments/assets/80eb8fc1-6602-4c26-ac47-4e8e07fb99c2)]()
   [![pjsekai-overlay-APPEND_maxint](https://github.com/user-attachments/assets/45a49c19-7883-402c-b016-58f02f72f0b6)]()
@@ -36,18 +38,18 @@ In the description of your video, please copy the text here:
 **EN**
 ```
 PJSekai-style video creation tool:
-- Forked ver. by TootieJin ( https://tootiejin.com )
+- Forked ver. by TootieJin (https://tootiejin.com)
    https://github.com/TootieJin/pjsekai-overlay-APPEND
-- Original by 名無し｡ ( https://sevenc7c.com ) 
+- Original by 名無し｡ (https://sevenc7c.com) 
    https://github.com/sevenc-nanashi/pjsekai-overlay
 ```
 
 **JP**
 ```
 プロセカ風動画作成補助ツール：
-- TootieJin ( https://tootiejin.com ) フォーク版
+- TootieJin (https://tootiejin.com) フォーク版
    https://github.com/TootieJin/pjsekai-overlay-APPEND
-- 名無し｡ ( https://sevenc7c.com ) オリジナル版
+- 名無し｡ (https://sevenc7c.com) オリジナル版
    https://github.com/sevenc-nanashi/pjsekai-overlay
 ```
 
@@ -104,6 +106,7 @@ pjsekai-overlay(-APPEND) は、プロセカの創作譜面をプロセカ風の�
   - 1080p動画を素早く作成
   - iPad（4:3）動画対応
   - 英語版AviUtlの使用機能
+  - v1 UI（ゲームプレイ）スキン
   - スコアの主な変更点
   [![pjsekai-overlay-APPEND_minint](https://github.com/user-attachments/assets/80eb8fc1-6602-4c26-ac47-4e8e07fb99c2)]()
   [![pjsekai-overlay-APPEND_maxint](https://github.com/user-attachments/assets/45a49c19-7883-402c-b016-58f02f72f0b6)]()
@@ -116,18 +119,18 @@ pjsekai-overlay(-APPEND) は、プロセカの創作譜面をプロセカ風の�
 **EN**
 ```
 PJSekai-style video creation tool:
-- Forked ver. by TootieJin ( https://tootiejin.com )
+- Forked ver. by TootieJin (https://tootiejin.com)
    https://github.com/TootieJin/pjsekai-overlay-APPEND
-- Original by 名無し｡ ( https://sevenc7c.com ) 
+- Original by 名無し｡ (https://sevenc7c.com) 
    https://github.com/sevenc-nanashi/pjsekai-overlay
 ```
 
 **JP**
 ```
 プロセカ風動画作成補助ツール：
-- TootieJin ( https://tootiejin.com ) フォーク版
+- TootieJin (https://tootiejin.com) フォーク版
    https://github.com/TootieJin/pjsekai-overlay-APPEND
-- 名無し｡ ( https://sevenc7c.com ) オリジナル版
+- 名無し｡ (https://sevenc7c.com) オリジナル版
    https://github.com/sevenc-nanashi/pjsekai-overlay
 ```
 

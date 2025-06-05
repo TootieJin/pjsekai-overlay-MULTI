@@ -192,6 +192,7 @@ func origMain(isOptionSpecified bool) {
 		if err != nil {
 			if numErr, ok := err.(*strconv.NumError); ok && numErr.Err == strconv.ErrRange {
 				fmt.Println(color.RedString("FAIL: あなたのPCがその総合力で計算できないのは残念だ。説明書を読んで再実行してください。\nToo bad your PC can't calculate with that team power. Read the instructions and rerun it."))
+				return
 			} else {
 				fmt.Println(color.RedString(fmt.Sprintf("FAIL: %s", err.Error())))
 				return
