@@ -25,7 +25,7 @@ https://github.com/user-attachments/assets/3efab743-246a-4da7-8d80-a02b2f09f5b3
 > Only use this tool if you can figure it out yourself. **DO NOT open issues, DM me, or request help in Sonolus / Chart Cyanvas Discord servers about this**.
 
 This is a forked version of pjsekai-overlay with additional features originally not in the main repo, including:
-  - [Extra assets](./assets/extra%20assets) (thank you [ReiyuN](https://discordid.netlify.app/?id=383636820409188374) and [YumYummity](https://github.com/YumYummity) for the contribution!)
+  - [Extra assets](./assets/extra%20assets) (thank you [ReiyuN](https://discordid.netlify.app/?id=383636820409188374), [Gaven](https://github.com/gaven1880) and [YumYummity](https://github.com/YumYummity) for the contribution!)
   - Added/adjusted elements to look identical to the official photography
   - Quickly make 1080p videos
   - iPad (4:3) video support
@@ -106,7 +106,7 @@ PJSekai-style video creation tool:
 pjsekai-overlay(-APPEND) は、プロセカの創作譜面をプロセカ風の動画にするためのオープンソースのツールです。
 
 これはpjsekai-overlayのフォーク版で、元々メインレポにはない以下のような追加機能があります：
-  - [追加アセット](./assets/extra%20assets/) ([ReiyuN](https://discordid.netlify.app/?id=383636820409188374)さんと[YumYummity](https://github.com/YumYummity)さん、ご寄稿ありがとうございました。)
+  - [追加アセット](./assets/extra%20assets/) ([ReiyuN](https://discordid.netlify.app/?id=383636820409188374)さん、[Gaven](https://github.com/gaven1880)さんと[YumYummity](https://github.com/YumYummity)さん、ご寄稿ありがとうございました。)
   - 本家撮影と同じように見えるように要素を追加/調整
   - 1080p動画を素早く作成
   - iPad（4:3）動画対応
