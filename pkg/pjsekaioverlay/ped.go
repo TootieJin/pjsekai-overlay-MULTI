@@ -117,7 +117,7 @@ func getTimeFromBpmChanges(bpmChanges []BpmChange, beat float64) float64 {
 	return ret
 }
 
-func CalculateScore(levelInfo sonolus.LevelInfo, levelData sonolus.LevelData, power int, exScore bool) []PedFrame {
+func CalculateScore(levelInfo sonolus.LevelInfo, levelData sonolus.LevelData, power float64, exScore bool) []PedFrame {
 	rating := levelInfo.Rating
 	var weightedNotesCount float64 = 0
 	for _, entity := range levelData.Entities {
@@ -229,10 +229,10 @@ func WritePedFile(frames []PedFrame, assets string, ap bool, path string, levelI
 	for i, frame := range frames {
 		// 2-variable scoring
 		score := math.Mod(frame.Score, 1000000000)
-		score2 := 0
+		score2 := 0.0
 
 		if int(frame.Score/1000000000) != 0 {
-			score2 += int(frame.Score / 1000000000)
+			score2 += math.Floor(frame.Score / 1000000000)
 		}
 		if score < 0 && score2 < 0 {
 			score = -score
@@ -290,7 +290,7 @@ func WritePedFile(frames []PedFrame, assets string, ap bool, path string, levelI
 			scoreXv1 = (float64(score) / float64(rankC)) * 0.447
 		}
 
-		writer.Write(fmt.Appendf(nil, "s|%f:%d:%f:%f:%f:%f:%s:%d\n", frame.Time, score2, score, frameScore, scoreX/372, scoreXv1, rank, i))
+		writer.Write(fmt.Appendf(nil, "s|%f:%f:%f:%f:%f:%f:%s:%d\n", frame.Time, score2, score, frameScore, scoreX/372, scoreXv1, rank, i))
 	}
 
 	return nil

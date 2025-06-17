@@ -5,6 +5,7 @@ import (
 	"context"
 	"flag"
 	"fmt"
+	"math"
 	"os"
 	"path/filepath"
 	"strconv"
@@ -78,8 +79,8 @@ func origMain(isOptionSpecified bool) {
 	var exScore bool
 	flag.BoolVar(&exScore, "ex-score", false, "大会モードを有効にします。 (Enable Tournament Mode.)")
 
-	var teamPower int
-	flag.IntVar(&teamPower, "team-power", 250000, "総合力を指定します。(Enter the team's power.)")
+	var teamPower float64
+	flag.Float64Var(&teamPower, "team-power", 250000, "総合力を指定します。(Enter the team's power.)")
 
 	var enUI bool
 	flag.BoolVar(&enUI, "en-ui", false, "イントロに英語を使う。 (Use English for the intro.)")
@@ -202,17 +203,17 @@ func origMain(isOptionSpecified bool) {
 		fmt.Printf("\n\033[A\033[2K\r> %s\n", color.GreenString(tmpEnableEXScore))
 		if tmpEnableEXScore == "Y" || tmpEnableEXScore == "y" || tmpEnableEXScore == "" {
 			exScore = true
-			teamPower = 0
+			teamPower = 0.0
 		} else {
 			exScore = false
 		}
 	}
 
 	if !isOptionSpecified && !exScore {
-		fmt.Print("\n総合力を指定してください。 (Input your team's power.)\n\nおすすめ (Recommended): 250000 - 300000\n制限 (Limit): 0 - 9223372036854775807\n> ")
+		fmt.Print("\n総合力を指定してください。 (Input your team power.)\n\n- 小数と科学的記数法が使える (Accepts decimals & scientific notation)\n- おすすめ (Recommended): 250000 - 300000\n- 制限 (Limit): ???\n> ")
 		var tmpTeamPower string
 		fmt.Scanln(&tmpTeamPower)
-		teamPower, err = strconv.Atoi(tmpTeamPower)
+		teamPower, err = strconv.ParseFloat(tmpTeamPower, 64)
 		if err != nil {
 			if numErr, ok := err.(*strconv.NumError); ok && numErr.Err == strconv.ErrRange {
 				fmt.Println(color.RedString("FAIL: あなたのPCがその総合力で計算できないのは残念だ。説明書を読んで再実行してください。\nToo bad your PC can't calculate with that team power. Read the instructions and rerun it."))
@@ -223,6 +224,9 @@ func origMain(isOptionSpecified bool) {
 			}
 		}
 		fmt.Printf("\033[A\033[2K\r> %s\n", color.GreenString(tmpTeamPower))
+		if teamPower >= math.Abs(1e+20) {
+			fmt.Println(color.HiYellowString("WARNING: スコアは大きすぎると精度が落ちる可能性がある。Score may decrease precision if it's too large.\n"))
+		}
 	}
 
 	fmt.Print("- スコアを計算中 (Calculating score)... ")
