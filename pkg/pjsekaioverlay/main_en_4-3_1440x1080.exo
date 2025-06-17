@@ -822,7 +822,7 @@ overlay=1
 camera=0
 [32.0]
 _name=Image file
-file={assets}\{file:tournament}
+file={assets}\{image:tournament}
 [32.1]
 _name=Standard drawing
 X=-740.0

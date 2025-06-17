@@ -994,7 +994,7 @@ overlay=1
 camera=0
 [41.0]
 _name=画像ファイル
-file={assets}\{file:tournament}
+file={assets}\{image:tournament}
 [41.1]
 _name=標準描画
 X=197.0

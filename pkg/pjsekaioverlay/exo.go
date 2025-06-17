@@ -74,8 +74,8 @@ func WriteExoFiles(assets string, destDir string, title string, description stri
 		"{text:extra}", encodeString(extra),
 		"{text:title}", encodeString(title),
 		"{text:description}", encodeString(description),
-		"{file:tournament}", encodeString(exFile),
-		"{opacity}", encodeString(exFileOpacity),
+		"{image:tournament}", exFile,
+		"{opacity}", exFileOpacity,
 	}
 
 	mappingv1 := []string{
@@ -85,8 +85,8 @@ func WriteExoFiles(assets string, destDir string, title string, description stri
 		"{text:extra}", encodeString(extra),
 		"{text:title}", encodeString(title),
 		"{text:description}", encodeString(descriptionv1),
-		"{file:tournament}", encodeString(exFile),
-		"{opacity}", encodeString(exFileOpacity),
+		"{image:tournament}", exFile,
+		"{opacity}", exFileOpacity,
 	}
 	for i := range mapping {
 		if i%2 == 0 {
