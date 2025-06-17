@@ -57,7 +57,7 @@ var rawBaseExoENv1 []byte
 //go:embed v1-skin_en_4-3_1440x1080.exo
 var rawBaseExoEN43v1 []byte
 
-func WriteExoFiles(assets string, destDir string, title string, description string, extra string) error {
+func WriteExoFiles(assets string, destDir string, title string, description string, descriptionv1 string, extra string, exFile string, exFileOpacity string) error {
 	baseExoJP := string(rawBaseExoJP)
 	baseExoJP43 := string(rawBaseExoJP43)
 	baseExoEN := string(rawBaseExoEN)
@@ -74,11 +74,19 @@ func WriteExoFiles(assets string, destDir string, title string, description stri
 		"{text:extra}", encodeString(extra),
 		"{text:title}", encodeString(title),
 		"{text:description}", encodeString(description),
+		"{file:tournament}", encodeString(exFile),
+		"{opacity}", encodeString(exFileOpacity),
 	}
 
 	mappingv1 := []string{
 		"{assets}", strings.ReplaceAll(assets, "\\", "/"),
 		"{dist}", strings.ReplaceAll(destDir, "\\", "/"),
+		"{text:difficulty}", encodeString("APPEND"),
+		"{text:extra}", encodeString(extra),
+		"{text:title}", encodeString(title),
+		"{text:description}", encodeString(descriptionv1),
+		"{file:tournament}", encodeString(exFile),
+		"{opacity}", encodeString(exFileOpacity),
 	}
 	for i := range mapping {
 		if i%2 == 0 {

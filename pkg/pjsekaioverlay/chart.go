@@ -155,7 +155,7 @@ func DownloadCover(source Source, level sonolus.LevelInfo, destPath string) erro
 
 	return nil
 }
-func DownloadBackground(source Source, level sonolus.LevelInfo, destPath string) error {
+func DownloadBackground(source Source, level sonolus.LevelInfo, destPath string, chartId string) error {
 	var backgroundUrl string
 	var err error
 	backgroundUrl, err = sonolus.JoinUrl("https://"+source.Host, level.UseBackground.Item.Image.Url)
@@ -172,16 +172,36 @@ func DownloadBackground(source Source, level sonolus.LevelInfo, destPath string)
 		return fmt.Errorf("背景が見つかりませんでした。(Background not found.) [%d]", resp.StatusCode)
 	}
 
-	file, err := os.Create(path.Join(destPath, "background.png"))
+	var file *os.File
+	var filev1 *os.File
+
+	if strings.Contains(chartId, "?c_background=1") && source.Id == "chart_cyanvas" {
+		filev1, err = os.Create(path.Join(destPath, "background-v1.png"))
+		file = nil
+	} else if source.Id == "potato_leaves" {
+		filev1, err = os.Create(path.Join(destPath, "background-v1.png"))
+		file = nil
+	} else {
+		filev1 = nil
+		file, err = os.Create(path.Join(destPath, "background.png"))
+	}
 
 	if err != nil {
 		return fmt.Errorf("ファイルの作成に失敗しました。(Failed to create file.) [%s]", err)
 	}
 
 	defer file.Close()
+	defer filev1.Close()
 
-	if _, err := io.Copy(file, resp.Body); err != nil {
-		return fmt.Errorf("ファイルの書き込みに失敗しました。(Failed to write file.) [%s]", err)
+	if file != nil {
+		if _, err := io.Copy(file, resp.Body); err != nil {
+			return fmt.Errorf("ファイルの書き込みに失敗しました。(Failed to write file.) [%s]", err)
+		}
+	}
+	if filev1 != nil {
+		if _, err := io.Copy(filev1, resp.Body); err != nil {
+			return fmt.Errorf("v1ファイルの書き込みに失敗しました。(Failed to write v1 file.) [%s]", err)
+		}
 	}
 
 	return nil

@@ -75,14 +75,17 @@ func origMain(isOptionSpecified bool) {
 	var outDir string
 	flag.StringVar(&outDir, "out-dir", "./dist/_chartId_", "出力先ディレクトリを指定します。_chartId_ は譜面IDに置き換えられます。\nEnter the output path. _chartId_ will be replaced with the chart ID.")
 
+	var exScore bool
+	flag.BoolVar(&exScore, "ex-score", false, "大会モードを有効にします。 (Enable Tournament Mode.)")
+
 	var teamPower int
 	flag.IntVar(&teamPower, "team-power", 250000, "総合力を指定します。(Enter the team's power.)")
 
-	var apCombo bool
-	flag.BoolVar(&apCombo, "ap-combo", true, "コンボのAP表示を有効にします。(Enable AP display for combo.)")
-
 	var enUI bool
 	flag.BoolVar(&enUI, "en-ui", false, "イントロに英語を使う。 (Use English for the intro.)")
+
+	var apCombo bool
+	flag.BoolVar(&apCombo, "ap-combo", true, "コンボのAP表示を有効にします。(Enable AP display for combo.)")
 
 	flag.Usage = func() {
 		fmt.Println("Usage: pjsekai-overlay [譜面ID] [オプション]")
@@ -119,6 +122,7 @@ func origMain(isOptionSpecified bool) {
 	}
 	fmt.Printf("- 譜面を取得中 (Getting chart): %s%s%s ", RgbColorEscape(chartSource.Color), chartSource.Name, ResetEscape())
 	chart, err := pjsekaioverlay.FetchChart(chartSource, chartId)
+	chartv1, err := pjsekaioverlay.FetchChart(chartSource, chartId+"?c_background=1")
 
 	if err != nil {
 		fmt.Println(color.RedString(fmt.Sprintf("FAIL: %s", err.Error())))
@@ -166,7 +170,12 @@ func origMain(isOptionSpecified bool) {
 	fmt.Println(color.GreenString("OK"))
 
 	fmt.Print("- 背景をダウンロード中 (Downloading background)... ")
-	err = pjsekaioverlay.DownloadBackground(chartSource, chart, formattedOutDir)
+	err = pjsekaioverlay.DownloadBackground(chartSource, chart, formattedOutDir, chartId)
+	if err != nil {
+		fmt.Println(color.RedString(fmt.Sprintf("FAIL: %s", err.Error())))
+		return
+	}
+	err = pjsekaioverlay.DownloadBackground(chartSource, chartv1, formattedOutDir, chartId+"?c_background=1")
 	if err != nil {
 		fmt.Println(color.RedString(fmt.Sprintf("FAIL: %s", err.Error())))
 		return
@@ -185,6 +194,21 @@ func origMain(isOptionSpecified bool) {
 	fmt.Println(color.GreenString("OK"))
 
 	if !isOptionSpecified {
+		fmt.Print("\n大会モードを有効にするか？ (PERFECT = +3点)\nEnable Tournament Mode? (PERFECT = +3pts) [y/n]\n> ")
+		before, _ := rawmode.Enable()
+		tmpEnableEXScoreByte, _ := bufio.NewReader(os.Stdin).ReadByte()
+		tmpEnableEXScore := string(tmpEnableEXScoreByte)
+		rawmode.Restore(before)
+		fmt.Printf("\n\033[A\033[2K\r> %s\n", color.GreenString(tmpEnableEXScore))
+		if tmpEnableEXScore == "Y" || tmpEnableEXScore == "y" || tmpEnableEXScore == "" {
+			exScore = true
+			teamPower = 0
+		} else {
+			exScore = false
+		}
+	}
+
+	if !isOptionSpecified && !exScore {
 		fmt.Print("\n総合力を指定してください。 (Input your team's power.)\n\nおすすめ (Recommended): 250000 - 300000\n制限 (Limit): 0 - 9223372036854775807\n> ")
 		var tmpTeamPower string
 		fmt.Scanln(&tmpTeamPower)
@@ -202,7 +226,7 @@ func origMain(isOptionSpecified bool) {
 	}
 
 	fmt.Print("- スコアを計算中 (Calculating score)... ")
-	scoreData := pjsekaioverlay.CalculateScore(chart, levelData, teamPower)
+	scoreData := pjsekaioverlay.CalculateScore(chart, levelData, teamPower, exScore)
 
 	fmt.Println(color.GreenString("OK"))
 	if !isOptionSpecified {
@@ -237,7 +261,7 @@ func origMain(isOptionSpecified bool) {
 
 	fmt.Print("- pedファイルを生成中 (Generating ped file)... ")
 
-	err = pjsekaioverlay.WritePedFile(scoreData, assets, apCombo, filepath.Join(formattedOutDir, "data.ped"), sonolus.LevelInfo{Rating: chart.Rating})
+	err = pjsekaioverlay.WritePedFile(scoreData, assets, apCombo, filepath.Join(formattedOutDir, "data.ped"), sonolus.LevelInfo{Rating: chart.Rating}, levelData, exScore)
 
 	if err != nil {
 		fmt.Println(color.RedString(fmt.Sprintf("FAIL: %s", err.Error())))
@@ -259,14 +283,22 @@ func origMain(isOptionSpecified bool) {
 	}
 
 	description := fmt.Sprintf("作詞：-    作曲：%s    編曲：-\r\nVo：%s    譜面作成：%s", composerAndVocals[0], composerAndVocals[1], charter[0])
+	descriptionv1 := fmt.Sprintf("作詞：-   作曲：%s   編曲：-\r\n歌：%s   譜面作成：%s", composerAndVocals[0], composerAndVocals[1], charter[0])
 	extra := "[追加情報]"
+	exFile := "tournament-mode.png"
+	exFileOpacity := "100.0"
 
 	if enUI {
 		description = fmt.Sprintf("Lyrics: -    Music: %s    Arrangement: -\r\nVo: %s    Chart Design: %s", composerAndVocals[0], composerAndVocals[1], charter[0])
+		descriptionv1 = fmt.Sprintf("Lyrics: -   Music: %s   Arrangement: -\r\n歌：%s   Chart Design: %s", composerAndVocals[0], composerAndVocals[1], charter[0])
 		extra = "[Additional Info]"
+		exFile = "tournament-mode-en.png"
+	}
+	if exScore {
+		exFileOpacity = "0.0"
 	}
 
-	err = pjsekaioverlay.WriteExoFiles(assets, formattedOutDir, chart.Title, description, extra)
+	err = pjsekaioverlay.WriteExoFiles(assets, formattedOutDir, chart.Title, description, descriptionv1, extra, exFile, exFileOpacity)
 
 	if err != nil {
 		fmt.Println(color.RedString(fmt.Sprintf("FAIL: %s", err.Error())))

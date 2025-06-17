@@ -3,6 +3,7 @@ package pjsekaioverlay
 import (
 	"fmt"
 	"io"
+	"math"
 	"os"
 	"sort"
 	"strconv"
@@ -13,7 +14,7 @@ import (
 
 type PedFrame struct {
 	Time  float64
-	Score int
+	Score float64
 }
 
 type BpmChange struct {
@@ -116,9 +117,8 @@ func getTimeFromBpmChanges(bpmChanges []BpmChange, beat float64) float64 {
 	return ret
 }
 
-func CalculateScore(levelInfo sonolus.LevelInfo, levelData sonolus.LevelData, power int) []PedFrame {
+func CalculateScore(levelInfo sonolus.LevelInfo, levelData sonolus.LevelData, power int, exScore bool) []PedFrame {
 	rating := levelInfo.Rating
-	framesLen := 0
 	var weightedNotesCount float64 = 0
 	for _, entity := range levelData.Entities {
 		weight := WEIGHT_MAP[entity.Archetype]
@@ -126,7 +126,6 @@ func CalculateScore(levelInfo sonolus.LevelInfo, levelData sonolus.LevelData, po
 			continue
 		}
 		weightedNotesCount += weight
-		framesLen += 1
 	}
 
 	frames := make([]PedFrame, 0, int(weightedNotesCount)+1)
@@ -135,7 +134,7 @@ func CalculateScore(levelInfo sonolus.LevelInfo, levelData sonolus.LevelData, po
 	levelFax := float64(rating-5)*0.005 + 1
 	comboFax := 1.0
 
-	score := 0
+	score := 0.0
 	entityCounter := 0
 	noteEntities := ([]sonolus.LevelDataEntity{})
 
@@ -174,15 +173,17 @@ func CalculateScore(levelInfo sonolus.LevelInfo, levelData sonolus.LevelData, po
 			comboFax = 1.1
 		}
 
-		score += int(
-			(float64(power) / weightedNotesCount) * // Team power / weighted notes count
+		if exScore {
+			score += 3
+		} else {
+			score += ((float64(power) / weightedNotesCount) * // Team power / weighted notes count
 				4 * // Constant
 				weight * // Note weight
 				1 * // Judge weight (Always 1)
 				levelFax * // Level fax
 				comboFax * // Combo fax
-				1, // Skill fax (Always 1)
-		)
+				1) // Skill fax (Always 1)
+		}
 
 		beat, err := getValueFromData(entity.Data, "#BEAT")
 		if err != nil {
@@ -197,7 +198,7 @@ func CalculateScore(levelInfo sonolus.LevelInfo, levelData sonolus.LevelData, po
 	return frames
 }
 
-func WritePedFile(frames []PedFrame, assets string, ap bool, path string, levelInfo sonolus.LevelInfo) error {
+func WritePedFile(frames []PedFrame, assets string, ap bool, path string, levelInfo sonolus.LevelInfo, levelData sonolus.LevelData, exScore bool) error {
 	file, err := os.Create(path)
 	if err != nil {
 		return fmt.Errorf("ファイルの作成に失敗しました (Failed to create file.) [%s]", err)
@@ -211,41 +212,52 @@ func WritePedFile(frames []PedFrame, assets string, ap bool, path string, levelI
 	writer.Write([]byte(fmt.Sprintf("v|%s\n", Version)))
 	writer.Write([]byte(fmt.Sprintf("u|%d\n", time.Now().Unix())))
 
-	lastScore := 0
+	var weightedNotesCount float64 = 0
+	for _, entity := range levelData.Entities {
+		weight := WEIGHT_MAP[entity.Archetype]
+		if weight == 0 {
+			continue
+		}
+		if exScore {
+			weight = 3
+		}
+		weightedNotesCount += weight
+	}
+
+	lastScore := 0.0
 	rating := levelInfo.Rating
 	for i, frame := range frames {
 		// 2-variable scoring
-		score := frame.Score % 1000000000
+		score := math.Mod(frame.Score, 1000000000)
 		score2 := 0
 
-		if frame.Score/1000000000 != 0 {
-			score2 += frame.Score / 1000000000
+		if int(frame.Score/1000000000) != 0 {
+			score2 += int(frame.Score / 1000000000)
 		}
 		if score < 0 && score2 < 0 {
 			score = -score
 		}
 
-		frameScore := (score + (score2 * 1000000000)) - lastScore
+		frameScore := (score + (float64(score2) * 1000000000)) - float64(lastScore)
 		lastScore = frame.Score
-
-		// 161, 215, 267, 320, 357
 
 		rank := "n"
 		scoreX := 0.0
 		scoreXv1 := 0.0
 
-		// rank
-		if rating < 5 {
-			rating = 5
-		} else if rating > 40 {
-			rating = 40
-		}
+		rankBorder := float64(1200000 + (rating-5)*4100)
+		rankS := float64(1040000 + (rating-5)*5200)
+		rankA := float64(840000 + (rating-5)*4200)
+		rankB := float64(400000 + (rating-5)*2000)
+		rankC := float64(20000 + (rating-5)*100)
 
-		rankBorder := 1200000 + (rating-5)*4100
-		rankS := 1040000 + (rating-5)*5200
-		rankA := 840000 + (rating-5)*4200
-		rankB := 400000 + (rating-5)*2000
-		rankC := 20000 + (rating-5)*100
+		if exScore {
+			rankBorder = math.Floor(weightedNotesCount)
+			rankS = math.Floor(weightedNotesCount * 0.800)
+			rankA = math.Floor(weightedNotesCount * 0.666)
+			rankB = math.Floor(weightedNotesCount * 0.533)
+			rankC = math.Floor(weightedNotesCount * 0.400)
+		}
 
 		// bar
 		if score2 < 0 || score < 0 {
@@ -254,31 +266,31 @@ func WritePedFile(frames []PedFrame, assets string, ap bool, path string, levelI
 			scoreXv1 = 0
 		} else if score >= rankBorder || score2 > 0 {
 			rank = "s"
-			scoreX = 357
+			scoreX = 372
 			scoreXv1 = 1
 		} else if score >= rankS {
 			rank = "s"
-			scoreX = (float64((score-rankS))/float64((rankBorder-rankS)))*37 + 320
+			scoreX = (float64((score-rankS))/float64((rankBorder-rankS)))*36 + 336
 			scoreXv1 = (float64((score-rankS))/float64((rankBorder-rankS)))*0.110 + 0.890
 		} else if score >= rankA {
 			rank = "a"
-			scoreX = (float64((score-rankA))/float64((rankS-rankA)))*53 + 267
+			scoreX = (float64((score-rankA))/float64((rankS-rankA)))*56 + 280
 			scoreXv1 = (float64((score-rankA))/float64((rankS-rankA)))*0.148 + 0.742
 		} else if score >= rankB {
 			rank = "b"
-			scoreX = (float64((score-rankB))/float64((rankA-rankB)))*53 + 215
+			scoreX = (float64((score-rankB))/float64((rankA-rankB)))*56 + 224
 			scoreXv1 = (float64((score-rankB))/float64((rankA-rankB)))*0.151 + 0.591
 		} else if score >= rankC {
 			rank = "c"
-			scoreX = (float64((score-rankC))/float64((rankB-rankC)))*54 + 161
+			scoreX = (float64((score-rankC))/float64((rankB-rankC)))*56 + 168
 			scoreXv1 = (float64((score-rankC))/float64((rankB-rankC)))*0.144 + 0.447
 		} else {
 			rank = "d"
-			scoreX = (float64(score) / float64(rankC)) * 160
+			scoreX = (float64(score) / float64(rankC)) * 168
 			scoreXv1 = (float64(score) / float64(rankC)) * 0.447
 		}
 
-		writer.Write(fmt.Appendf(nil, "s|%f:%d:%d:%d:%f:%f:%s:%d\n", frame.Time, score2, score, frameScore, scoreX/357, scoreXv1, rank, i))
+		writer.Write(fmt.Appendf(nil, "s|%f:%d:%f:%f:%f:%f:%s:%d\n", frame.Time, score2, score, frameScore, scoreX/372, scoreXv1, rank, i))
 	}
 
 	return nil
