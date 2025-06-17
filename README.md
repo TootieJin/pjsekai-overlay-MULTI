@@ -4,15 +4,15 @@ Fork of [pjsekai-overlay](https://github.com/sevenc-nanashi/pjsekai-overlay) by 
 
 - **16:9**
 
-https://github.com/user-attachments/assets/f4a85c6b-e452-4323-aae7-76a5a5611074
+https://github.com/user-attachments/assets/dda7225a-a7f3-41d4-bbf4-9cec9b03b840
 
 - **4:3**
 
-https://github.com/user-attachments/assets/b23682fc-cd61-4f43-92f9-8c7e1d0380b0
+https://github.com/user-attachments/assets/ab4ee52c-2ffa-4941-b916-87e1f3559d72
 
-- **v1 Skin (w/ AP video & maximum power)**
+- **v1 Skin (1e+30 power)**
 
-https://github.com/user-attachments/assets/80220cbf-de40-4e39-8b8d-9d14297772f9
+https://github.com/user-attachments/assets/3efab743-246a-4da7-8d80-a02b2f09f5b3
 
 - **Video Example**
 
@@ -31,9 +31,10 @@ This is a forked version of pjsekai-overlay with additional features originally 
   - iPad (4:3) video support
   - Ability to use the English AviUtl
   - v1 UI (gameplay) skin
-  - Increased score integer limit 
-  [![pjsekai-overlay-APPEND_minint](https://github.com/user-attachments/assets/80eb8fc1-6602-4c26-ac47-4e8e07fb99c2)]()
+  - Increased score limit to infinity (?)
+  [![image](https://github.com/user-attachments/assets/baceaf22-fdcb-4b48-8fb7-54b08e6d3086)]()
   [![pjsekai-overlay-APPEND_maxint](https://github.com/user-attachments/assets/45a49c19-7883-402c-b016-58f02f72f0b6)]()
+
 
 ## Terms of Use
 
@@ -111,8 +112,8 @@ pjsekai-overlay(-APPEND) は、プロセカの創作譜面をプロセカ風の�
   - iPad（4:3）動画対応
   - 英語版AviUtlの使用機能
   - v1 UI（ゲームプレイ）スキン
-  - スコアの主な変更点
-  [![pjsekai-overlay-APPEND_minint](https://github.com/user-attachments/assets/80eb8fc1-6602-4c26-ac47-4e8e07fb99c2)]()
+  - スコアの上限を無限大（？）
+  [![image](https://github.com/user-attachments/assets/baceaf22-fdcb-4b48-8fb7-54b08e6d3086)]()
   [![pjsekai-overlay-APPEND_maxint](https://github.com/user-attachments/assets/45a49c19-7883-402c-b016-58f02f72f0b6)]()
 
 
