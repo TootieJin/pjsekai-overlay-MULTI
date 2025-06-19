@@ -6,7 +6,7 @@ Fork of [pjsekai-overlay](https://github.com/sevenc-nanashi/pjsekai-overlay) by 
 
 https://github.com/user-attachments/assets/dda7225a-a7f3-41d4-bbf4-9cec9b03b840
 
-- **4:3**
+- **4:3 (Tournament Mode ON)**
 
 https://github.com/user-attachments/assets/ab4ee52c-2ffa-4941-b916-87e1f3559d72
 
