@@ -225,21 +225,26 @@ func WritePedFile(frames []PedFrame, assets string, ap bool, path string, levelI
 	}
 
 	lastScore := 0.0
+	lastScore2 := 0.0
 	rating := levelInfo.Rating
 	for i, frame := range frames {
 		// 2-variable scoring
-		score := math.Mod(frame.Score, 1000000000)
-		score2 := 0.0
+		score := math.Mod(frame.Score, 1e+17)
+		score2 := math.Floor(frame.Score / 1e+17)
 
-		if int(frame.Score/1000000000) != 0 {
-			score2 += math.Floor(frame.Score / 1000000000)
-		}
 		if score < 0 && score2 < 0 {
 			score = -score
 		}
 
-		frameScore := (score + (float64(score2) * 1000000000)) - float64(lastScore)
+		frameScore := math.Mod((score+(score2*1e+17))-lastScore, 1e+17)
+		frameScore2 := score2 - lastScore2
+
 		lastScore = frame.Score
+		lastScore2 = math.Floor(frame.Score / 1e+17)
+
+		if frameScore < 0 && frameScore2 < 0 {
+			frameScore = -frameScore
+		}
 
 		rank := "n"
 		scoreX := 0.0
@@ -290,7 +295,7 @@ func WritePedFile(frames []PedFrame, assets string, ap bool, path string, levelI
 			scoreXv1 = (float64(score) / float64(rankC)) * 0.447
 		}
 
-		writer.Write(fmt.Appendf(nil, "s|%f:%f:%f:%f:%f:%f:%s:%d\n", frame.Time, score2, score, frameScore, scoreX/372, scoreXv1, rank, i))
+		writer.Write(fmt.Appendf(nil, "s|%f:%f:%f:%f:%f:%f:%f:%s:%d\n", frame.Time, score2, score, frameScore2, frameScore, scoreX/372, scoreXv1, rank, i))
 	}
 
 	return nil

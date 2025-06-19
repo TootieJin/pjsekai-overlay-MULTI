@@ -25,16 +25,17 @@ if obj.track1 ~= 1 or not PED_DATA or PED_DATA.file ~= file then
       if header ~= nil then
         PED_DATA.loaded = "ok"
         if header == "s" then
-          local nmatch = {string.match(data, "([%-0-9.]+):([%-0-9.]+):([%-0-9.]+):([%-0-9.]+):([%-0-9.]+):([%-0-9.]+):([abcds]+):([%-0-9.]+)")}
+          local nmatch = {string.match(data, "([%-0-9.]+):([%-0-9.]+):([%-0-9.]+):([%-0-9.]+):([%-0-9.]+):([%-0-9.]+):([%-0-9.]+):([abcds]+):([%-0-9.]+)")}
           PED_DATA.frames[#PED_DATA.frames + 1] = {
             time = tonumber(nmatch[1]),
             score2 = tonumber(nmatch[2]),
-            score = tonumber(nmatch[3]);
-            offset = tonumber(nmatch[4]),
-            width = tonumber(nmatch[5]),
-            widthv1 = tonumber(nmatch[6]),
-            rank = nmatch[7],
-            combo = tonumber(nmatch[8])
+            score = tonumber(nmatch[3]),
+            offset2 = tonumber(nmatch[4]),
+            offset = tonumber(nmatch[5]),
+            width = tonumber(nmatch[6]),
+            widthv1 = tonumber(nmatch[7]),
+            rank = nmatch[8],
+            combo = tonumber(nmatch[9])
           }
         elseif header == "p" then -- Pass
           PED_DATA.path = data
@@ -61,6 +62,7 @@ if PED_DATA.version == "{version}" or "{version}" == "0.0.0" or "{version}" == "
     time = 0,
     score2 = 0,
     score = 0,
+    offset2 = 0,
     offset = 0,
     width = 0,
     widthv1 = 0,
@@ -148,8 +150,8 @@ if PED_DATA and PED_DATA.version_status == "ok" then
   local score_str = ""
   local score_str2 = ""
   if PED_DATA.current.score2 ~= 0 then
-    score_str = string.format("%9.0f", PED_DATA.current.score):gsub(" ", "0")
-    score_str2 = string.format("%.0f", PED_DATA.current.score2):gsub(" ", "0")
+    score_str = string.format("%17.0f", PED_DATA.current.score):gsub(" ", "0")
+    score_str2 = string.format("%.0f", PED_DATA.current.score2)
   else
     score_str = string.format("%8.0f", PED_DATA.current.score):gsub(" ", "n")
   end
@@ -208,11 +210,20 @@ if PED_DATA and PED_DATA.version_status == "ok" then
   end
 
   local progress_frame = ((obj.frame - OFFSET) - (PED_DATA.current.time * obj.framerate))
-  if PED_DATA.current.offset > 0 and progress_frame <= 31 then
+  if (PED_DATA.current.offset ~= 0 or PED_DATA.current.offset2 ~= 0) and progress_frame <= 31 then
     local progress = (progress_frame / 12)
 
-    local diff = string.format("%.0f", PED_DATA.current.offset)
+    local diff = ""
+    local diff2 = ""
+    if PED_DATA.current.offset2 ~= 0 then
+      diff = string.format("%17.0f", PED_DATA.current.offset):gsub(" ", "0")
+      diff2 = string.format("%.0f", PED_DATA.current.offset2)
+    else
+      diff = string.format("%.0f", PED_DATA.current.offset)
+    end
+
     local diff_len = string.len(diff)
+    local diff_len2 = string.len(diff2)
 
     if progress > 1 then
       progress = 1
@@ -221,23 +232,40 @@ if PED_DATA and PED_DATA.version_status == "ok" then
     local diff_x = 47 * (1 - (0.9 ^ (progress * 12))) + 22 * (score_len + score_len2 - 8)
     local diff_y = 34
     local diff_alpha = 1.4 * (1 - (0.9 ^ (progress * 12)))
+    local c_minus = 0
 
-    obj.load("image", PED_DATA.path.."/score/digit/splus.png")
-    obj.draw(26.25 + diff_x, diff_y, 0, 0.42, diff_alpha)
-    obj.load("image", PED_DATA.path.."/score/digit/plus.png")
-    obj.draw(26.25 + diff_x, diff_y, 0, 0.42, diff_alpha)
+    if PED_DATA.current.offset >= 0 and PED_DATA.current.offset2 >= 0 then
+      obj.load("image", PED_DATA.path.."/score/digit/splus.png")
+      obj.draw(26.25 + diff_x, diff_y, 0, 0.42, diff_alpha)
+      obj.load("image", PED_DATA.path.."/score/digit/plus.png")
+      obj.draw(26.25 + diff_x, diff_y, 0, 0.42, diff_alpha)
+    else
+      c_minus = 1
+    end
 
     for c = 1, diff_len do
+      local digit = diff2:sub(c, c)
+      obj.load("image", PED_DATA.path.."/score/digit/s"..digit..".png")
+
+      obj.draw(26.25 + 13.65 * (c - c_minus) + diff_x, diff_y, 0, 0.42, diff_alpha)
+    end
+    for c = 1, diff_len do
+      local digit = diff2:sub(c, c)
+      obj.load("image", PED_DATA.path.."/score/digit/"..digit..".png")
+
+      obj.draw(26.25 + 13.65 * (c - c_minus) + diff_x, diff_y, 0, 0.42, diff_alpha)
+    end
+    for c = 1, diff_len2 + diff_len do
       local digit = diff:sub(c, c)
       obj.load("image", PED_DATA.path.."/score/digit/s"..digit..".png")
 
-      obj.draw(26.25 + 13.65 * c + diff_x, diff_y, 0, 0.42, diff_alpha)
+      obj.draw(26.25 + 13.65 * (c - c_minus + diff_len2) + diff_x, diff_y, 0, 0.42, diff_alpha)
     end
-    for c = 1, diff_len do
+    for c = 1, diff_len2 + diff_len do
       local digit = diff:sub(c, c)
       obj.load("image", PED_DATA.path.."/score/digit/"..digit..".png")
 
-      obj.draw(26.25 + 13.65 * c + diff_x, diff_y, 0, 0.42, diff_alpha)
+      obj.draw(26.25 + 13.65 * (c - c_minus + diff_len2) + diff_x, diff_y, 0, 0.42, diff_alpha)
     end
   end
 

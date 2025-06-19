@@ -200,12 +200,15 @@ func origMain(isOptionSpecified bool) {
 		tmpEnableEXScoreByte, _ := bufio.NewReader(os.Stdin).ReadByte()
 		tmpEnableEXScore := string(tmpEnableEXScoreByte)
 		rawmode.Restore(before)
-		fmt.Printf("\n\033[A\033[2K\r> %s\n", color.GreenString(tmpEnableEXScore))
 		if tmpEnableEXScore == "Y" || tmpEnableEXScore == "y" || tmpEnableEXScore == "" {
 			exScore = true
 			teamPower = 0.0
+			fmt.Printf("\n\033[A\033[2K\r> %s\n", color.GreenString(tmpEnableEXScore))
+			fmt.Println(color.GreenString("TOGGLE: ON"))
 		} else {
 			exScore = false
+			fmt.Printf("\n\033[A\033[2K\r> %s\n", color.RedString(tmpEnableEXScore))
+			fmt.Println(color.RedString("TOGGLE: OFF"))
 		}
 	}
 
@@ -223,9 +226,11 @@ func origMain(isOptionSpecified bool) {
 				return
 			}
 		}
-		fmt.Printf("\033[A\033[2K\r> %s\n", color.GreenString(tmpTeamPower))
-		if teamPower >= math.Abs(1e+20) {
-			fmt.Println(color.HiYellowString("WARNING: スコアは大きすぎると精度が落ちる可能性がある。Score may decrease precision if it's too large.\n"))
+		if teamPower >= math.Abs(1e+33) {
+			fmt.Printf("\033[A\033[2K\r> %s\n", color.YellowString(tmpTeamPower))
+			fmt.Println(color.YellowString("WARNING: スコアは大きすぎると精度が落ちる可能性がある。Score may decrease precision if it's too large.\n"))
+		} else {
+			fmt.Printf("\033[A\033[2K\r> %s\n", color.GreenString(tmpTeamPower))
 		}
 	}
 
@@ -239,11 +244,14 @@ func origMain(isOptionSpecified bool) {
 		tmpEnableENByte, _ := bufio.NewReader(os.Stdin).ReadByte()
 		tmpEnableEN := string(tmpEnableENByte)
 		rawmode.Restore(before)
-		fmt.Printf("\n\033[A\033[2K\r> %s\n", color.GreenString(tmpEnableEN))
 		if tmpEnableEN == "Y" || tmpEnableEN == "y" || tmpEnableEN == "" {
 			enUI = true
+			fmt.Printf("\n\033[A\033[2K\r> %s\n", color.GreenString(tmpEnableEN))
+			fmt.Println(color.GreenString("TOGGLE: ON"))
 		} else {
 			enUI = false
+			fmt.Printf("\n\033[A\033[2K\r> %s\n", color.RedString(tmpEnableEN))
+			fmt.Println(color.RedString("TOGGLE: OFF"))
 		}
 	}
 
@@ -253,17 +261,21 @@ func origMain(isOptionSpecified bool) {
 		tmpEnableComboApByte, _ := bufio.NewReader(os.Stdin).ReadByte()
 		tmpEnableComboAp := string(tmpEnableComboApByte)
 		rawmode.Restore(before)
-		fmt.Printf("\n\033[A\033[2K\r> %s\n", color.GreenString(tmpEnableComboAp))
+
 		if tmpEnableComboAp == "Y" || tmpEnableComboAp == "y" || tmpEnableComboAp == "" {
 			apCombo = true
+			fmt.Printf("\n\033[A\033[2K\r> %s\n", color.GreenString(tmpEnableComboAp))
+			fmt.Println(color.GreenString("TOGGLE: ON"))
 		} else {
 			apCombo = false
+			fmt.Printf("\n\033[A\033[2K\r> %s\n", color.RedString(tmpEnableComboAp))
+			fmt.Println(color.RedString("TOGGLE: OFF"))
 		}
 	}
 	executableDir := filepath.Dir(executablePath)
 	assets := filepath.Join(executableDir, "assets")
 
-	fmt.Print("- pedファイルを生成中 (Generating ped file)... ")
+	fmt.Print("\n- pedファイルを生成中 (Generating ped file)... ")
 
 	err = pjsekaioverlay.WritePedFile(scoreData, assets, apCombo, filepath.Join(formattedOutDir, "data.ped"), sonolus.LevelInfo{Rating: chart.Rating}, levelData, exScore)
 

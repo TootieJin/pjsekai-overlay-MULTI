@@ -145,8 +145,8 @@ if PED_DATA and PED_DATA.version_status == "ok" then
   local score_str = ""
   local score_str2 = ""
   if PED_DATA.current.score2 ~= 0 then
-    score_str = string.format("%9.0f", PED_DATA.current.score):gsub(" ", "0")
-    score_str2 = string.format("%.0f", PED_DATA.current.score2):gsub(" ", "0")
+    score_str = string.format("%17.0f", PED_DATA.current.score):gsub(" ", "0")
+    score_str2 = string.format("%.0f", PED_DATA.current.score2)
   else
     score_str = string.format("%8.0f", PED_DATA.current.score):gsub(" ", "n")
   end
@@ -205,11 +205,20 @@ if PED_DATA and PED_DATA.version_status == "ok" then
   end
 
   local progress_frame = ((obj.frame - OFFSET) - (PED_DATA.current.time * obj.framerate))
-  if PED_DATA.current.offset > 0 and progress_frame <= 31 then
+  if (PED_DATA.current.offset ~= 0 or PED_DATA.current.offset2 ~= 0) and progress_frame <= 31 then
     local progress = (progress_frame / 12)
 
-    local diff = string.format("%.0f", PED_DATA.current.offset)
+    local diff = ""
+    local diff2 = ""
+    if PED_DATA.current.offset2 ~= 0 then
+      diff = string.format("%17.0f", PED_DATA.current.offset):gsub(" ", "0")
+      diff2 = string.format("%.0f", PED_DATA.current.offset2)
+    else
+      diff = string.format("%.0f", PED_DATA.current.offset)
+    end
+
     local diff_len = string.len(diff)
+    local diff_len2 = string.len(diff2)
 
     if progress > 1 then
       progress = 1
@@ -225,16 +234,28 @@ if PED_DATA and PED_DATA.version_status == "ok" then
     obj.draw(0 + diff_x, diff_y, 0, 0.42, diff_alpha)
 
     for c = 1, diff_len do
-      local digit = diff:sub(c, c)
+      local digit = diff2:sub(c, c)
       obj.load("image", PED_DATA.path.."/score/b_"..digit..".png")
 
       obj.draw(0 + 15 * c + diff_x, diff_y, 0, 0.42, diff_alpha)
     end
     for c = 1, diff_len do
-      local digit = diff:sub(c, c)
+      local digit = diff2:sub(c, c)
       obj.load("image", PED_DATA.path.."/score/f_"..digit..".png")
 
       obj.draw(0 + 15 * c + diff_x, diff_y, 0, 0.42, diff_alpha)
+    end
+    for c = 1, diff_len2 + diff_len do
+      local digit = diff:sub(c, c)
+      obj.load("image", PED_DATA.path.."/score/b_"..digit..".png")
+
+      obj.draw(0 + 15 * (c + diff_len2) + diff_x, diff_y, 0, 0.42, diff_alpha)
+    end
+    for c = 1, diff_len2 + diff_len do
+      local digit = diff:sub(c, c)
+      obj.load("image", PED_DATA.path.."/score/f_"..digit..".png")
+
+      obj.draw(0 + 15 * (c + diff_len2) + diff_x, diff_y, 0, 0.42, diff_alpha)
     end
   end
 
