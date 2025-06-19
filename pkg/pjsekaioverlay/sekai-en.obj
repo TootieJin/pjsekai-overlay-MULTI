@@ -125,14 +125,14 @@ if PED_DATA and PED_DATA.version_status == "ok" then
   )
   obj.copybuffer("cache:score_bar", "tmp")
 
-  obj.setoption("drawtarget", "tempbuffer", 9999, 95)
+  obj.setoption("drawtarget", "tempbuffer", 99999, 95)
   obj.setoption("blend", 0)
   obj.load("image", PED_DATA.path.."/score/bg.png")
-  obj.draw(0, 0, 0, 1)
+  obj.draw(0, 0, 0, 0.9758)
 
   -- -- 79, 35 / 357, 18
   obj.copybuffer("obj", "cache:score_bar")
-  obj.draw(35, -3.5, 0)
+  obj.draw(33.25, -3, 0, 0.9596)
 
   obj.load("image", PED_DATA.path.."/score/rank/txt/"..PED_DATA.current.rank..".png")
   obj.draw(-187, 35, 0, 0.34)

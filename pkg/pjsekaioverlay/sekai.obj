@@ -125,7 +125,7 @@ if PED_DATA and PED_DATA.version_status == "ok" then
   )
   obj.copybuffer("cache:score_bar", "tmp")
 
-  obj.setoption("drawtarget", "tempbuffer", 9999, 95)
+  obj.setoption("drawtarget", "tempbuffer", 99999, 95)
   obj.setoption("blend", 0)
   obj.load("image", PED_DATA.path.."/score/bg.png")
   obj.draw(0, 0, 0, 0.9758)

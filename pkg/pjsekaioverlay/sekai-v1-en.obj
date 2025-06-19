@@ -116,7 +116,7 @@ if PED_DATA and PED_DATA.version_status == "ok" then
   obj.load("image", PED_DATA.path.."/score/inner.png")
   obj.draw(-387, -317, 0, 0.7)
   obj.setoption("blend", "alpha_sub")
-  obj.load("figure", "Background")
+  obj.load("figure", "Square")
   obj.drawpoly(
     -387 - 185 + 427 * PED_DATA.current.widthv1, -350, 0,
     -387 + 242, -350, 0,
@@ -125,7 +125,7 @@ if PED_DATA and PED_DATA.version_status == "ok" then
   )
   obj.copybuffer("cache:score_bar", "tmp")
 
-  obj.setoption("drawtarget", "tempbuffer", 9999, 999)
+  obj.setoption("drawtarget", "tempbuffer", 99999, 999)
   obj.setoption("blend", 0)
   obj.load("image", PED_DATA.path.."/score/score.png")
   obj.draw(-387, -317, 0, 0.7)
