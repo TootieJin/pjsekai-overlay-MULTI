@@ -230,19 +230,23 @@ func WritePedFile(frames []PedFrame, assets string, ap bool, path string, levelI
 	for i, frame := range frames {
 		// 2-variable scoring
 		score := math.Mod(frame.Score, 1e+17)
-		score2 := math.Floor(frame.Score / 1e+17)
+		score2 := frame.Score / 1e+17
 
-		if score < 0 && score2 < 0 {
+		if int(score) < 0 && int(score2) < 0 {
 			score = -score
 		}
 
-		frameScore := math.Mod((score+(score2*1e+17))-lastScore, 1e+17)
+		frameScore := math.Mod((score+(score2*1e+17))-(lastScore), 1e+17)
 		frameScore2 := score2 - lastScore2
 
-		lastScore = frame.Score
-		lastScore2 = math.Floor(frame.Score / 1e+17)
+		if frame.Score < 0 {
+			frameScore = math.Mod((score+(score2*1e+17))-(lastScore+frame.Score), 1e+17)
+		}
 
-		if frameScore < 0 && frameScore2 < 0 {
+		lastScore = frame.Score
+		lastScore2 = frame.Score / 1e+17
+
+		if int(frameScore) < 0 && int(frameScore2) < 0 {
 			frameScore = -frameScore
 		}
 
