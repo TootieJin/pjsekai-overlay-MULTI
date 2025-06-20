@@ -232,21 +232,21 @@ func WritePedFile(frames []PedFrame, assets string, ap bool, path string, levelI
 		score := math.Mod(frame.Score, 1e+17)
 		score2 := frame.Score / 1e+17
 
-		if int(score) < 0 && int(score2) < 0 {
+		if math.Ceil(score) < 0 && math.Ceil(score2) < 0 {
 			score = -score
 		}
 
-		frameScore := math.Mod((score+(score2*1e+17))-(lastScore), 1e+17)
+		frameScore := math.Mod((score+(score2*1e+17))-(frame.Score+lastScore), 1e+17)
 		frameScore2 := score2 - lastScore2
 
-		if frame.Score < 0 {
-			frameScore = math.Mod((score+(score2*1e+17))-(lastScore+frame.Score), 1e+17)
-		}
-
-		lastScore = frame.Score
+		lastScore = math.Mod(frame.Score, 1e+17)
 		lastScore2 = frame.Score / 1e+17
 
-		if int(frameScore) < 0 && int(frameScore2) < 0 {
+		if math.Ceil(frameScore) < 0 && math.Floor(frameScore2) > 0 {
+			frameScore = 1e+16 - frameScore
+		}
+
+		if math.Ceil(frameScore) < 0 && math.Ceil(frameScore2) < 0 {
 			frameScore = -frameScore
 		}
 
@@ -269,11 +269,11 @@ func WritePedFile(frames []PedFrame, assets string, ap bool, path string, levelI
 		}
 
 		// bar
-		if score2 < 0 || score < 0 {
+		if math.Ceil(score2) < 0 || math.Ceil(score) < 0 {
 			rank = "d"
 			scoreX = 0
 			scoreXv1 = 0
-		} else if score >= rankBorder || score2 > 0 {
+		} else if score >= rankBorder || math.Floor(score2) > 0 {
 			rank = "s"
 			scoreX = 372
 			scoreXv1 = 1
