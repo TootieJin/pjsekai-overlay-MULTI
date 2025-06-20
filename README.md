@@ -30,7 +30,7 @@ This is a forked version of pjsekai-overlay with additional features originally 
   - Quickly make 1080p videos
   - iPad (4:3) video support
   - Ability to use the English AviUtl
-  - v1 UI (gameplay) skin
+  - v1 UI skin (Full support)
   - Increased score limit to infinity (?)
   [![image](https://github.com/user-attachments/assets/baceaf22-fdcb-4b48-8fb7-54b08e6d3086)]()
   [![pjsekai-overlay-APPEND_minint](https://github.com/user-attachments/assets/80eb8fc1-6602-4c26-ac47-4e8e07fb99c2)]()
@@ -112,7 +112,7 @@ pjsekai-overlay(-APPEND) は、プロセカの創作譜面をプロセカ風の�
   - 1080p動画を素早く作成
   - iPad（4:3）動画対応
   - 英語版AviUtlの使用機能
-  - v1 UI（ゲームプレイ）スキン
+  - v1 UIスキン（フル対応）
   - スコアの上限を無限大（？）
   [![image](https://github.com/user-attachments/assets/baceaf22-fdcb-4b48-8fb7-54b08e6d3086)]()
   [![pjsekai-overlay-APPEND_minint](https://github.com/user-attachments/assets/80eb8fc1-6602-4c26-ac47-4e8e07fb99c2)]()
