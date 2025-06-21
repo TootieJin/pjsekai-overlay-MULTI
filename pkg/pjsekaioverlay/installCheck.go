@@ -81,7 +81,7 @@ func TryInstallObject() bool {
 			return false
 		}
 	}
-	var sekaiObjPathEnv1 = filepath.Join(exeditRoot, "script", "@pjsekai-overlay-v1-en.obj")
+	var sekaiObjPathEnv1 = filepath.Join(exeditRoot, "script", "@pjsekai-overlay-en-v1.obj")
 	if _, err := os.Stat(sekaiObjPathEnv1); err == nil {
 		var sekaiObjFileEnv1, _ = os.OpenFile(sekaiObjPathEnv1, os.O_RDONLY, 0755)
 		defer sekaiObjFileEnv1.Close()
