@@ -67,6 +67,17 @@ func checkUpdate() {
 	fmt.Printf(color.HiCyanString("ダウンロード (Download Here) -> %s\n"), release.GetHTMLURL())
 }
 
+func checkSubstrings(str []string, subs ...string) string {
+	for _, s := range str {
+		for _, sub := range subs {
+			if strings.EqualFold(s, sub) {
+				return sub
+			}
+		}
+	}
+	return ""
+}
+
 func origMain(isOptionSpecified bool) {
 	Title()
 
@@ -111,24 +122,38 @@ func origMain(isOptionSpecified bool) {
 		chartId = flag.Arg(0)
 		fmt.Printf("譜面ID (Chart ID): %s\n", color.GreenString(chartId))
 	} else {
-		fmt.Print("\n譜面IDをプレフィックス込みで入力して下さい。\nEnter the chart ID including the prefix.\n\n'chcy-': Chart Cyanvas (cc.sevenc7c.com)\n'ptlv-': Potato Leaves (ptlv.sevenc7c.com)\n> ")
+		fmt.Print("\n譜面IDを接頭辞込みで入力して下さい。\nEnter the chart ID including the prefix.\n\n'chcy-': Chart Cyanvas (cc.sevenc7c.com)\n'ptlv-': Potato Leaves (ptlv.sevenc7c.com)\n'utsk-': Untitled Sekai (us.pim4n-net.com)\n> ")
 		fmt.Scanln(&chartId)
 		fmt.Printf("\033[A\033[2K\r> %s\n", color.GreenString(chartId))
 	}
 
 	chartSource, err := pjsekaioverlay.DetectChartSource(chartId)
 	if err != nil {
-		fmt.Println(color.RedString("FAIL: ええと...譜面のサーバーを判別できませんでした。プレフィックスも込め、正しい譜面IDを入力して下さい。\nUhh... I can't find the chart you're looking for. Please enter the correct chart ID including the prefix."))
+		fmt.Println(color.RedString("FAIL: 譜面が見つかりません。接頭辞も込め、正しい譜面IDを入力して下さい。\nChart not found. Please enter the correct chart ID including the prefix."))
 		return
 	}
 	fmt.Printf("- 譜面を取得中 (Getting chart): %s%s%s ", RgbColorEscape(chartSource.Color), chartSource.Name, ResetEscape())
 	chart, err := pjsekaioverlay.FetchChart(chartSource, chartId)
-	chartv1, err := pjsekaioverlay.FetchChart(chartSource, chartId+"?c_background=1")
+	chartv1, errv1 := pjsekaioverlay.FetchChart(chartSource, chartId+"?c_background=1")
+
+	var chart_api sonolus.LevelAPIInfo
+	if chartSource.Id == "chart_cyanvas" {
+		chart_api, err = pjsekaioverlay.FetchAPIChart(chartSource, chartId[5:])
+		if err != nil {
+			fmt.Println(color.RedString(fmt.Sprintf("FAIL: %s", err.Error())))
+			return
+		}
+	}
 
 	if err != nil {
 		fmt.Println(color.RedString(fmt.Sprintf("FAIL: %s", err.Error())))
 		return
 	}
+	if errv1 != nil {
+		fmt.Println(color.RedString(fmt.Sprintf("FAIL: %s", errv1.Error())))
+		return
+	}
+
 	if chart.Engine.Version != 13 {
 		fmt.Println(color.RedString(fmt.Sprintf("FAIL (ver.%d):エンジンのバージョンが古い。pjsekai-overlay-APPENDを最新版に更新してください。\nUnsupported engine version. Please update pjsekai-overlay-APPEND to latest version.", chart.Engine.Version)))
 		return
@@ -193,6 +218,10 @@ func origMain(isOptionSpecified bool) {
 	}
 
 	fmt.Println(color.GreenString("OK"))
+
+	if chartSource.Id == "untitled_sekai" {
+		fmt.Print(color.YellowString("\nWARNING: %sは開発中のため、一部の新機能は動作しません。(%s is under development, some new features will not work.)", chartSource.Name, chartSource.Name))
+	}
 
 	if !isOptionSpecified {
 		fmt.Print("\n大会モードを有効にするか？ (PERFECT = +3点)\nEnable Tournament Mode? (PERFECT = +3pts) [y/n]\n> ")
@@ -288,13 +317,23 @@ func origMain(isOptionSpecified bool) {
 
 	fmt.Print("- exoファイルを生成中 (Generating exo file)... ")
 
+	var difficulty string
+	difficultyStrings := []string{"EASY", "NORMAL", "HARD", "EXPERT", "MASTER", "APPEND", "ETERNAL"}
+	if tags := checkSubstrings(chart_api.Tags, difficultyStrings...); tags != "" {
+		difficulty = tags
+	} else if title := checkSubstrings(strings.Fields(chart.Title), difficultyStrings...); title != "" {
+		difficulty = title
+	} else {
+		difficulty = "APPEND"
+	}
+
 	composerAndVocals := []string{chart.Artists, "-"}
 	if separateAttempt := strings.Split(chart.Artists, " / "); chartSource.Id == "chart_cyanvas" && len(separateAttempt) <= 2 {
 		composerAndVocals = separateAttempt
 	}
 
 	charter := []string{chart.Author, "-"}
-	if charterTag := strings.Split(chart.Author, "#"); chartSource.Id == "chart_cyanvas" && len(charterTag) <= 2 {
+	if charterTag := strings.Split(chart.Author, "#"); (chartSource.Id == "chart_cyanvas" || chartSource.Id == "untitled_sekai") && len(charterTag) <= 2 {
 		charter = charterTag
 	}
 
@@ -314,7 +353,7 @@ func origMain(isOptionSpecified bool) {
 		exFileOpacity = "0.0"
 	}
 
-	err = pjsekaioverlay.WriteExoFiles(assets, formattedOutDir, chart.Title, description, descriptionv1, extra, exFile, exFileOpacity)
+	err = pjsekaioverlay.WriteExoFiles(assets, formattedOutDir, chart.Title, description, descriptionv1, difficulty, extra, exFile, exFileOpacity)
 
 	if err != nil {
 		fmt.Println(color.RedString(fmt.Sprintf("FAIL: %s", err.Error())))

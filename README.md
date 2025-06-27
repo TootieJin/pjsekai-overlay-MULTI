@@ -31,6 +31,7 @@ This is a forked version of pjsekai-overlay with additional features originally 
   - iPad (4:3) video support
   - Ability to use the English AviUtl
   - v1 UI skin (Full support)
+  - Automatically changes chart difficulty to generate in AviUtl based on chart tag _(or title)_
   - Increased score limit to infinity (?)
   [![image](https://github.com/user-attachments/assets/baceaf22-fdcb-4b48-8fb7-54b08e6d3086)]()
   [![pjsekai-overlay-APPEND_minint](https://github.com/user-attachments/assets/80eb8fc1-6602-4c26-ac47-4e8e07fb99c2)]()
@@ -93,8 +94,10 @@ PJSekai-style video creation tool:
 4. Open AviUtl
    - **Note: You must open AviUtl before opening pjsekai-overlay-APPEND to install objects.**
 5. Open `pjsekai-overlay-APPEND.exe`
-6. Input the chart ID.
-   - Potato Leaves prefix: `ptlv-`, Chart Cyanvas prefix: `chcy-`
+6. Input the chart ID including the prefix.
+   - `chcy-`: Chart Cyanvas (cc.sevenc7c.com)
+   - `ptlv-`: Potato Leaves (ptlv.sevenc7c.com)
+   - `utsk-`: Untitled Sekai (us.pim4n-net.com)
 7. Import specified exo file by navigating to your `pjsekai-overlay/dist/[chart ID]` directory:
    - **For phone users:** main_en_16-9_1920x1080.exo
    - **For iPad users:** main_en_4-3_1440x1080.exo
@@ -113,6 +116,7 @@ pjsekai-overlay(-APPEND) は、プロセカの創作譜面をプロセカ風の�
   - iPad（4:3）動画対応
   - 英語版AviUtlの使用機能
   - v1 UIスキン（フル対応）
+  - 譜面のタグ _（またはタイトル）_ に基づいて、AviUtlで生成される譜面の難易度を自動的に変更する
   - スコアの上限を無限大（？）
   [![image](https://github.com/user-attachments/assets/baceaf22-fdcb-4b48-8fb7-54b08e6d3086)]()
   [![pjsekai-overlay-APPEND_minint](https://github.com/user-attachments/assets/80eb8fc1-6602-4c26-ac47-4e8e07fb99c2)]()
@@ -173,8 +177,10 @@ PJSekai-style video creation tool:
 4. AviUtl を起動する
    - **pjsekai-overlay が起動する前に AviUtl を起動するとオブジェクトのインストールが行われます。**
 5. `pjsekai-overlay-APPEND.exe` を起動する
-6. 譜面 ID を入力する
-   - Potato Leaves の場合は `ptlv-` を、Chart Cyanvas の場合は `chcy-` を先頭につけたまま入力してください。
+6. 譜面IDを接頭辞込みで入力して下さい
+   - `chcy-`: Chart Cyanvas (cc.sevenc7c.com)
+   - `ptlv-`: Potato Leaves (ptlv.sevenc7c.com)
+   - `utsk-`: Untitled Sekai (us.pim4n-net.com)
 7. `pjsekai-overlay/dist/[譜面ID]`ディレクトリに移動して、指定したexoファイルをインポートします：
    - **スマホ向け:** main_jp_16-9_1920x1080.exo
    - **iPad向け:** main_jp_4-3_1440x1080.exo

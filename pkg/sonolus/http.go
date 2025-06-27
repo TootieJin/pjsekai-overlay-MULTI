@@ -18,6 +18,11 @@ type LevelInfo struct {
 	Engine        EngineInfo              `json:"engine"`
 }
 
+type LevelAPIInfo struct {
+	Title string   `json:"title"`
+	Tags  []string `json:"tags"`
+}
+
 type BackgroundInfo struct {
 	Image SRL `json:"image"`
 }
@@ -33,6 +38,10 @@ type SRL struct {
 
 type InfoResponse[T any] struct {
 	Item T `json:"item"`
+}
+
+type InfoAPIResponse[T any] struct {
+	Chart T `json:"chart"`
 }
 
 type UseItem[T any] struct {

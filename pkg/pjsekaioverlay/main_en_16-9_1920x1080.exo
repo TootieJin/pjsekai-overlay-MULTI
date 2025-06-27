@@ -262,7 +262,7 @@ overlay=1
 camera=0
 [11.0]
 _name=Image file
-file={assets}\append_bg.png
+file={assets}\{difficulty}_bg.png
 [11.1]
 _name=Standard drawing
 X=-661.5
@@ -328,53 +328,20 @@ Clearness=0.0
 Rotation=0.00
 blend=0
 [14]
-start=397
-end=4001
-layer=7
-overlay=1
-camera=0
-[14.0]
-_name=Video file
-Playback position=1
-vPlay=100.0
-Loop playback=1
-Import alpha channel=0
-file={assets}\auto.mp4
-[14.1]
-_name=Animation effect
-track0=0.00
-track1=0.00
-track2=0.00
-track3=0.00
-check0=0
-type=0
-filter=0
-name=unmult
-param=
-[14.2]
-_name=Standard drawing
-X=744.5
-Y=456.0
-Z=0.0
-Zoom%=100.00
-Clearness=0.0
-Rotation=0.00
-blend=0
-[15]
 start=1
 end=300
 layer=8
 overlay=1
 camera=0
-[15.0]
+[14.0]
 _name=Image file
 file={assets}\collab-tag.png
-[15.1]
+[14.1]
 _name=Zoom%
 Zoom%=100.00
 X=200.00
 Y=100.00
-[15.2]
+[14.2]
 _name=Color compensation
 Lightness=100.0
 Contrast=150.0
@@ -382,10 +349,37 @@ Hue=0.0
 Luminance=100.0
 Chroma=100.0
 Saturated=0
-[15.3]
+[14.3]
 _name=Standard drawing
 X=-166.0
 Y=217.0
+Z=0.0
+Zoom%=100.00
+Clearness=0.0
+Rotation=0.00
+blend=0
+[15]
+start=301
+end=4001
+layer=8
+group=4
+overlay=1
+camera=0
+[15.0]
+_name=Custom object
+track0=216.00
+track1=1.00
+track2=0.00
+track3=0.00
+check0=0
+type=0
+filter=0
+name=Root@pjsekai-overlay-en
+param=file="{dist}\\data.ped"
+[15.1]
+_name=Standard drawing
+X=0.0
+Y=0.0
 Z=0.0
 Zoom%=100.00
 Clearness=0.0
@@ -435,24 +429,16 @@ group=4
 overlay=1
 camera=0
 [17.0]
-_name=Custom object
-track0=216.00
-track1=1.00
-track2=0.00
-track3=0.00
-check0=0
-type=0
-filter=0
-name=Root@pjsekai-overlay-en
-param=file="{dist}\\data.ped"
+_name=Image file
+file={assets}\life.png
 [17.1]
 _name=Standard drawing
-X=0.0
-Y=0.0
+X=705.0
+Y=-477.5
 Z=0.0
-Zoom%=100.00
+Zoom%=17.33
 Clearness=0.0
-Rotation=0.01
+Rotation=0.00
 blend=0
 [18]
 start=1
@@ -498,14 +484,22 @@ group=4
 overlay=1
 camera=0
 [19.0]
-_name=Image file
-file={assets}\life.png
+_name=Custom object
+track0=0.00
+track1=0.00
+track2=0.00
+track3=0.00
+check0=0
+type=0
+filter=0
+name=Score@pjsekai-overlay-en
+param=
 [19.1]
 _name=Standard drawing
-X=705.0
-Y=-477.5
+X=-583.5
+Y=-469.0
 Z=0.0
-Zoom%=17.33
+Zoom%=150.00
 Clearness=0.0
 Rotation=0.00
 blend=0
@@ -561,12 +555,12 @@ track3=0.00
 check0=0
 type=0
 filter=0
-name=Score@pjsekai-overlay-en
+name=Combo@pjsekai-overlay-en
 param=
 [21.1]
 _name=Standard drawing
-X=-583.5
-Y=-469.0
+X=673.5
+Y=-62.5
 Z=0.0
 Zoom%=150.00
 Clearness=0.0
@@ -606,12 +600,12 @@ track3=0.00
 check0=0
 type=0
 filter=0
-name=Combo@pjsekai-overlay-en
+name=Judgement@pjsekai-overlay-en
 param=
 [23.1]
 _name=Standard drawing
-X=673.5
-Y=-62.5
+X=0.0
+Y=127.5
 Z=0.0
 Zoom%=150.00
 Clearness=0.0
@@ -654,14 +648,14 @@ track3=0.00
 check0=0
 type=0
 filter=0
-name=Judgement@pjsekai-overlay-en
+name=Auto@pjsekai-overlay-en
 param=
 [25.1]
 _name=Standard drawing
-X=0.0
-Y=127.5
+X=744.5
+Y=456.0
 Z=0.0
-Zoom%=150.00
+Zoom%=100.00
 Clearness=0.0
 Rotation=0.00
 blend=0
@@ -709,7 +703,7 @@ Rotation=0.00
 blend=0
 [28]
 start=3621
-end=3981
+end=4001
 layer=14
 group=6
 overlay=1
@@ -733,7 +727,7 @@ Rotation=0.00
 blend=0
 [29]
 start=3621
-end=3981
+end=4001
 layer=15
 group=6
 overlay=1
@@ -767,7 +761,7 @@ Rotation=0.00
 blend=0
 [30]
 start=3621
-end=3981
+end=4001
 layer=16
 group=6
 overlay=1

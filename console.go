@@ -20,7 +20,8 @@ func Title() {
         Forked by %sTootieJin%s
          -> https://github.com/TootieJin/pjsekai-overlay-APPEND %s(使用中/In use)%s
 	
-    %s[CAUTION] This tool is primary only for people with technical know-how and basic knowledge of AviUtl. DO NOT open issues or request help about this. Refer to the README for how to set it up.%s
+    %s[CAUTION] This tool is primary only for people with technical know-how and basic knowledge of AviUtl.%s 
+    %sDO NOT open issues or request help about this. Refer to the README for how to set it up.%s
     %s-------------------------------------------------------------------------------------%s
     `))+"\n",
 		RgbColorEscape(0x00afc7), RgbColorEscape(0xab93ff), RgbColorEscape(0xd388ed), RgbColorEscape(0xff8bf4), RgbColorEscape(0x00afc7), ResetEscape(),
@@ -29,6 +30,7 @@ func Title() {
 		RgbColorEscape(0x48b0d5), ResetEscape(),
 		RgbColorEscape(0x48b0d5), ResetEscape(),
 		RgbColorEscape(0xadff2f), ResetEscape(),
+		RgbColorEscape(0xff0000), ResetEscape(),
 		RgbColorEscape(0xff0000), ResetEscape(),
 		RgbColorEscape(0xff5a91), ResetEscape(),
 	)

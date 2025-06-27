@@ -46,6 +46,26 @@ func FetchChart(source Source, chartId string) (sonolus.LevelInfo, error) {
 	return chart.Item, nil
 }
 
+func FetchAPIChart(source Source, chartId string) (sonolus.LevelAPIInfo, error) {
+	var url = "https://" + source.Host + "/api/charts/" + chartId
+
+	resp, err := http.Get(url)
+
+	if err != nil {
+		return sonolus.LevelAPIInfo{}, errors.New("APIサーバーに接続できませんでした。(Could not connect to API server.)")
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != 200 {
+		return sonolus.LevelAPIInfo{}, errors.New("API譜面が見つかりませんでした。(Unable to search API chart.)")
+	}
+
+	var chart sonolus.InfoAPIResponse[sonolus.LevelAPIInfo]
+	json.NewDecoder(resp.Body).Decode(&chart)
+
+	return chart.Chart, nil
+}
+
 func DetectChartSource(chartId string) (Source, error) {
 	var source Source
 	if strings.HasPrefix(chartId, "ptlv-") {
@@ -62,6 +82,13 @@ func DetectChartSource(chartId string) (Source, error) {
 			Color: 0x83ccd2,
 			Host:  "cc.sevenc7c.com",
 		}
+	} else if strings.HasPrefix(chartId, "utsk-") {
+		source = Source{
+			Id:    "untitled_sekai",
+			Name:  "Untitled Sekai",
+			Color: 0x6a6a6a,
+			Host:  "us.pim4n-net.com",
+		}
 	}
 	if source.Id == "" {
 		return Source{
@@ -76,13 +103,11 @@ func DetectChartSource(chartId string) (Source, error) {
 
 func FetchLevelData(source Source, level sonolus.LevelInfo) (sonolus.LevelData, error) {
 	url, err := sonolus.JoinUrl("https://"+source.Host, level.Data.Url)
-
 	if err != nil {
 		return sonolus.LevelData{}, fmt.Errorf("URLの解析に失敗しました。(URL parsing failed.) [%s]", err)
 	}
 
 	resp, err := http.Get(url)
-
 	if err != nil {
 		return sonolus.LevelData{}, fmt.Errorf("サーバーに接続できませんでした。(Could not connect to server.) [%s]", err)
 	}
@@ -109,13 +134,11 @@ func FetchLevelData(source Source, level sonolus.LevelInfo) (sonolus.LevelData, 
 
 func DownloadCover(source Source, level sonolus.LevelInfo, destPath string) error {
 	url, err := sonolus.JoinUrl("https://"+source.Host, level.Cover.Url)
-
 	if err != nil {
 		return fmt.Errorf("URLの解析に失敗しました。(URL parsing failed.) [%s]", err)
 	}
 
 	resp, err := http.Get(url)
-
 	if err != nil {
 		return fmt.Errorf("サーバーに接続できませんでした。（%s）", err)
 	}
@@ -156,12 +179,12 @@ func DownloadCover(source Source, level sonolus.LevelInfo, destPath string) erro
 	return nil
 }
 func DownloadBackground(source Source, level sonolus.LevelInfo, destPath string, chartId string) error {
-	var backgroundUrl string
-	var err error
-	backgroundUrl, err = sonolus.JoinUrl("https://"+source.Host, level.UseBackground.Item.Image.Url)
+	backgroundUrl, err := sonolus.JoinUrl("https://"+source.Host, level.UseBackground.Item.Image.Url)
+	if err != nil {
+		return fmt.Errorf("URLの解析に失敗しました。(URL parsing failed.) [%s]", err)
+	}
 
 	resp, err := http.Get(backgroundUrl)
-
 	if err != nil {
 		return fmt.Errorf("サーバーに接続できませんでした。(Could not connect to server.) [%s]", err)
 	}

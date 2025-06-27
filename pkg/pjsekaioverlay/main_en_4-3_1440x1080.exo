@@ -3,12 +3,12 @@ width=1440
 height=1080
 rate=60
 scale=1
-length=4000
+length=4001
 audio_rate=44100
 audio_ch=2
 [0]
 start=1
-end=4000
+end=4001
 layer=1
 group=1
 overlay=1
@@ -40,7 +40,7 @@ Rotation=0.00
 blend=0
 [1]
 start=1
-end=4000
+end=4001
 layer=2
 group=1
 overlay=1
@@ -157,7 +157,7 @@ Rotation=0.00
 blend=0
 [7]
 start=301
-end=3999
+end=4001
 layer=5
 overlay=1
 camera=0
@@ -277,7 +277,7 @@ Clearness=0.0
 Rotation=0.00
 [12]
 start=3550
-end=3999
+end=4001
 layer=6
 group=2
 overlay=1
@@ -312,7 +312,7 @@ overlay=1
 camera=0
 [13.0]
 _name=Image file
-file={assets}\append_bg.png
+file={assets}\{difficulty}_bg.png
 [13.1]
 _name=Standard drawing
 X=-661.5
@@ -324,7 +324,7 @@ Rotation=0.00
 blend=0
 [14]
 start=301
-end=3999
+end=4001
 layer=7
 group=2
 overlay=1
@@ -377,45 +377,12 @@ Clearness=0.0
 Rotation=0.00
 blend=0
 [16]
-start=397
-end=3999
-layer=8
-overlay=1
-camera=0
-[16.0]
-_name=Video file
-Playback position=1
-vPlay=100.0
-Loop playback=1
-Import alpha channel=0
-file={assets}\auto.mp4
-[16.1]
-_name=Animation effect
-track0=0.00
-track1=0.00
-track2=0.00
-track3=0.00
-check0=0
-type=0
-filter=0
-name=unmult
-param=
-[16.2]
-_name=Standard drawing
-X=562.0
-Y=478.0
-Z=0.0
-Zoom%=75.00
-Clearness=0.0
-Rotation=0.00
-blend=0
-[17]
 start=1
 end=112
 layer=9
 overlay=1
 camera=1
-[17.0]
+[16.0]
 _name=Group control
 X=0.0
 Y=135.0
@@ -427,6 +394,33 @@ Z-Spin=0.00
 Affected by the upper group control=0
 Apply to objects in the same group=1
 range=7
+[17]
+start=301
+end=4001
+layer=9
+group=3
+overlay=1
+camera=0
+[17.0]
+_name=Custom object
+track0=216.00
+track1=1.00
+track2=0.00
+track3=0.00
+check0=0
+type=0
+filter=0
+name=Root@pjsekai-overlay-en
+param=file="{dist}\\data.ped"
+[17.1]
+_name=Standard drawing
+X=0.0
+Y=0.0
+Z=0.0
+Zoom%=100.00
+Clearness=0.0
+Rotation=0.01
+blend=0
 [18]
 start=1
 end=300
@@ -460,30 +454,22 @@ Rotation=0.00
 blend=0
 [19]
 start=301
-end=4000
+end=4001
 layer=10
 group=3
 overlay=1
 camera=0
 [19.0]
-_name=Custom object
-track0=216.00
-track1=1.00
-track2=0.00
-track3=0.00
-check0=0
-type=0
-filter=0
-name=Root@pjsekai-overlay-en
-param=file="{dist}\\data.ped"
+_name=Image file
+file={assets}\life.png
 [19.1]
 _name=Standard drawing
-X=0.0
-Y=0.0
+X=532.0
+Y=-493.0
 Z=0.0
-Zoom%=100.00
+Zoom%=12.97
 Clearness=0.0
-Rotation=0.01
+Rotation=0.00
 blend=0
 [20]
 start=1
@@ -523,20 +509,28 @@ Rotation=0.00
 blend=0
 [21]
 start=301
-end=4000
+end=4001
 layer=11
 group=3
 overlay=1
 camera=0
 [21.0]
-_name=Image file
-file={assets}\life.png
+_name=Custom object
+track0=0.00
+track1=0.00
+track2=0.00
+track3=0.00
+check0=0
+type=0
+filter=0
+name=Score@pjsekai-overlay-en
+param=
 [21.1]
 _name=Standard drawing
-X=532.0
-Y=-493.0
+X=-442.5
+Y=-487.5
 Z=0.0
-Zoom%=12.97
+Zoom%=112.00
 Clearness=0.0
 Rotation=0.00
 blend=0
@@ -578,7 +572,7 @@ Rotation=0.00
 blend=0
 [23]
 start=301
-end=4000
+end=4001
 layer=12
 group=3
 overlay=1
@@ -592,12 +586,12 @@ track3=0.00
 check0=0
 type=0
 filter=0
-name=Score@pjsekai-overlay-en
+name=Combo@pjsekai-overlay-en
 param=
 [23.1]
 _name=Standard drawing
-X=-442.5
-Y=-487.5
+X=505.0
+Y=-47.0
 Z=0.0
 Zoom%=112.00
 Clearness=0.0
@@ -641,7 +635,7 @@ Rotation=0.00
 blend=0
 [25]
 start=301
-end=4000
+end=4001
 layer=13
 group=3
 overlay=1
@@ -655,14 +649,14 @@ track3=0.00
 check0=0
 type=0
 filter=0
-name=Combo@pjsekai-overlay-en
+name=Judgement@pjsekai-overlay-en
 param=
 [25.1]
 _name=Standard drawing
-X=505.0
-Y=-47.0
+X=0.0
+Y=95.0
 Z=0.0
-Zoom%=112.00
+Zoom%=110.00
 Clearness=0.0
 Rotation=0.00
 blend=0
@@ -686,7 +680,7 @@ Rotation=0.00
 blend=0
 [27]
 start=301
-end=4000
+end=4001
 layer=14
 group=3
 overlay=1
@@ -700,14 +694,14 @@ track3=0.00
 check0=0
 type=0
 filter=0
-name=Judgement@pjsekai-overlay-en
+name=Auto@pjsekai-overlay-en
 param=
 [27.1]
 _name=Standard drawing
-X=0.0
-Y=95.0
+X=562.0
+Y=478.0
 Z=0.0
-Zoom%=110.00
+Zoom%=75.00
 Clearness=0.0
 Rotation=0.00
 blend=0
@@ -733,8 +727,8 @@ range=1
 _name=Clearness
 Clearness=100.0,0.0,1
 [29]
-start=3620
-end=3980
+start=3621
+end=4001
 layer=15
 group=4
 overlay=1
@@ -799,8 +793,8 @@ Clearness={opacity}
 Rotation=0.00
 blend=0
 [32]
-start=3620
-end=3980
+start=3621
+end=4001
 layer=16
 group=4
 overlay=1
@@ -833,8 +827,8 @@ Clearness=0.0
 Rotation=0.00
 blend=0
 [33]
-start=3620
-end=3980
+start=3621
+end=4001
 layer=17
 group=4
 overlay=1
@@ -851,8 +845,8 @@ _name=Standard playback
 Volume=300.0
 Left-Right=0.0
 [34]
-start=3891
-end=3935
+start=3892
+end=3936
 layer=18
 group=4
 overlay=1
@@ -873,8 +867,8 @@ range=1
 _name=Clearness
 Clearness=100.0,0.0,1
 [35]
-start=3891
-end=4000
+start=3892
+end=4001
 layer=19
 group=4
 overlay=1
