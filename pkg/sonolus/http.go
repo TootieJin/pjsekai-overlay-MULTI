@@ -42,6 +42,7 @@ type InfoResponse[T any] struct {
 
 type InfoAPIResponse[T any] struct {
 	Chart T `json:"chart"`
+	Data  T `json:"data"`
 }
 
 type UseItem[T any] struct {

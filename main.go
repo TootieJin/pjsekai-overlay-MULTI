@@ -94,7 +94,7 @@ func origMain(isOptionSpecified bool) {
 	flag.Float64Var(&teamPower, "team-power", 250000, "総合力を指定します。(Enter the team's power.)")
 
 	var enUI bool
-	flag.BoolVar(&enUI, "en-ui", false, "イントロに英語を使う。 (Use English for the intro.)")
+	flag.BoolVar(&enUI, "en-ui", false, "英語版を使う(イントロ + v3 UI) - Use English version (Intro + v3 UI)")
 
 	var apCombo bool
 	flag.BoolVar(&apCombo, "ap-combo", true, "コンボのAP表示を有効にします。(Enable AP display for combo.)")
@@ -139,6 +139,13 @@ func origMain(isOptionSpecified bool) {
 	var chart_api sonolus.LevelAPIInfo
 	if chartSource.Id == "chart_cyanvas" {
 		chart_api, err = pjsekaioverlay.FetchAPIChart(chartSource, chartId[5:])
+		if err != nil {
+			fmt.Println(color.RedString(fmt.Sprintf("FAIL: %s", err.Error())))
+			return
+		}
+	}
+	if chartSource.Id == "untitled_sekai" {
+		chart_api, err = pjsekaioverlay.FetchAPIChart(chartSource, chartId)
 		if err != nil {
 			fmt.Println(color.RedString(fmt.Sprintf("FAIL: %s", err.Error())))
 			return
@@ -219,10 +226,6 @@ func origMain(isOptionSpecified bool) {
 
 	fmt.Println(color.GreenString("OK"))
 
-	if chartSource.Id == "untitled_sekai" {
-		fmt.Print(color.YellowString("\nWARNING: %sは開発中のため、一部の新機能は動作しません。(%s is under development, some new features will not work.)", chartSource.Name, chartSource.Name))
-	}
-
 	if !isOptionSpecified {
 		fmt.Print("\n大会モードを有効にするか？ (PERFECT = +3点)\nEnable Tournament Mode? (PERFECT = +3pts) [y/n]\n> ")
 		before, _ := rawmode.Enable()
@@ -268,7 +271,7 @@ func origMain(isOptionSpecified bool) {
 
 	fmt.Println(color.GreenString("OK"))
 	if !isOptionSpecified {
-		fmt.Print("\nイントロに英語を使いますか？ (Use English for the intro?) [y/n]\n> ")
+		fmt.Print("\n英語版を使う？(イントロ + v3 UI) - Use English version? (Intro + v3 UI) [y/n]\n> ")
 		before, _ := rawmode.Enable()
 		tmpEnableENByte, _ := bufio.NewReader(os.Stdin).ReadByte()
 		tmpEnableEN := string(tmpEnableENByte)
@@ -306,7 +309,7 @@ func origMain(isOptionSpecified bool) {
 
 	fmt.Print("\n- pedファイルを生成中 (Generating ped file)... ")
 
-	err = pjsekaioverlay.WritePedFile(scoreData, assets, apCombo, filepath.Join(formattedOutDir, "data.ped"), sonolus.LevelInfo{Rating: chart.Rating}, levelData, exScore)
+	err = pjsekaioverlay.WritePedFile(scoreData, assets, apCombo, filepath.Join(formattedOutDir, "data.ped"), sonolus.LevelInfo{Rating: chart.Rating}, levelData, exScore, enUI)
 
 	if err != nil {
 		fmt.Println(color.RedString(fmt.Sprintf("FAIL: %s", err.Error())))

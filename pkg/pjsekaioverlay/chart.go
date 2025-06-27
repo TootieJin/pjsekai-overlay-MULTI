@@ -63,7 +63,11 @@ func FetchAPIChart(source Source, chartId string) (sonolus.LevelAPIInfo, error) 
 	var chart sonolus.InfoAPIResponse[sonolus.LevelAPIInfo]
 	json.NewDecoder(resp.Body).Decode(&chart)
 
-	return chart.Chart, nil
+	if source.Id == "untitled_sekai" {
+		return chart.Data, nil
+	} else {
+		return chart.Chart, nil
+	}
 }
 
 func DetectChartSource(chartId string) (Source, error) {

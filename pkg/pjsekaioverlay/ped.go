@@ -198,7 +198,7 @@ func CalculateScore(levelInfo sonolus.LevelInfo, levelData sonolus.LevelData, po
 	return frames
 }
 
-func WritePedFile(frames []PedFrame, assets string, ap bool, path string, levelInfo sonolus.LevelInfo, levelData sonolus.LevelData, exScore bool) error {
+func WritePedFile(frames []PedFrame, assets string, ap bool, path string, levelInfo sonolus.LevelInfo, levelData sonolus.LevelData, exScore bool, enUI bool) error {
 	file, err := os.Create(path)
 	if err != nil {
 		return fmt.Errorf("ファイルの作成に失敗しました (Failed to create file.) [%s]", err)
@@ -209,6 +209,7 @@ func WritePedFile(frames []PedFrame, assets string, ap bool, path string, levelI
 
 	writer.Write([]byte(fmt.Sprintf("p|%s\n", assets)))
 	writer.Write([]byte(fmt.Sprintf("a|%s\n", strconv.FormatBool(ap))))
+	writer.Write([]byte(fmt.Sprintf("e|%s\n", strconv.FormatBool(enUI))))
 	writer.Write([]byte(fmt.Sprintf("v|%s\n", Version)))
 	writer.Write([]byte(fmt.Sprintf("u|%d\n", time.Now().Unix())))
 
