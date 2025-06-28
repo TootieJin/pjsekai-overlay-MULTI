@@ -313,7 +313,12 @@ func WritePedFile(frames []PedFrame, assets string, ap bool, path string, levelI
 			scoreXv1 = (float64(score) / float64(rankC)) * 0.447
 		}
 
-		writer.Write(fmt.Appendf(nil, "s|%f:%.0f:%.0f:%.0f:%.0f:%f:%f:%s:%d\n", frame.Time, score2, score, frameScore2, frameScore, scoreX/372, scoreXv1, rank, i))
+		time := frame.Time
+		if time == 0 && i > 0 {
+			time = frames[i-1].Time + 0.000001
+		}
+
+		writer.Write(fmt.Appendf(nil, "s|%f:%.0f:%.0f:%.0f:%.0f:%f:%f:%s:%d\n", time, score2, score, frameScore2, frameScore, scoreX/372, scoreXv1, rank, i))
 	}
 
 	return nil
