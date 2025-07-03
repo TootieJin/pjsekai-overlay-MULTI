@@ -64,6 +64,7 @@ PJSekai-style video creation tool:
 
 > [!NOTE]
 > **(optional)** You can remove watermark by check/unchecking `Watermark` in the `Root@pjsekai-overlay-en` element.
+> 
 > <img src="https://github.com/user-attachments/assets/9ff783db-bbad-41ef-92c8-8cf150062e8b" width="75%" height="75%"/>
 
 ## Requirements
