@@ -232,7 +232,7 @@ func origMain(isOptionSpecified bool) {
 		tmpEnableEXScoreByte, _ := bufio.NewReader(os.Stdin).ReadByte()
 		tmpEnableEXScore := string(tmpEnableEXScoreByte)
 		rawmode.Restore(before)
-		if tmpEnableEXScore == "Y" || tmpEnableEXScore == "y" || tmpEnableEXScore == "" {
+		if tmpEnableEXScore == "Y" || tmpEnableEXScore == "y" {
 			exScore = true
 			teamPower = 0.0
 			fmt.Printf("\n\033[A\033[2K\r> %s\n", color.GreenString(tmpEnableEXScore))
@@ -276,7 +276,7 @@ func origMain(isOptionSpecified bool) {
 		tmpEnableENByte, _ := bufio.NewReader(os.Stdin).ReadByte()
 		tmpEnableEN := string(tmpEnableENByte)
 		rawmode.Restore(before)
-		if tmpEnableEN == "Y" || tmpEnableEN == "y" || tmpEnableEN == "" {
+		if tmpEnableEN == "Y" || tmpEnableEN == "y" {
 			enUI = true
 			fmt.Printf("\n\033[A\033[2K\r> %s\n", color.GreenString(tmpEnableEN))
 			fmt.Println(color.GreenString("TOGGLE: ON"))
@@ -288,7 +288,7 @@ func origMain(isOptionSpecified bool) {
 	}
 
 	if !isOptionSpecified {
-		fmt.Print("\nコンボのAP表示を有効にしますか？ (Enable AP indicator for combo?) [y/n]\n> ")
+		fmt.Print("\nコンボのAP表示を有効にしますか？(これは後でAviUtlで変更できます)\nEnable AP indicator for combo? (You can change this later in AviUtl) [y/n]\n> ")
 		before, _ := rawmode.Enable()
 		tmpEnableComboApByte, _ := bufio.NewReader(os.Stdin).ReadByte()
 		tmpEnableComboAp := string(tmpEnableComboApByte)
@@ -309,7 +309,7 @@ func origMain(isOptionSpecified bool) {
 
 	fmt.Print("\n- pedファイルを生成中 (Generating ped file)... ")
 
-	err = pjsekaioverlay.WritePedFile(scoreData, assets, apCombo, filepath.Join(formattedOutDir, "data.ped"), sonolus.LevelInfo{Rating: chart.Rating}, levelData, exScore, enUI)
+	err = pjsekaioverlay.WritePedFile(scoreData, assets, filepath.Join(formattedOutDir, "data.ped"), sonolus.LevelInfo{Rating: chart.Rating}, levelData, exScore, enUI)
 
 	if err != nil {
 		fmt.Println(color.RedString(fmt.Sprintf("FAIL: %s", err.Error())))
@@ -345,6 +345,7 @@ func origMain(isOptionSpecified bool) {
 	extra := "[追加情報]"
 	exFile := "tournament-mode.png"
 	exFileOpacity := "100.0"
+	ap := "0.00"
 
 	if enUI {
 		description = fmt.Sprintf("Lyrics: -    Music: %s    Arrangement: -\r\nVo: %s    Chart Design: %s", composerAndVocals[0], composerAndVocals[1], charter[0])
@@ -355,8 +356,11 @@ func origMain(isOptionSpecified bool) {
 	if exScore {
 		exFileOpacity = "0.0"
 	}
+	if apCombo {
+		ap = "1.00"
+	}
 
-	err = pjsekaioverlay.WriteExoFiles(assets, formattedOutDir, chart.Title, description, descriptionv1, difficulty, extra, exFile, exFileOpacity)
+	err = pjsekaioverlay.WriteExoFiles(assets, formattedOutDir, chart.Title, description, descriptionv1, difficulty, extra, exFile, exFileOpacity, ap)
 
 	if err != nil {
 		fmt.Println(color.RedString(fmt.Sprintf("FAIL: %s", err.Error())))

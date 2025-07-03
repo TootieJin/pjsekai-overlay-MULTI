@@ -407,7 +407,7 @@ track0=216.00
 track1=1.00
 track2=0.00
 track3=0.00
-check0=0
+check0=1
 type=0
 filter=0
 name=Root@pjsekai-overlay-en
@@ -528,7 +528,7 @@ param=
 [21.1]
 _name=Standard drawing
 X=-442.5
-Y=-487.5
+Y=-489.5
 Z=0.0
 Zoom%=112.00
 Clearness=0.0
@@ -579,7 +579,7 @@ overlay=1
 camera=0
 [23.0]
 _name=Custom object
-track0=0.00
+track0={ap}
 track1=0.00
 track2=0.00
 track3=0.00

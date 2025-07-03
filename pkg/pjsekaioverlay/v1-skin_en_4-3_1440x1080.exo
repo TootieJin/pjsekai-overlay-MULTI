@@ -14,41 +14,51 @@ overlay=1
 camera=0
 [0.0]
 _name=Image file
-file={dist}\background-v1.png
+file={assets}\background-v1_full.png
 [0.1]
+_name=Mask
+X=0.0
+Y=0.4
+Rotation=0.00
+Size=2000
+rAspect=-51.5
+Blur=0
+Invert mask=1
+Match with original size=0
+type=2
+name=
+mode=0
+[0.2]
 _name=Standard drawing
 X=0.0
 Y=0.0
 Z=0.0
-Zoom%=150.00
+Zoom%=85.64
 Clearness=0.0
 Rotation=0.00
 blend=0
 [1]
-start=271
-end=300
+start=1
+end=4001
 layer=2
 overlay=1
-camera=1
+camera=0
 [1.0]
-_name=Group control
+_name=Image file
+file={dist}\background-v1.png
+[1.1]
+_name=Standard drawing
 X=0.0
 Y=0.0
 Z=0.0
-Zoom%=100.00
-X-Spin=0.00
-Y-Spin=0.00
-Z-Spin=0.00
-Affected by the upper group control=0
-Apply to objects in the same group=1
-range=7
-[1.1]
-_name=Clearness
-Clearness=0.0,100.0,1
+Zoom%=115.50
+Clearness=0.0
+Rotation=0.00
+blend=0
 [2]
-start=301
-end=396
-layer=2
+start=271
+end=300
+layer=3
 overlay=1
 camera=1
 [2.0]
@@ -61,28 +71,49 @@ X-Spin=0.00
 Y-Spin=0.00
 Z-Spin=0.00
 Affected by the upper group control=0
-Apply to objects in the same group=0
-range=11
+Apply to objects in the same group=1
+range=7
 [2.1]
 _name=Clearness
-Clearness=100.0,0.0,1
+Clearness=0.0,100.0,1
 [3]
-start=1
-end=300
+start=301
+end=396
 layer=3
 overlay=1
-camera=0
+camera=1
 [3.0]
+_name=Group control
+X=0.0
+Y=0.0
+Z=0.0
+Zoom%=100.00
+X-Spin=0.00
+Y-Spin=0.00
+Z-Spin=0.00
+Affected by the upper group control=0
+Apply to objects in the same group=0
+range=11
+[3.1]
+_name=Clearness
+Clearness=100.0,0.0,1
+[4]
+start=1
+end=300
+layer=4
+overlay=1
+camera=0
+[4.0]
 _name=Image file
 file={assets}\start_bg.png
-[3.1]
+[4.1]
 _name=Image tiling
 Hx#=200
 Vy#=100
 Speed X=0.0
 Speed Y=0.0
 Individual objects=0
-[3.2]
+[4.2]
 _name=Standard drawing
 X=0.0
 Y=0.0
@@ -91,70 +122,16 @@ Zoom%=144.00
 Clearness=20.0
 Rotation=0.00
 blend=0
-[4]
-start=1
-end=60
-layer=4
-overlay=1
-camera=1
-[4.0]
-_name=Image file
-file={assets}\start_grad.png
-[4.1]
-_name=Standard drawing
-X=0.0
-Y=1500.0
-Z=0.0
-Zoom%=150.00
-Clearness=90.0
-Rotation=0.00
-blend=0
 [5]
-start=61
-end=180
-layer=4
-overlay=1
-camera=1
-[5.0]
-_name=Image file
-file={assets}\start_grad.png
-[5.1]
-_name=Standard drawing
-X=0.0,0.0,15@減速@加減速TRA,2
-Y=1500.0,-600.0,15@減速@加減速TRA,2
-Z=0.0,0.0,15@減速@加減速TRA,2
-Zoom%=150.00
-Clearness=90.0
-Rotation=0.00
-blend=0
-[6]
-start=181
-end=300
-layer=4
-overlay=1
-camera=1
-[6.0]
-_name=Image file
-file={assets}\start_grad.png
-[6.1]
-_name=Standard drawing
-X=0.0,0.0,15@減速@加減速TRA,2
-Y=1500.0,-600.0,15@減速@加減速TRA,2
-Z=0.0,0.0,15@減速@加減速TRA,2
-Zoom%=150.00
-Clearness=90.0
-Rotation=0.00
-blend=0
-[7]
 start=301
 end=4001
 layer=4
 overlay=1
 camera=0
-[7.0]
+[5.0]
 _name=Image file
 file={assets}\lane-v1_full.png
-[7.1]
+[5.1]
 _name=Standard drawing
 X=0.0
 Y=32.0
@@ -163,16 +140,16 @@ Zoom%=75.00
 Clearness=0.0
 Rotation=0.00
 blend=0
-[8]
+[6]
 start=1
 end=60
 layer=5
 overlay=1
 camera=1
-[8.0]
+[6.0]
 _name=Image file
 file={assets}\start_grad.png
-[8.1]
+[6.1]
 _name=Standard drawing
 X=0.0
 Y=1500.0
@@ -181,16 +158,16 @@ Zoom%=150.00
 Clearness=90.0
 Rotation=0.00
 blend=0
-[9]
+[7]
 start=61
 end=180
 layer=5
 overlay=1
-camera=0
-[9.0]
+camera=1
+[7.0]
 _name=Image file
 file={assets}\start_grad.png
-[9.1]
+[7.1]
 _name=Standard drawing
 X=0.0,0.0,15@減速@加減速TRA,2
 Y=1500.0,-600.0,15@減速@加減速TRA,2
@@ -199,16 +176,16 @@ Zoom%=150.00
 Clearness=90.0
 Rotation=0.00
 blend=0
-[10]
+[8]
 start=181
 end=300
 layer=5
 overlay=1
-camera=0
-[10.0]
+camera=1
+[8.0]
 _name=Image file
 file={assets}\start_grad.png
-[10.1]
+[8.1]
 _name=Standard drawing
 X=0.0,0.0,15@減速@加減速TRA,2
 Y=1500.0,-600.0,15@減速@加減速TRA,2
@@ -217,21 +194,21 @@ Zoom%=150.00
 Clearness=90.0
 Rotation=0.00
 blend=0
-[11]
+[9]
 start=301
 end=396
 layer=5
 group=1
 overlay=1
 camera=0
-[11.0]
+[9.0]
 _name=Video file
 Playback position=1
 vPlay=0.0,100.0,3
 Loop playback=0
 Import alpha channel=0
 file=
-[11.1]
+[9.1]
 _name=Animation effect
 track0=0.00
 track1=0.00
@@ -242,7 +219,7 @@ type=0
 filter=0
 name=unmult
 param=
-[11.2]
+[9.2]
 _name=Standard drawing
 X=0.0
 Y=0.0
@@ -251,7 +228,7 @@ Zoom%=100.00
 Clearness=0.0
 Rotation=0.00
 blend=0
-[12]
+[10]
 start=397
 end=3550
 layer=5
@@ -259,20 +236,20 @@ group=1
 overlay=1
 camera=0
 chain=1
-[12.0]
+[10.0]
 _name=Video file
 Playback position=1
 vPlay=100.0,0.0,3
 Loop playback=0
 Import alpha channel=0
-[12.1]
+[10.1]
 _name=Animation effect
 track0=0.00
 track1=0.00
 track2=0.00
 track3=0.00
 check0=0
-[12.2]
+[10.2]
 _name=Standard drawing
 X=0.0
 Y=0.0
@@ -280,7 +257,7 @@ Z=0.0
 Zoom%=100.00
 Clearness=0.0
 Rotation=0.00
-[13]
+[11]
 start=3551
 end=4001
 layer=5
@@ -288,20 +265,20 @@ group=1
 overlay=1
 camera=0
 chain=1
-[13.0]
+[11.0]
 _name=Video file
 Playback position=1
 vPlay=0.0,100.0,3
 Loop playback=0
 Import alpha channel=0
-[13.1]
+[11.1]
 _name=Animation effect
 track0=0.00
 track1=0.00
 track2=0.00
 track3=0.00
 check0=0
-[13.2]
+[11.2]
 _name=Standard drawing
 X=0.0
 Y=0.0
@@ -309,23 +286,58 @@ Z=0.0
 Zoom%=100.00
 Clearness=0.0
 Rotation=0.00
-[14]
+[12]
 start=1
+end=60
+layer=6
+overlay=1
+camera=1
+[12.0]
+_name=Image file
+file={assets}\start_grad.png
+[12.1]
+_name=Standard drawing
+X=0.0
+Y=1500.0
+Z=0.0
+Zoom%=150.00
+Clearness=90.0
+Rotation=0.00
+blend=0
+[13]
+start=61
+end=180
+layer=6
+overlay=1
+camera=0
+[13.0]
+_name=Image file
+file={assets}\start_grad.png
+[13.1]
+_name=Standard drawing
+X=0.0,0.0,15@減速@加減速TRA,2
+Y=1500.0,-600.0,15@減速@加減速TRA,2
+Z=0.0,0.0,15@減速@加減速TRA,2
+Zoom%=150.00
+Clearness=90.0
+Rotation=0.00
+blend=0
+[14]
+start=181
 end=300
 layer=6
 overlay=1
-clipping=1
 camera=0
 [14.0]
 _name=Image file
-file={dist}\background-v1.png
+file={assets}\start_grad.png
 [14.1]
 _name=Standard drawing
-X=0.0
-Y=0.0
-Z=0.0
+X=0.0,0.0,15@減速@加減速TRA,2
+Y=1500.0,-600.0,15@減速@加減速TRA,2
+Z=0.0,0.0,15@減速@加減速TRA,2
 Zoom%=150.00
-Clearness=0.0
+Clearness=90.0
 Rotation=0.00
 blend=0
 [15]
@@ -348,14 +360,33 @@ Volume=100.0
 Left-Right=0.0
 [16]
 start=1
-end=45
+end=300
 layer=7
 overlay=1
+clipping=1
 camera=0
 [16.0]
 _name=Image file
-file={assets}\{difficulty}_bg.png
+file={dist}\background-v1.png
 [16.1]
+_name=Standard drawing
+X=0.0
+Y=0.0
+Z=0.0
+Zoom%=150.00
+Clearness=0.0
+Rotation=0.00
+blend=0
+[17]
+start=1
+end=45
+layer=8
+overlay=1
+camera=0
+[17.0]
+_name=Image file
+file={assets}\{difficulty}_bg.png
+[17.1]
 _name=Standard drawing
 X=0.0
 Y=-124.5
@@ -364,27 +395,10 @@ Zoom%=54.75
 Clearness=0.0
 Rotation=0.00,0.00,15@減速@加減速TRA,2
 blend=0
-[17]
+[18]
 start=46
 end=60
-layer=7
-overlay=1
-camera=0
-chain=1
-[17.0]
-_name=Image file
-[17.1]
-_name=Standard drawing
-X=0.0
-Y=-124.5
-Z=0.0
-Zoom%=54.75
-Clearness=0.0
-Rotation=0.00,-4.60,15@減速@加減速TRA,2
-[18]
-start=61
-end=300
-layer=7
+layer=8
 overlay=1
 camera=0
 chain=1
@@ -397,17 +411,34 @@ Y=-124.5
 Z=0.0
 Zoom%=54.75
 Clearness=0.0
-Rotation=-4.60,-4.60,15@減速@加減速TRA,2
+Rotation=0.00,-4.60,15@減速@加減速TRA,2
 [19]
-start=1
+start=61
 end=300
 layer=8
 overlay=1
 camera=0
+chain=1
 [19.0]
 _name=Image file
-file={dist}\cover.png
 [19.1]
+_name=Standard drawing
+X=0.0
+Y=-124.5
+Z=0.0
+Zoom%=54.75
+Clearness=0.0
+Rotation=-4.60,-4.60,15@減速@加減速TRA,2
+[20]
+start=1
+end=300
+layer=9
+overlay=1
+camera=0
+[20.0]
+_name=Image file
+file={dist}\cover.png
+[20.1]
 _name=Standard drawing
 X=0.0
 Y=-124.5
@@ -416,25 +447,25 @@ Zoom%=109.50
 Clearness=0.0
 Rotation=0.00
 blend=0
-[20]
+[21]
 start=301
 end=4001
-layer=8
+layer=9
 group=2
 overlay=1
 camera=0
-[20.0]
+[21.0]
 _name=Custom object
 track0=216.00
 track1=1.00
 track2=0.00
 track3=0.00
-check0=0
+check0=1
 type=0
 filter=0
 name=Root@pjsekai-overlay-en-v1
 param=file="{dist}\\data.ped"
-[20.1]
+[21.1]
 _name=Standard drawing
 X=0.0
 Y=0.0
@@ -443,13 +474,13 @@ Zoom%=100.00
 Clearness=0.0
 Rotation=0.01
 blend=0
-[21]
+[22]
 start=1
 end=300
-layer=9
+layer=10
 overlay=1
 camera=0
-[21.0]
+[22.0]
 _name=Text
 Size=84
 vDisplay=0.0
@@ -470,12 +501,12 @@ color=202020
 color2=000000
 font=FOT-ロダンNTLG Pro EB
 text={text:difficulty}
-[21.1]
+[22.1]
 _name=Diffusion light
 Strength=60.0
 Diffusion=12
 Fixed Size=0
-[21.2]
+[22.2]
 _name=Standard drawing
 X=0.0
 Y=187.0
@@ -484,17 +515,17 @@ Zoom%=43.00
 Clearness=0.0
 Rotation=0.00
 blend=0
-[22]
+[23]
 start=301
 end=4001
-layer=9
+layer=10
 group=2
 overlay=1
 camera=0
-[22.0]
+[23.0]
 _name=Image file
 file={assets}\life-v1.png
-[22.1]
+[23.1]
 _name=Standard drawing
 X=538.5
 Y=-482.5
@@ -503,22 +534,22 @@ Zoom%=75.00
 Clearness=0.0
 Rotation=0.00
 blend=0
-[23]
+[24]
 start=1
 end=300
-layer=10
+layer=11
 overlay=1
 clipping=1
 camera=0
-[23.0]
+[24.0]
 _name=Image file
 file={assets}\{difficulty}_bg.png
-[23.1]
+[24.1]
 _name=Zoom%
 Zoom%=100.00
 X=160.00
 Y=30.00
-[23.2]
+[24.2]
 _name=Standard drawing
 X=0.0
 Y=210.0
@@ -527,14 +558,14 @@ Zoom%=14.00
 Clearness=0.0
 Rotation=0.00
 blend=0
-[24]
+[25]
 start=301
 end=4001
-layer=10
+layer=11
 group=2
 overlay=1
 camera=0
-[24.0]
+[25.0]
 _name=Custom object
 track0=0.00
 track1=0.00
@@ -545,7 +576,7 @@ type=0
 filter=0
 name=Score@pjsekai-overlay-en-v1
 param=
-[24.1]
+[25.1]
 _name=Standard drawing
 X=0.0
 Y=-137.0
@@ -554,13 +585,13 @@ Zoom%=108.00
 Clearness=0.0
 Rotation=0.00
 blend=0
-[25]
+[26]
 start=271
 end=300
-layer=11
+layer=12
 overlay=1
 camera=1
-[25.0]
+[26.0]
 _name=Group control
 X=0.0
 Y=0.0
@@ -572,19 +603,19 @@ Z-Spin=0.00
 Affected by the upper group control=0
 Apply to objects in the same group=1
 range=7
-[25.1]
+[26.1]
 _name=Clearness
 Clearness=0.0,100.0,1
-[26]
+[27]
 start=301
 end=4001
-layer=11
+layer=12
 group=2
 overlay=1
 camera=0
-[26.0]
+[27.0]
 _name=Custom object
-track0=0.00
+track0={ap}
 track1=0.00
 track2=0.00
 track3=0.00
@@ -593,7 +624,7 @@ type=0
 filter=0
 name=Combo@pjsekai-overlay-en-v1
 param=
-[26.1]
+[27.1]
 _name=Standard drawing
 X=505.0
 Y=-90.0
@@ -602,13 +633,13 @@ Zoom%=108.00
 Clearness=0.0
 Rotation=0.00
 blend=0
-[27]
+[28]
 start=1
 end=300
-layer=12
+layer=13
 overlay=1
 camera=0
-[27.0]
+[28.0]
 _name=Custom object
 track0=30.00
 track1=85.00
@@ -619,7 +650,7 @@ type=0
 filter=0
 name=三角括弧
 param=color=0x962493
-[27.1]
+[28.1]
 _name=Standard drawing
 X=-140.0
 Y=-404.0
@@ -628,14 +659,14 @@ Zoom%=150.00
 Clearness=0.0
 Rotation=180.00
 blend=0
-[28]
+[29]
 start=301
 end=4001
-layer=12
+layer=13
 group=2
 overlay=1
 camera=0
-[28.0]
+[29.0]
 _name=Custom object
 track0=0.00
 track1=0.00
@@ -646,7 +677,7 @@ type=0
 filter=0
 name=Judgement@pjsekai-overlay-en-v1
 param=
-[28.1]
+[29.1]
 _name=Standard drawing
 X=0.0
 Y=95.0
@@ -655,13 +686,13 @@ Zoom%=112.50
 Clearness=0.0
 Rotation=0.00
 blend=0
-[29]
+[30]
 start=1
 end=300
-layer=13
+layer=14
 overlay=1
 camera=0
-[29.0]
+[30.0]
 _name=Graphic
 Size=100
 rAspect=0.0
@@ -669,7 +700,7 @@ Line width=4000
 type=2
 color=962493
 name=
-[29.1]
+[30.1]
 _name=Standard drawing
 X=-258.0
 Y=-404.0
@@ -678,13 +709,14 @@ Zoom%=45.00
 Clearness=0.0
 Rotation=0.00
 blend=0
-[30]
+[31]
 start=301
 end=4001
-layer=13
+layer=14
+group=2
 overlay=1
 camera=0
-[30.0]
+[31.0]
 _name=Custom object
 track0=0.00
 track1=0.00
@@ -695,7 +727,7 @@ type=0
 filter=0
 name=Auto@pjsekai-overlay-en-v1
 param=
-[30.1]
+[31.1]
 _name=Standard drawing
 X=562.0
 Y=478.0
@@ -704,13 +736,13 @@ Zoom%=75.00
 Clearness=0.0
 Rotation=0.00
 blend=0
-[31]
+[32]
 start=1
 end=300
-layer=14
+layer=15
 overlay=1
 camera=0
-[31.0]
+[32.0]
 _name=Text
 Size=72
 vDisplay=0.0
@@ -731,7 +763,7 @@ color=ffffff
 color2=000000
 font=FOT-ロダンNTLG Pro DB
 text={text:extra}
-[31.1]
+[32.1]
 _name=Standard drawing
 X=-266.0
 Y=-404.0
@@ -740,14 +772,14 @@ Zoom%=38.75
 Clearness=0.0
 Rotation=0.00
 blend=0
-[32]
+[33]
 start=3621
 end=4001
-layer=14
+layer=15
 group=3
 overlay=1
 camera=0
-[32.0]
+[33.0]
 _name=Graphic
 Size=100
 rAspect=0.0
@@ -755,7 +787,7 @@ Line width=4000
 type=0
 color=000000
 name=
-[32.1]
+[33.1]
 _name=Standard drawing
 X=0.0
 Y=-2.0
@@ -764,13 +796,13 @@ Zoom%=200.00
 Clearness=50.0,50.0,1
 Rotation=0.00
 blend=0
-[33]
+[34]
 start=1
 end=300
-layer=15
+layer=16
 overlay=1
 camera=0
-[33.0]
+[34.0]
 _name=Text
 Size=96
 vDisplay=0.0
@@ -791,7 +823,7 @@ color=ffffff
 color2=000000
 font=FOT-ロダンNTLG Pro DB
 text={text:title}
-[33.1]
+[34.1]
 _name=Standard drawing
 X=0.0
 Y=253.0
@@ -800,21 +832,21 @@ Zoom%=54.00
 Clearness=0.0
 Rotation=0.00
 blend=0
-[34]
+[35]
 start=3621
 end=4001
-layer=15
+layer=16
 group=3
 overlay=1
 camera=0
-[34.0]
+[35.0]
 _name=Video file
 Playback position=1
 vPlay=100.0
 Loop playback=0
 Import alpha channel=0
 file={assets}\ap-v1.mp4
-[34.1]
+[35.1]
 _name=Animation effect
 track0=0.00
 track1=0.00
@@ -825,7 +857,7 @@ type=0
 filter=0
 name=unmult
 param=
-[34.2]
+[35.2]
 _name=Standard drawing
 X=0.0
 Y=0.0
@@ -834,13 +866,13 @@ Zoom%=75.00
 Clearness=0.0
 Rotation=0.00
 blend=0
-[35]
+[36]
 start=1
 end=300
-layer=16
+layer=17
 overlay=1
 camera=0
-[35.0]
+[36.0]
 _name=Text
 Size=72
 vDisplay=0.0
@@ -861,7 +893,7 @@ color=ffffff
 color2=000000
 font=FOT-ロダンNTLG Pro DB
 text={text:description}
-[35.1]
+[36.1]
 _name=Standard drawing
 X=0.0
 Y=342.5
@@ -870,50 +902,28 @@ Zoom%=38.75
 Clearness=0.0
 Rotation=0.00
 blend=0
-[36]
+[37]
 start=3621
 end=4001
-layer=16
+layer=17
 group=3
 overlay=1
 audio=1
-[36.0]
+[37.0]
 _name=Audio file
 Playback position=0.00
 vPlay=100.0
 Loop playback=0
 Sync with video files=1
 file={assets}\ap-v1.mp4
-[36.1]
+[37.1]
 _name=Standard playback
 Volume=300.0
 Left-Right=0.0
-[37]
+[38]
 start=61
 end=91
-layer=17
-overlay=1
-camera=1
-[37.0]
-_name=Group control
-X=0.0
-Y=0.0
-Z=0.0
-Zoom%=100.00
-X-Spin=0.00
-Y-Spin=0.00
-Z-Spin=0.00
-Affected by the upper group control=0
-Apply to objects in the same group=1
-range=1
-[37.1]
-_name=Clearness
-Clearness=100.0,0.0,1
-[38]
-start=3892
-end=3936
-layer=17
-group=3
+layer=18
 overlay=1
 camera=1
 [38.0]
@@ -925,20 +935,42 @@ Zoom%=100.00
 X-Spin=0.00
 Y-Spin=0.00
 Z-Spin=0.00
-Affected by the upper group control=1
-Apply to objects in the same group=0
+Affected by the upper group control=0
+Apply to objects in the same group=1
 range=1
 [38.1]
 _name=Clearness
 Clearness=100.0,0.0,1
 [39]
+start=3892
+end=3936
+layer=18
+group=3
+overlay=1
+camera=1
+[39.0]
+_name=Group control
+X=0.0
+Y=0.0
+Z=0.0
+Zoom%=100.00
+X-Spin=0.00
+Y-Spin=0.00
+Z-Spin=0.00
+Affected by the upper group control=1
+Apply to objects in the same group=0
+range=1
+[39.1]
+_name=Clearness
+Clearness=100.0,0.0,1
+[40]
 start=1
 end=60
-layer=18
+layer=19
 group=4
 overlay=1
 camera=0
-[39.0]
+[40.0]
 _name=Graphic
 Size=100
 rAspect=0.0
@@ -946,7 +978,7 @@ Line width=4000
 type=0
 color=ffffff
 name=
-[39.1]
+[40.1]
 _name=Standard drawing
 X=0.0
 Y=-2.0
@@ -955,16 +987,16 @@ Zoom%=200.00
 Clearness=0.0,100.0,1
 Rotation=0.00
 blend=0
-[40]
+[41]
 start=61
 end=300
-layer=18
+layer=19
 overlay=1
 camera=0
-[40.0]
+[41.0]
 _name=Image file
 file={assets}\{image:tournament}
-[40.1]
+[41.1]
 _name=Standard drawing
 X=197.0
 Y=211.0
@@ -973,14 +1005,14 @@ Zoom%=70.00
 Clearness={opacity}
 Rotation=0.00
 blend=0
-[41]
+[42]
 start=3892
 end=4001
-layer=18
+layer=19
 group=3
 overlay=1
 camera=0
-[41.0]
+[42.0]
 _name=Graphic
 Size=100
 rAspect=0.0
@@ -988,7 +1020,7 @@ Line width=4000
 type=0
 color=000000
 name=
-[41.1]
+[42.1]
 _name=Standard drawing
 X=0.0
 Y=-2.0

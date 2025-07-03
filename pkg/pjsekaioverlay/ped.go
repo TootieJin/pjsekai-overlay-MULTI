@@ -198,7 +198,7 @@ func CalculateScore(levelInfo sonolus.LevelInfo, levelData sonolus.LevelData, po
 	return frames
 }
 
-func WritePedFile(frames []PedFrame, assets string, ap bool, path string, levelInfo sonolus.LevelInfo, levelData sonolus.LevelData, exScore bool, enUI bool) error {
+func WritePedFile(frames []PedFrame, assets string, path string, levelInfo sonolus.LevelInfo, levelData sonolus.LevelData, exScore bool, enUI bool) error {
 	file, err := os.Create(path)
 	if err != nil {
 		return fmt.Errorf("ファイルの作成に失敗しました (Failed to create file.) [%s]", err)
@@ -207,11 +207,10 @@ func WritePedFile(frames []PedFrame, assets string, ap bool, path string, levelI
 
 	writer := io.Writer(file)
 
-	writer.Write([]byte(fmt.Sprintf("p|%s\n", assets)))
-	writer.Write([]byte(fmt.Sprintf("a|%s\n", strconv.FormatBool(ap))))
-	writer.Write([]byte(fmt.Sprintf("e|%s\n", strconv.FormatBool(enUI))))
-	writer.Write([]byte(fmt.Sprintf("v|%s\n", Version)))
-	writer.Write([]byte(fmt.Sprintf("u|%d\n", time.Now().Unix())))
+	fmt.Fprintf(writer, "p|%s\n", assets)
+	fmt.Fprintf(writer, "e|%s\n", strconv.FormatBool(enUI))
+	fmt.Fprintf(writer, "v|%s\n", Version)
+	fmt.Fprintf(writer, "u|%d\n", time.Now().Unix())
 
 	var weightedNotesCount float64 = 0
 	for _, entity := range levelData.Entities {
@@ -240,14 +239,13 @@ func WritePedFile(frames []PedFrame, assets string, ap bool, path string, levelI
 			score = -score
 		}
 
-		frameScore := math.Mod((score+(score2*1e+17))-(lastScore+(lastScore2*1e+17)), 1e+17)
+		frameScore := math.Mod(frame.Score-(lastScore+(lastScore2*1e+17)), 1e+17)
 		frameScore2 := score2 - lastScore2
 
 		lastScore = math.Mod(frame.Score, 1e+17)
+		lastScore2 = math.Floor(frame.Score / 1e+17)
 		if lastScore2 < 0 {
 			lastScore2 = math.Ceil(frame.Score / 1e+17)
-		} else {
-			lastScore2 = math.Floor(frame.Score / 1e+17)
 		}
 
 		if math.Ceil(frameScore) < 0 && math.Floor(frameScore2) > 0 {
