@@ -42,7 +42,7 @@ This is a forked version of pjsekai-overlay with additional features originally 
 
 ## Terms of Use
 
-In the description of your video, please copy the text here:
+**(REQUIRED)** In the description of your video, please copy the text here:
 
 **EN**
 ```
@@ -61,6 +61,10 @@ PJSekai-style video creation tool:
 - 名無し｡ (https://sevenc7c.com) オリジナル版
    https://github.com/sevenc-nanashi/pjsekai-overlay
 ```
+
+> [!NOTE]
+> **(optional)** You can remove watermark by check/unchecking `Watermark` in the `Root@pjsekai-overlay-en` element
+> <img src="https://github.com/user-attachments/assets/9ff783db-bbad-41ef-92c8-8cf150062e8b" width="75%" height="75%"/>
 
 ## Requirements
 
@@ -127,7 +131,7 @@ pjsekai-overlay(-APPEND) は、プロセカの創作譜面をプロセカ風の�
 
 ## 利用規約
 
-動画の説明文に、こちらのテキストをコピーしてください：
+**(必須)** 動画の説明文に、こちらのテキストをコピーしてください：
 
 **EN**
 ```
@@ -146,6 +150,10 @@ PJSekai-style video creation tool:
 - 名無し｡ (https://sevenc7c.com) オリジナル版
    https://github.com/sevenc-nanashi/pjsekai-overlay
 ```
+
+> [!NOTE]
+> **(任意)** `設定@pjsekai-overlay`要素でチェック/チェックを外すことで、`水位標`を消すことができます。
+> <img src="https://github.com/user-attachments/assets/5fe05050-d745-4c40-ada7-f1376e6dae2e" width="75%" height="75%"/>
 
 ## 必須事項
 
