@@ -153,7 +153,7 @@ PJSekai-style video creation tool:
 ```
 
 > [!NOTE]
-> **(任意)** `設定@pjsekai-overlay`要素でチェック/チェックを外すことで、`水位標`を消すことができます。
+> **(任意)** `設定@pjsekai-overlay`要素でチェック/チェックを外すことで、`透かし`を消すことができます。
 > <img src="https://github.com/user-attachments/assets/5fe05050-d745-4c40-ada7-f1376e6dae2e" width="75%" height="75%"/>
 
 ## 必須事項
