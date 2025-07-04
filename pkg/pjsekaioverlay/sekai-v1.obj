@@ -4,7 +4,7 @@
 --file:
 --track0:オフセット,-99999.9,99999.9,0,0.1
 --track1:キャッシュ,0,1,1,1
---check0:水位標,1
+--check0:透かし,1
 
 if obj.track1 ~= 1 or not PED_DATA or PED_DATA.file ~= file then
   debug_print("[pjsekai-overlay] Loading ped data in " .. file)
