@@ -256,14 +256,14 @@ func origMain(isOptionSpecified bool) {
 	}
 
 	if !isOptionSpecified {
-		fmt.Printf("\n総合力の重さを指定してください。(Input player's power weight.)\n式/Formula: powerWeight * %s\n例/Example: 1,3,2.5,1.5,0.5\nランダムに生成するには空のままにする。(Leave empty to generate randomly.)\n> ", tmpTeamPower)
+		fmt.Printf("\n総合力の重さを指定してください。(Input player's power weight.)\n式/Formula: powerWeight * %s\n例/Example: 1|3|2.5|1.5|0.5\n\nランダムに生成するには空のままにする。(Leave empty to generate randomly.)\n> ", tmpTeamPower)
 		var tmpPowerWeightString string
 		fmt.Scanln(&tmpPowerWeightString)
-		tmpPowerWeight := strings.Split(tmpPowerWeightString, ",")
+		tmpPowerWeight := strings.Split(tmpPowerWeightString, "|")
 
 		powerWeight = make([]float64, len(tmpPowerWeight))
 		if tmpPowerWeightString == "" {
-			powerWeight = []float64{float64(rand.Intn(3)) + rand.Float64(), float64(rand.Intn(3)) + rand.Float64(), float64(rand.Intn(3)) + rand.Float64(), float64(rand.Intn(3)) + rand.Float64(), float64(rand.Intn(3)) + rand.Float64()}
+			powerWeight = []float64{float64(rand.Intn(2)) + rand.Float64(), float64(rand.Intn(2)) + rand.Float64(), float64(rand.Intn(2)) + rand.Float64(), float64(rand.Intn(2)) + rand.Float64(), float64(rand.Intn(2)) + rand.Float64()}
 		} else {
 			for i, v := range tmpPowerWeight {
 				val, err := strconv.ParseFloat(strings.TrimSpace(v), 64)
@@ -283,7 +283,7 @@ func origMain(isOptionSpecified bool) {
 	}
 
 	if !isOptionSpecified {
-		fmt.Print("\n選手のポジションを入力してください。(Enter your player position.)\nランダムに生成するには空のままにする。(Leave empty to generate randomly.)\n> ")
+		fmt.Print("\n選手のポジションを入力してください。(Enter your player position.) [1-5]\nランダムに生成するには空のままにする。(Leave empty to generate randomly.)\n> ")
 		before, _ := rawmode.Enable()
 		tmpPlayerPosByte, _ := bufio.NewReader(os.Stdin).ReadByte()
 		tmpPlayerPos := string(tmpPlayerPosByte)
@@ -310,10 +310,10 @@ func origMain(isOptionSpecified bool) {
 	}
 
 	if !isOptionSpecified {
-		fmt.Print("\n選手のミスチャンスを指定してください。(Input player's combo break chance.)\n例/Example: 0.01,0.001,0.08,0.002,0.05\nランダムに生成するには空のままにする。(Leave empty to generate randomly.)\n> ")
+		fmt.Print("\n選手のミスチャンスを指定してください。(Input player's combo break chance.) [0 <= x <= 1]\n例/Example: 0.01|0.001|0.08|0.002|0.05\n\nランダムに生成するには空のままにする。(Leave empty to generate randomly.)\n> ")
 		var tmpMissRateString string
 		fmt.Scanln(&tmpMissRateString)
-		tmpMissRate := strings.Split(tmpMissRateString, ",")
+		tmpMissRate := strings.Split(tmpMissRateString, "|")
 
 		missRate = make([]float64, len(tmpMissRate))
 		if tmpMissRateString == "" {
