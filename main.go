@@ -6,14 +6,15 @@ import (
 	"flag"
 	"fmt"
 	"math"
+	"math/rand"
 	"os"
 	"path/filepath"
 	"strconv"
 	"strings"
 	"time"
 
-	"github.com/TootieJin/pjsekai-overlay-APPEND/pkg/pjsekaioverlay"
-	"github.com/TootieJin/pjsekai-overlay-APPEND/pkg/sonolus"
+	"github.com/TootieJin/pjsekai-overlay-MULTI/pkg/pjsekaioverlay"
+	"github.com/TootieJin/pjsekai-overlay-MULTI/pkg/sonolus"
 	"github.com/fatih/color"
 	"github.com/google/go-github/v57/github"
 	"github.com/srinathh/gokilo/rawmode"
@@ -43,7 +44,7 @@ func shouldCheckUpdate() bool {
 
 func checkUpdate() {
 	githubClient := github.NewClient(nil)
-	release, _, err := githubClient.Repositories.GetLatestRelease(context.Background(), "TootieJin", "pjsekai-overlay-APPEND")
+	release, _, err := githubClient.Repositories.GetLatestRelease(context.Background(), "TootieJin", "pjsekai-overlay-MULTI")
 	if err != nil {
 		return
 	}
@@ -92,6 +93,12 @@ func origMain(isOptionSpecified bool) {
 
 	var teamPower float64
 	flag.Float64Var(&teamPower, "team-power", 250000, "総合力を指定します。(Enter the team's power.)")
+
+	var powerWeight []float64
+
+	var playerPos int
+
+	var missRate []float64
 
 	var enUI bool
 	flag.BoolVar(&enUI, "en-ui", false, "英語版を使う(イントロ + v3 UI) - Use English version (Intro + v3 UI)")
@@ -162,7 +169,7 @@ func origMain(isOptionSpecified bool) {
 	}
 
 	if chart.Engine.Version != 13 {
-		fmt.Println(color.RedString(fmt.Sprintf("FAIL (ver.%d):エンジンのバージョンが古い。pjsekai-overlay-APPENDを最新版に更新してください。\nUnsupported engine version. Please update pjsekai-overlay-APPEND to latest version.", chart.Engine.Version)))
+		fmt.Println(color.RedString(fmt.Sprintf("FAIL (ver.%d):エンジンのバージョンが古い。pjsekai-overlay-MULTIを最新版に更新してください。\nUnsupported engine version. Please update pjsekai-overlay-MULTI to latest version.", chart.Engine.Version)))
 		return
 	}
 
@@ -190,7 +197,7 @@ func origMain(isOptionSpecified bool) {
 		return
 	}
 
-	formattedOutDir := filepath.Join(cwd, strings.Replace(outDir, "_chartId_", chartId, -1))
+	formattedOutDir := filepath.Join(cwd, strings.Replace(outDir, "_chartId_", chartId+"-multi", -1))
 	fmt.Printf("- 出力先ディレクトリ (Output path): %s\n", color.CyanString(filepath.Dir(formattedOutDir)))
 
 	fmt.Print("- ジャケットをダウンロード中 (Downloading jacket)... ")
@@ -226,27 +233,9 @@ func origMain(isOptionSpecified bool) {
 
 	fmt.Println(color.GreenString("OK"))
 
+	var tmpTeamPower string
 	if !isOptionSpecified {
-		fmt.Print("\n大会モードを有効にするか？ (PERFECT = +3点)\nEnable Tournament Mode? (PERFECT = +3pts) [y/n]\n> ")
-		before, _ := rawmode.Enable()
-		tmpEnableEXScoreByte, _ := bufio.NewReader(os.Stdin).ReadByte()
-		tmpEnableEXScore := string(tmpEnableEXScoreByte)
-		rawmode.Restore(before)
-		if tmpEnableEXScore == "Y" || tmpEnableEXScore == "y" {
-			exScore = true
-			teamPower = 0.0
-			fmt.Printf("\n\033[A\033[2K\r> %s\n", color.GreenString(tmpEnableEXScore))
-			fmt.Println(color.GreenString("TOGGLE: ON"))
-		} else {
-			exScore = false
-			fmt.Printf("\n\033[A\033[2K\r> %s\n", color.RedString(tmpEnableEXScore))
-			fmt.Println(color.RedString("TOGGLE: OFF"))
-		}
-	}
-
-	if !isOptionSpecified && !exScore {
 		fmt.Print("\n総合力を指定してください。 (Input your team power.)\n\n- 小数と科学的記数法が使える (Accepts decimals & scientific notation)\n- おすすめ (Recommended): 250000 - 300000\n- 制限 (Limit): ???\n> ")
-		var tmpTeamPower string
 		fmt.Scanln(&tmpTeamPower)
 		teamPower, err = strconv.ParseFloat(tmpTeamPower, 64)
 		if err != nil {
@@ -266,8 +255,93 @@ func origMain(isOptionSpecified bool) {
 		}
 	}
 
+	if !isOptionSpecified {
+		fmt.Printf("\n総合力の重さを指定してください。(Input player's power weight.)\n式/Formula: powerWeight * %s\n例/Example: 1,3,2.5,1.5,0.5\nランダムに生成するには空のままにする。(Leave empty to generate randomly.)\n> ", tmpTeamPower)
+		var tmpPowerWeightString string
+		fmt.Scanln(&tmpPowerWeightString)
+		tmpPowerWeight := strings.Split(tmpPowerWeightString, ",")
+
+		powerWeight = make([]float64, len(tmpPowerWeight))
+		if tmpPowerWeightString == "" {
+			powerWeight = []float64{float64(rand.Intn(3)) + rand.Float64(), float64(rand.Intn(3)) + rand.Float64(), float64(rand.Intn(3)) + rand.Float64(), float64(rand.Intn(3)) + rand.Float64(), float64(rand.Intn(3)) + rand.Float64()}
+		} else {
+			for i, v := range tmpPowerWeight {
+				val, err := strconv.ParseFloat(strings.TrimSpace(v), 64)
+				if err != nil {
+					fmt.Println(color.RedString(fmt.Sprintf("FAIL: 総合力の重さが無効です。(Invalid power weight): %s", err.Error())))
+					return
+				}
+				powerWeight[i] = val
+			}
+		}
+
+		if len(powerWeight) != 5 {
+			fmt.Println(color.RedString("FAIL: 入力不足 (Not enough input)"))
+			return
+		}
+		fmt.Printf("\033[A\033[2K\r> %s\n", color.GreenString(fmt.Sprint(powerWeight)))
+	}
+
+	if !isOptionSpecified {
+		fmt.Print("\n選手のポジションを入力してください。(Enter your player position.)\nランダムに生成するには空のままにする。(Leave empty to generate randomly.)\n> ")
+		before, _ := rawmode.Enable()
+		tmpPlayerPosByte, _ := bufio.NewReader(os.Stdin).ReadByte()
+		tmpPlayerPos := string(tmpPlayerPosByte)
+		rawmode.Restore(before)
+		switch tmpPlayerPos {
+		case "\r", "\n", "":
+			playerPos = 1 + rand.Intn(5)
+		case "1":
+			playerPos = 1
+		case "2":
+			playerPos = 2
+		case "3":
+			playerPos = 3
+		case "4":
+			playerPos = 4
+		case "5":
+			playerPos = 5
+		}
+		if playerPos < 1 || playerPos > 5 {
+			fmt.Println(color.RedString("FAIL: ポジションは1から5の間でなければなりません。\nPosition must be between 1 and 5."))
+			return
+		}
+		fmt.Printf("\n\033[A\033[2K\r> %s\n", color.GreenString(fmt.Sprint(playerPos)))
+	}
+
+	if !isOptionSpecified {
+		fmt.Print("\n選手のミスチャンスを指定してください。(Input player's combo break chance.)\n例/Example: 0.01,0.001,0.08,0.002,0.05\nランダムに生成するには空のままにする。(Leave empty to generate randomly.)\n> ")
+		var tmpMissRateString string
+		fmt.Scanln(&tmpMissRateString)
+		tmpMissRate := strings.Split(tmpMissRateString, ",")
+
+		missRate = make([]float64, len(tmpMissRate))
+		if tmpMissRateString == "" {
+			missRate = []float64{1 / float64(rand.Intn(1000)), 1 / float64(rand.Intn(1000)), 1 / float64(rand.Intn(1000)), 1 / float64(rand.Intn(1000)), 1 / float64(rand.Intn(1000))}
+		} else {
+			for i, v := range tmpMissRate {
+				val, err := strconv.ParseFloat(strings.TrimSpace(v), 64)
+				if err != nil {
+					fmt.Println(color.RedString(fmt.Sprintf("FAIL: ミスチャンスが無効です。(Invalid combo break chance): %s", err.Error())))
+					return
+				}
+				if val > 1 {
+					fmt.Println(color.RedString(fmt.Sprintf("FAIL: ミスチャンスが無効です。(Invalid combo break chance): %f > 1", val)))
+					return
+				}
+				missRate[i] = val
+			}
+		}
+
+		if len(missRate) != 5 {
+			fmt.Println(color.RedString("FAIL: 入力不足 (Not enough input)"))
+			return
+		}
+		fmt.Printf("\033[A\033[2K\r> %s\n", color.GreenString(fmt.Sprint(missRate)))
+	}
+
 	fmt.Print("- スコアを計算中 (Calculating score)... ")
-	scoreData := pjsekaioverlay.CalculateScore(chart, levelData, teamPower, exScore)
+	scoreData := pjsekaioverlay.CalculateScore(chart, levelData, teamPower, powerWeight, missRate, playerPos)
 
 	fmt.Println(color.GreenString("OK"))
 	if !isOptionSpecified {
@@ -309,8 +383,12 @@ func origMain(isOptionSpecified bool) {
 
 	fmt.Print("\n- pedファイルを生成中 (Generating ped file)... ")
 
-	err = pjsekaioverlay.WritePedFile(scoreData, assets, filepath.Join(formattedOutDir, "data.ped"), sonolus.LevelInfo{Rating: chart.Rating}, levelData, exScore, enUI)
-
+	err = pjsekaioverlay.WritePedFile(scoreData, assets, filepath.Join(formattedOutDir, "data.ped"), sonolus.LevelInfo{Rating: chart.Rating}, levelData, powerWeight, enUI)
+	if err != nil {
+		fmt.Println(color.RedString(fmt.Sprintf("FAIL: %s", err.Error())))
+		return
+	}
+	err = pjsekaioverlay.WritePedMultiFile(scoreData, assets, filepath.Join(formattedOutDir, "data-multi.ped"), levelData, playerPos)
 	if err != nil {
 		fmt.Println(color.RedString(fmt.Sprintf("FAIL: %s", err.Error())))
 		return
@@ -343,24 +421,18 @@ func origMain(isOptionSpecified bool) {
 	description := fmt.Sprintf("作詞：-    作曲：%s    編曲：-\r\nVo：%s    譜面作成：%s", composerAndVocals[0], composerAndVocals[1], charter[0])
 	descriptionv1 := fmt.Sprintf("作詞：-   作曲：%s   編曲：-\r\n歌：%s   譜面作成：%s", composerAndVocals[0], composerAndVocals[1], charter[0])
 	extra := "[追加情報]"
-	exFile := "tournament-mode.png"
-	exFileOpacity := "100.0"
 	ap := "0.00"
 
 	if enUI {
 		description = fmt.Sprintf("Lyrics: -    Music: %s    Arrangement: -\r\nVo: %s    Chart Design: %s", composerAndVocals[0], composerAndVocals[1], charter[0])
 		descriptionv1 = fmt.Sprintf("Lyrics: -   Music: %s   Arrangement: -\r\n歌：%s   Chart Design: %s", composerAndVocals[0], composerAndVocals[1], charter[0])
 		extra = "[Additional Info]"
-		exFile = "tournament-mode-en.png"
-	}
-	if exScore {
-		exFileOpacity = "0.0"
 	}
 	if apCombo {
 		ap = "1.00"
 	}
 
-	err = pjsekaioverlay.WriteExoFiles(assets, formattedOutDir, chart.Title, description, descriptionv1, difficulty, extra, exFile, exFileOpacity, ap)
+	err = pjsekaioverlay.WriteExoFiles(assets, formattedOutDir, chart.Title, description, descriptionv1, difficulty, extra, ap)
 
 	if err != nil {
 		fmt.Println(color.RedString(fmt.Sprintf("FAIL: %s", err.Error())))

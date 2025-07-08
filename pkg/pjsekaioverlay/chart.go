@@ -16,7 +16,7 @@ import (
 
 	"golang.org/x/image/draw"
 
-	"github.com/TootieJin/pjsekai-overlay-APPEND/pkg/sonolus"
+	"github.com/TootieJin/pjsekai-overlay-MULTI/pkg/sonolus"
 )
 
 type Source struct {

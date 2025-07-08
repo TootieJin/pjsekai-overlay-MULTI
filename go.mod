@@ -1,10 +1,10 @@
-module github.com/TootieJin/pjsekai-overlay-APPEND
+module github.com/TootieJin/pjsekai-overlay-MULTI
 
 go 1.23.0
 
 toolchain go1.23.3
 
-replace github.com/TootieJin/pjsekai-overlay-APPEND => ./
+replace github.com/TootieJin/pjsekai-overlay-MULTI => ./
 
 require (
 	github.com/lithammer/dedent v1.1.0

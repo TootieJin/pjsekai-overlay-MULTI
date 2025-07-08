@@ -1,44 +1,28 @@
 [**日本語セクション**](#pjsekai-overlay-append--フォークプロセカ風動画作成補助ツール-日本語)
 
-[![Releases](https://img.shields.io/github/downloads/TootieJin/pjsekai-overlay-APPEND/total.svg)](https://gitHub.com/TootieJin/pjsekai-overlay-APPEND/releases/)
-# pjsekai-overlay-APPEND / Forked PJSekai-style video creation tool (English)
+[![Releases](https://img.shields.io/github/downloads/TootieJin/pjsekai-overlay-MULTI/total.svg)](https://gitHub.com/TootieJin/pjsekai-overlay-MULTI/releases/)
+# pjsekai-overlay-MULTI / Forked PJSekai-style video creation tool (English)
 Fork of [pjsekai-overlay](https://github.com/sevenc-nanashi/pjsekai-overlay) by [TootieJin](https://tootiejin.com), an open-sourced tool to make Project Sekai Fanmade (custom chart) videos.
-
-- **16:9**
-
-https://github.com/user-attachments/assets/dda7225a-a7f3-41d4-bbf4-9cec9b03b840
-
-- **4:3 (Tournament Mode ON)**
-
-https://github.com/user-attachments/assets/ab4ee52c-2ffa-4941-b916-87e1f3559d72
-
-- **v1 Skin (1e+30 power)**
-
-https://github.com/user-attachments/assets/3efab743-246a-4da7-8d80-a02b2f09f5b3
-
-- **Video Example**
-
-*(Click the image to watch it)*\
-[![【Project Sekai x Honkai: Star Rail】Nameless Faces - HOYO-MiX feat. Lilas Ikuta (Fanmade)](https://img.youtube.com/vi/uXx1OZDQZOI/maxresdefault.jpg)](https://youtu.be/uXx1OZDQZOI)
-[![【Project Sekai Fanmade? (v3→v1)】Hello, SEKAI - DECO*27【ETERNAL Lv32】](https://img.youtube.com/vi/BHVNuwxA1ek/maxresdefault.jpg)](https://youtu.be/BHVNuwxA1ek)
 
 > [!CAUTION]
 > **For English users:** This tool is primary only for people with technical know-how and basic knowledge of AviUtl.\
 > Only use this tool if you can figure it out yourself. **DO NOT open issues, DM me, or request help in Sonolus / Chart Cyanvas Discord servers about this**.
 
-This is a forked version of pjsekai-overlay with additional features originally not in the main repo, including:
+This is a multilive version of my [pjsekai-overlay fork](https://gitHub.com/TootieJin/pjsekai-overlay-APPEND) for replicating a Project Sekai multiplayer screen. As usual, this repo has additional features originally not in the main repo, including:
   - [Extra assets](./assets/extra%20assets) (thank you [ReiyuN](https://discordid.netlify.app/?id=383636820409188374), [Gaven](https://github.com/gaven1880) and [YumYummity](https://github.com/YumYummity) for the contribution!)
   - Added/adjusted elements to look identical to the official photography
   - Quickly make 1080p videos
   - iPad (4:3) video support
   - Ability to use the English AviUtl
-  - v1 UI skin (Full support)
   - Automatically changes chart difficulty to generate in AviUtl based on chart tag _(or title)_
   - Increased score limit to infinity (?)
-  [![image](https://github.com/user-attachments/assets/baceaf22-fdcb-4b48-8fb7-54b08e6d3086)]()
-  [![pjsekai-overlay-APPEND_minint](https://github.com/user-attachments/assets/80eb8fc1-6602-4c26-ac47-4e8e07fb99c2)]()
-  [![pjsekai-overlay-APPEND_maxint](https://github.com/user-attachments/assets/45a49c19-7883-402c-b016-58f02f72f0b6)]()
 
+> [!WARNING]
+> This repo does not support the following features:\
+> - v1 UI
+> - Dedicated 4:3 FEVER effects
+> - Animated 'jumping' player at random interval
+> - Danger & No HP effect
 
 ## Terms of Use
 
@@ -49,6 +33,7 @@ This is a forked version of pjsekai-overlay with additional features originally 
 PJSekai-style video creation tool:
 - Forked ver. by TootieJin (https://tootiejin.com)
    https://github.com/TootieJin/pjsekai-overlay-APPEND
+   https://github.com/TootieJin/pjsekai-overlay-MULTI (Multilive ver.)
 - Original by 名無し｡ (https://sevenc7c.com) 
    https://github.com/sevenc-nanashi/pjsekai-overlay
 ```
@@ -58,13 +43,13 @@ PJSekai-style video creation tool:
 プロセカ風動画作成補助ツール：
 - TootieJin (https://tootiejin.com) フォーク版
    https://github.com/TootieJin/pjsekai-overlay-APPEND
+   https://github.com/TootieJin/pjsekai-overlay-MULTI (マルチライブver.)
 - 名無し｡ (https://sevenc7c.com) オリジナル版
    https://github.com/sevenc-nanashi/pjsekai-overlay
 ```
 
 > [!NOTE]
-> **(optional)** You can remove watermark by check/unchecking `Watermark` in the `Root@pjsekai-overlay-en` element.
-> 
+> **(optional)** You can remove watermark by check/unchecking `Watermark` in the `Root@pjsekai-overlay-multi-en` element.\
 > <img src="https://github.com/user-attachments/assets/9ff783db-bbad-41ef-92c8-8cf150062e8b" width="75%" height="75%"/>
 
 ## Requirements
@@ -89,7 +74,7 @@ PJSekai-style video creation tool:
 
 ## Usage Guide
 
-1. Download the latest version of pjsekai-overlay-APPEND [here](https://github.com/TootieJin/pjsekai-overlay-APPEND/releases/latest/).
+1. Download the latest version of pjsekai-overlay-MULTI [here](https://github.com/TootieJin/pjsekai-overlay-MULTI/releases/latest/).
 2. Unzip the file
 3. Import ALL files & folders in the [`depenencies/aviutl script`](./depenencies/aviutl%20script) folder into here:
 ```
@@ -99,8 +84,8 @@ PJSekai-style video creation tool:
 ```
    - *If a folder is missing, make a new folder with said name.*
 4. Open AviUtl
-   - **Note: You must open AviUtl before opening pjsekai-overlay-APPEND to install objects.**
-5. Open `pjsekai-overlay-APPEND.exe`
+   - **Note: You must open AviUtl before opening pjsekai-overlay-MULTI to install objects.**
+5. Open `pjsekai-overlay-MULTI.exe`
 6. Input the chart ID including the prefix.
    - `chcy-`: Chart Cyanvas (cc.sevenc7c.com)
    - `ptlv-`: Potato Leaves (ptlv.sevenc7c.com)
@@ -111,24 +96,26 @@ PJSekai-style video creation tool:
 
 ---------------------------------------------------------------------------------------
 
-# pjsekai-overlay-APPEND / フォークプロセカ風動画作成補助ツール (日本語)
+# pjsekai-overlay-MULTI / フォークプロセカ風動画作成補助ツール (日本語)
 
 [TootieJin](https://tootiejin.com)氏による[pjsekai-overlay](https://github.com/sevenc-nanashi/pjsekai-overlay)用フォーク。
-pjsekai-overlay(-APPEND) は、プロセカの創作譜面をプロセカ風の動画にするためのオープンソースのツールです。
+pjsekai-overlay(-MULTI) は、プロセカの創作譜面をプロセカ風の動画にするためのオープンソースのツールです。
 
-これはpjsekai-overlayのフォーク版で、元々メインレポにはない以下のような追加機能があります：
+これは私の[pjsekai-overlayのフォーク版](https://gitHub.com/TootieJin/pjsekai-overlay-APPEND)のマルチライブ版で、プロセカのマルチプレイヤー画面を再現します。いつものように、元々メインレポにはない以下のような追加機能があります：
   - [追加アセット](./assets/extra%20assets/) ([ReiyuN](https://discordid.netlify.app/?id=383636820409188374)さん、[Gaven](https://github.com/gaven1880)さんと[YumYummity](https://github.com/YumYummity)さん、ご寄稿ありがとうございました。)
   - 本家撮影と同じように見えるように要素を追加/調整
   - 1080p動画を素早く作成
   - iPad（4:3）動画対応
   - 英語版AviUtlの使用機能
-  - v1 UIスキン（フル対応）
   - 譜面のタグ _（またはタイトル）_ に基づいて、AviUtlで生成される譜面の難易度を自動的に変更する
   - スコアの上限を無限大（？）
-  [![image](https://github.com/user-attachments/assets/baceaf22-fdcb-4b48-8fb7-54b08e6d3086)]()
-  [![pjsekai-overlay-APPEND_minint](https://github.com/user-attachments/assets/80eb8fc1-6602-4c26-ac47-4e8e07fb99c2)]()
-  [![pjsekai-overlay-APPEND_maxint](https://github.com/user-attachments/assets/45a49c19-7883-402c-b016-58f02f72f0b6)]()
 
+> [!WARNING]
+> このレポは以下の機能をサポートしていません：\
+> - v1 UI
+> - 専用4:3 FEVERの効果
+> - ランダムな間隔で「ジャンプ」するアニメーション選手
+> - 危険＆HP効果なし
 
 ## 利用規約
 
@@ -139,6 +126,7 @@ pjsekai-overlay(-APPEND) は、プロセカの創作譜面をプロセカ風の�
 PJSekai-style video creation tool:
 - Forked ver. by TootieJin (https://tootiejin.com)
    https://github.com/TootieJin/pjsekai-overlay-APPEND
+   https://github.com/TootieJin/pjsekai-overlay-MULTI (Multilive ver.)
 - Original by 名無し｡ (https://sevenc7c.com) 
    https://github.com/sevenc-nanashi/pjsekai-overlay
 ```
@@ -148,12 +136,13 @@ PJSekai-style video creation tool:
 プロセカ風動画作成補助ツール：
 - TootieJin (https://tootiejin.com) フォーク版
    https://github.com/TootieJin/pjsekai-overlay-APPEND
+   https://github.com/TootieJin/pjsekai-overlay-MULTI (マルチライブver.)
 - 名無し｡ (https://sevenc7c.com) オリジナル版
    https://github.com/sevenc-nanashi/pjsekai-overlay
 ```
 
 > [!NOTE]
-> **(任意)** `設定@pjsekai-overlay`要素でチェック/チェックを外すことで、`透かし`を消すことができます。
+> **(任意)** `設定@pjsekai-overlay-multi`要素でチェック/チェックを外すことで、`透かし`を消すことができます。\
 > <img src="https://github.com/user-attachments/assets/5fe05050-d745-4c40-ada7-f1376e6dae2e" width="75%" height="75%"/>
 
 ## 必須事項
@@ -187,7 +176,7 @@ PJSekai-style video creation tool:
    - *フォルダがない場合は、その名前で新しいフォルダを作ってください。*
 4. AviUtl を起動する
    - **pjsekai-overlay が起動する前に AviUtl を起動するとオブジェクトのインストールが行われます。**
-5. `pjsekai-overlay-APPEND.exe` を起動する
+5. `pjsekai-overlay-MULTI.exe` を起動する
 6. 譜面IDを接頭辞込みで入力して下さい
    - `chcy-`: Chart Cyanvas (cc.sevenc7c.com)
    - `ptlv-`: Potato Leaves (ptlv.sevenc7c.com)

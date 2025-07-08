@@ -26,17 +26,20 @@ if obj.track1 ~= 1 or not PED_DATA or PED_DATA.file ~= file then
       if header ~= nil then
         PED_DATA.loaded = "ok"
         if header == "s" then
-          local nmatch = {string.match(data, "([%-0-9.]+):([%-0-9.]+):([%-0-9.]+):([%-0-9.]+):([%-0-9.]+):([%-0-9.]+):([%-0-9.]+):([abcds]+):([%-0-9.]+)")}
+          local nmatch = {string.match(data, "([%-0-9.]+):([%-0-9.]+):([%-0-9.]+):([%-0-9.]+):([%-0-9.]+):([%-0-9.]+):([%-0-9.]+):([%-0-9.]+):([%-0-9.]+):([%-0-9.]+):([abcds]+):([%-0-9.]+)")}
           PED_DATA.frames[#PED_DATA.frames + 1] = {
             time = tonumber(nmatch[1]),
             score2 = tonumber(nmatch[2]),
             score = tonumber(nmatch[3]),
             offset2 = tonumber(nmatch[4]),
             offset = tonumber(nmatch[5]),
-            width = tonumber(nmatch[6]),
-            widthv1 = tonumber(nmatch[7]),
-            rank = nmatch[8],
-            combo = tonumber(nmatch[9])
+            widthP1 = tonumber(nmatch[6]),
+            widthP2 = tonumber(nmatch[7]),
+            widthP3 = tonumber(nmatch[8]),
+            widthP4 = tonumber(nmatch[9]),
+            widthP5 = tonumber(nmatch[10]),
+            rank = nmatch[11],
+            combo = tonumber(nmatch[12])
           }
         elseif header == "p" then -- Pass
           PED_DATA.path = data
@@ -65,8 +68,11 @@ if PED_DATA.version == "{version}" or "{version}" == "0.0.0" or "{version}" == "
     score = 0,
     offset2 = 0,
     offset = 0,
-    width = 0,
-    widthv1 = 0,
+    widthP1 = 0,
+    widthP2 = 0,
+    widthP3 = 0,
+    widthP4 = 0,
+    widthP5 = 0,
     rank = "d",
     combo = 0,
   }
@@ -117,22 +123,454 @@ if obj.check0 and PED_DATA.version_status == "ok" then
       "※Made with「pjsekai-overlay-APPEND」by TootieJin\n"..
       "............................................................................<s>"
   )
-  obj.draw(-(obj.screen_w - ((1920 - obj.screen_w) / (16/9))) / 3.15, (obj.screen_h - ((1080 - obj.screen_h) / (16/9))) / 2.1, 0, 0.24, 0.5)
+  obj.draw(-(obj.screen_w - ((1920 - obj.screen_w) / (16/9))) / 3.06, (obj.screen_h - ((1080 - obj.screen_h) / (16/9))) / 2.1, 0, 0.24, 0.5)
 end
 ----------------------------------------------------------------
-@Score
+@Root-Multi
+--file:
 
+if PED_DATA.cache_number ~= 1 or not PED_MULTIDATA or PED_MULTIDATA.file ~= file then
+  debug_print("[pjsekai-overlay] Loading ped-multi data in " .. file)
+  local time = os.clock()
+  PED_MULTIDATA = {}
+  PED_MULTIDATA.frames = {}
+  PED_MULTIDATA.path = nil
+  PED_MULTIDATA.pos = nil
+  PED_MULTIDATA.version = nil
+  PED_MULTIDATA.version_status = "none"
+  PED_MULTIDATA.file = file
+  PED_MULTIDATA.cache_number = PED_DATA.cache_number
+  PED_MULTIDATA.current = nil
+  local fp = io.open(file, "r")
+  if fp then
+    PED_MULTIDATA.loaded = "invalid"
+    for line in fp:lines() do
+      local header, data = string.match(line, "([a-z]+)|(.+)")
+      if header ~= nil then
+        PED_MULTIDATA.loaded = "ok"
+        if header == "s" then
+          local nmatch = {string.match(data, "([%-0-9.]+):([%-0-9.]+):([%-0-9.]+):([%-0-9.]+):([%-0-9.]+):([%-0-9.]+):([%-0-9.]+)")}
+          PED_MULTIDATA.frames[#PED_MULTIDATA.frames + 1] = {
+            time = tonumber(nmatch[1]),
+            score = tonumber(nmatch[2]),
+            combo1 = tonumber(nmatch[3]),
+            combo2 = tonumber(nmatch[4]),
+            combo3 = tonumber(nmatch[5]),
+            combo4 = tonumber(nmatch[6]),
+            combo5 = tonumber(nmatch[7]),
+          }
+        elseif header == "p" then -- Pass
+          PED_MULTIDATA.path = data
+        elseif header == "l" then -- Player Position
+          PED_MULTIDATA.pos = data
+        elseif header == "v" then -- Version
+          PED_MULTIDATA.version = data
+        end
+      end
+    end
+    debug_print("[pjsekai-overlay] Successfully loaded ped-multi data")
+    debug_print("[pjsekai-overlay] Time: " .. os.clock() - time)
+    debug_print("[pjsekai-overlay] Version: " .. PED_MULTIDATA.version)
+    debug_print("[pjsekai-overlay] # of frames: " .. #PED_MULTIDATA.frames)
+    fp:close()
+  else
+    PED_MULTIDATA.loaded = "not_found"
+    debug_print("[pjsekai-overlay] Couldn't find ped-multi data file")
+  end
+end
+if PED_MULTIDATA.version == "{version}" or "{version}" == "0.0.0" or "{version}" == "{ver".."sion}" then
+  PED_MULTIDATA.current = {
+    time = 0,
+    score = 0,
+    combo1 = 0,
+    combo2 = 0,
+    combo3 = 0,
+    combo4 = 0,
+    combo5 = 0,
+  }
+  for i = #PED_MULTIDATA.frames, 1, -1 do
+    local score = PED_MULTIDATA.frames[i]
+    if (score.time * obj.framerate) < (obj.frame - OFFSET) then
+      PED_MULTIDATA.current = score
+      break
+    end
+  end
+  PED_MULTIDATA.version_status = "ok"
+else
+  obj.setfont("メイリオ", 32)
+  if PED_MULTIDATA.loaded == "not_found" then
+    obj.load(
+      "text",
+      "<s32,メイリオ,B>(! ERROR !)\n<s>"..
+      "ped-multi file not found!"
+    )
+  elseif PED_MULTIDATA.loaded == "invalid" then
+    obj.load(
+      "text",
+      "<s32,メイリオ,B>(! ERROR !)\n<s>"..
+      "Unable to read ped-multi file!"
+    )
+  elseif PED_MULTIDATA.version == nil then
+    obj.load(
+      "text",
+      "<s32,メイリオ,B>(! ERROR !)\n<s>"..
+      "Version of the ped-multi file is not set!"
+    )
+  else
+    obj.load(
+      "text",
+      "<s32,メイリオ,B>(! ERROR !)\n<s>"..
+      "The version of the ped-multi file is different!\n"..
+      "[.obj: {version}, .ped: "..PED_MULTIDATA.version.."]"
+    )
+  end
+  obj.draw()
+  PED_MULTIDATA.version_status = "ng"
+end
+----------------------------------------------------------------
+@Player1
+if PED_MULTIDATA and PED_MULTIDATA.version_status == "ok" then
+  local progress = (obj.frame - OFFSET) - (PED_MULTIDATA.current.time * obj.framerate)
+  obj.setoption("drawtarget", "tempbuffer", obj.screen_w / 4, 600)
+  obj.load("image", PED_MULTIDATA.path.."/players/frame1.png")
+  obj.draw(0, -122, 0, 1.7)
+  obj.load("image", PED_MULTIDATA.path.."/players/player1.png")
+  obj.draw(0, -122, 0, 1.19)
+
+  if PED_MULTIDATA.current.combo1 == 0 and progress >= 0 and progress < 20 then
+    obj.effect("Vibration", "X", -(progress/2) + 10, "Y", -(progress/2) + 10, "Z", 0, "Period", 1, "Change the strength at random", 1, "Complex vibration", 1)
+  end
+  if PED_MULTIDATA.pos == "1" then
+    obj.load("image", PED_MULTIDATA.path.."/players/you.png")
+    obj.draw(0, 0, 0, 2.1)
+  else
+    if PED_MULTIDATA.current.combo1 > 0 then
+      obj.load("image", PED_MULTIDATA.path.."/combo/nt.png")
+      obj.draw(0, 50, 0, 0.7)
+
+      local combo_str
+      combo_str = tostring(PED_MULTIDATA.current.combo1)
+
+      for i = 1, #combo_str do
+        local digit = combo_str:sub(i, i)
+        local shift = -(#combo_str / 2) + i - 0.5
+        local shift_fax = 0
+
+        if progress > 8 then
+          shift_fax = 1
+        else
+          shift_fax = (progress / 8) * 0.5 + 0.5
+        end
+
+        obj.load("image", PED_MULTIDATA.path.."/combo/n"..digit..".png")
+        obj.draw(shift * 36 * shift_fax, 0, 0, 0.35 * shift_fax)
+      end
+      obj.setoption("blend", 1)
+      if progress < 14 then
+        for i = 1, #combo_str do
+          local digit = combo_str:sub(i, i)
+          local shift = -(#combo_str / 2) + i - 0.5
+          local shift_fax = (progress / 8) * 0.5 + 0.5
+          local alpha = (progress / 14) * -1 + 1
+
+          obj.load("image", PED_MULTIDATA.path.."/combo/b"..digit..".png")
+          obj.setoption("blend", 0)
+          obj.draw(shift * 36 * shift_fax, 0, 0, 0.35 * shift_fax, 0)
+          obj.load("image", PED_MULTIDATA.path.."/combo/n"..digit..".png")
+          if progress > 8 and progress < 11 then
+            obj.effect("Glow", "Strength",  progress, "Blur", 5)
+            obj.effect("Light", "Strength",  progress * 6.5, "Backlight", 1)
+          elseif progress >= 11 and progress < 14 then
+            obj.effect("Glow", "Strength",  2.5 * (1 - (progress - 13) / 0.5), "Blur", 5)
+            obj.effect("Light", "Strength",  15 * (1 - (progress - 13) / 0.5), "Backlight", 1)
+          end
+          obj.draw(shift * 36 * shift_fax, 0, 0, 0.35 * shift_fax, alpha)
+        end
+      end
+      obj.setoption("blend", 0)
+    end
+  end
+  obj.setoption("antialias", 1)
+  obj.copybuffer("obj", "tmp")
+end
+----------------------------------------------------------------
+@Player2
+if PED_MULTIDATA and PED_MULTIDATA.version_status == "ok" then
+  local progress = (obj.frame - OFFSET) - (PED_MULTIDATA.current.time * obj.framerate)
+  obj.setoption("drawtarget", "tempbuffer", obj.screen_w / 4, 600)
+  obj.load("image", PED_MULTIDATA.path.."/players/frame2.png")
+  obj.draw(0, -122, 0, 1.7)
+  obj.load("image", PED_MULTIDATA.path.."/players/player2.png")
+  obj.draw(0, -122, 0, 1.19)
+
+  if PED_MULTIDATA.current.combo2 == 0 and progress >= 0 and progress < 20 then
+    obj.effect("Vibration", "X", -(progress/2) + 10, "Y", -(progress/2) + 10, "Z", 0, "Period", 1, "Change the strength at random", 1, "Complex vibration", 1)
+  end
+  if PED_MULTIDATA.pos == "2" then
+    obj.load("image", PED_MULTIDATA.path.."/players/you.png")
+    obj.draw(0, 0, 0, 2.1)
+  else
+    if PED_MULTIDATA.current.combo2 > 0 then
+      obj.load("image", PED_MULTIDATA.path.."/combo/nt.png")
+      obj.draw(0, 50, 0, 0.7)
+
+      local combo_str
+      combo_str = tostring(PED_MULTIDATA.current.combo2)
+
+      for i = 1, #combo_str do
+        local digit = combo_str:sub(i, i)
+        local shift = -(#combo_str / 2) + i - 0.5
+        local shift_fax = 0
+
+        if progress > 8 then
+          shift_fax = 1
+        else
+          shift_fax = (progress / 8) * 0.5 + 0.5
+        end
+
+        obj.load("image", PED_MULTIDATA.path.."/combo/n"..digit..".png")
+        obj.draw(shift * 36 * shift_fax, 0, 0, 0.35 * shift_fax)
+      end
+      obj.setoption("blend", 1)
+      if progress < 14 then
+        for i = 1, #combo_str do
+          local digit = combo_str:sub(i, i)
+          local shift = -(#combo_str / 2) + i - 0.5
+          local shift_fax = (progress / 8) * 0.5 + 0.5
+          local alpha = (progress / 14) * -1 + 1
+
+          obj.load("image", PED_MULTIDATA.path.."/combo/b"..digit..".png")
+          obj.setoption("blend", 0)
+          obj.draw(shift * 36 * shift_fax, 0, 0, 0.35 * shift_fax, 0)
+          obj.load("image", PED_MULTIDATA.path.."/combo/n"..digit..".png")
+          if progress > 8 and progress < 11 then
+            obj.effect("Glow", "Strength",  progress, "Blur", 5)
+            obj.effect("Light", "Strength",  progress * 6.5, "Backlight", 1)
+          elseif progress >= 11 and progress < 14 then
+            obj.effect("Glow", "Strength",  2.5 * (1 - (progress - 13) / 0.5), "Blur", 5)
+            obj.effect("Light", "Strength",  15 * (1 - (progress - 13) / 0.5), "Backlight", 1)
+          end
+          obj.draw(shift * 36 * shift_fax, 0, 0, 0.35 * shift_fax, alpha)
+        end
+      end
+      obj.setoption("blend", 0)
+    end
+  end
+  obj.setoption("antialias", 1)
+  obj.copybuffer("obj", "tmp")
+end
+----------------------------------------------------------------
+@Player3
+if PED_MULTIDATA and PED_MULTIDATA.version_status == "ok" then
+  local progress = (obj.frame - OFFSET) - (PED_MULTIDATA.current.time * obj.framerate)
+  obj.setoption("drawtarget", "tempbuffer", obj.screen_w / 4, 600)
+  obj.load("image", PED_MULTIDATA.path.."/players/frame3.png")
+  obj.draw(0, -122, 0, 1.7)
+  obj.load("image", PED_MULTIDATA.path.."/players/player3.png")
+  obj.draw(0, -122, 0, 1.19)
+
+  if PED_MULTIDATA.current.combo3 == 0 and progress >= 0 and progress < 20 then
+    obj.effect("Vibration", "X", -(progress/2) + 10, "Y", -(progress/2) + 10, "Z", 0, "Period", 1, "Change the strength at random", 1, "Complex vibration", 1)
+  end
+  if PED_MULTIDATA.pos == "3" then
+    obj.load("image", PED_MULTIDATA.path.."/players/you.png")
+    obj.draw(0, 0, 0, 2.1)
+  else
+    if PED_MULTIDATA.current.combo3 > 0 then
+      obj.load("image", PED_MULTIDATA.path.."/combo/nt.png")
+      obj.draw(0, 50, 0, 0.7)
+
+      local combo_str
+      combo_str = tostring(PED_MULTIDATA.current.combo3)
+
+      for i = 1, #combo_str do
+        local digit = combo_str:sub(i, i)
+        local shift = -(#combo_str / 2) + i - 0.5
+        local shift_fax = 0
+
+        if progress > 8 then
+          shift_fax = 1
+        else
+          shift_fax = (progress / 8) * 0.5 + 0.5
+        end
+
+        obj.load("image", PED_MULTIDATA.path.."/combo/n"..digit..".png")
+        obj.draw(shift * 36 * shift_fax, 0, 0, 0.35 * shift_fax)
+      end
+      obj.setoption("blend", 1)
+      if progress < 14 then
+        for i = 1, #combo_str do
+          local digit = combo_str:sub(i, i)
+          local shift = -(#combo_str / 2) + i - 0.5
+          local shift_fax = (progress / 8) * 0.5 + 0.5
+          local alpha = (progress / 14) * -1 + 1
+
+          obj.load("image", PED_MULTIDATA.path.."/combo/b"..digit..".png")
+          obj.setoption("blend", 0)
+          obj.draw(shift * 36 * shift_fax, 0, 0, 0.35 * shift_fax, 0)
+          obj.load("image", PED_MULTIDATA.path.."/combo/n"..digit..".png")
+          if progress > 8 and progress < 11 then
+            obj.effect("Glow", "Strength",  progress, "Blur", 5)
+            obj.effect("Light", "Strength",  progress * 6.5, "Backlight", 1)
+          elseif progress >= 11 and progress < 14 then
+            obj.effect("Glow", "Strength",  2.5 * (1 - (progress - 13) / 0.5), "Blur", 5)
+            obj.effect("Light", "Strength",  15 * (1 - (progress - 13) / 0.5), "Backlight", 1)
+          end
+          obj.draw(shift * 36 * shift_fax, 0, 0, 0.35 * shift_fax, alpha)
+        end
+      end
+      obj.setoption("blend", 0)
+    end
+  end
+  obj.setoption("antialias", 1)
+  obj.copybuffer("obj", "tmp")
+end
+----------------------------------------------------------------
+@Player4
+if PED_MULTIDATA and PED_MULTIDATA.version_status == "ok" then
+  local progress = (obj.frame - OFFSET) - (PED_MULTIDATA.current.time * obj.framerate)
+  obj.setoption("drawtarget", "tempbuffer", obj.screen_w / 4, 600)
+  obj.load("image", PED_MULTIDATA.path.."/players/frame4.png")
+  obj.draw(0, -122, 0, 1.7)
+  obj.load("image", PED_MULTIDATA.path.."/players/player4.png")
+  obj.draw(0, -122, 0, 1.19)
+
+  if PED_MULTIDATA.current.combo4 == 0 and progress >= 0 and progress < 20 then
+    obj.effect("Vibration", "X", -(progress/2) + 10, "Y", -(progress/2) + 10, "Z", 0, "Period", 1, "Change the strength at random", 1, "Complex vibration", 1)
+  end
+  if PED_MULTIDATA.pos == "4" then
+    obj.load("image", PED_MULTIDATA.path.."/players/you.png")
+    obj.draw(0, 0, 0, 2.1)
+  else
+    if PED_MULTIDATA.current.combo4 > 0 then
+      obj.load("image", PED_MULTIDATA.path.."/combo/nt.png")
+      obj.draw(0, 50, 0, 0.7)
+
+      local combo_str
+      combo_str = tostring(PED_MULTIDATA.current.combo4)
+
+      for i = 1, #combo_str do
+        local digit = combo_str:sub(i, i)
+        local shift = -(#combo_str / 2) + i - 0.5
+        local shift_fax = 0
+
+        if progress > 8 then
+          shift_fax = 1
+        else
+          shift_fax = (progress / 8) * 0.5 + 0.5
+        end
+
+        obj.load("image", PED_MULTIDATA.path.."/combo/n"..digit..".png")
+        obj.draw(shift * 36 * shift_fax, 0, 0, 0.35 * shift_fax)
+      end
+      obj.setoption("blend", 1)
+      if progress < 14 then
+        for i = 1, #combo_str do
+          local digit = combo_str:sub(i, i)
+          local shift = -(#combo_str / 2) + i - 0.5
+          local shift_fax = (progress / 8) * 0.5 + 0.5
+          local alpha = (progress / 14) * -1 + 1
+
+          obj.load("image", PED_MULTIDATA.path.."/combo/b"..digit..".png")
+          obj.setoption("blend", 0)
+          obj.draw(shift * 36 * shift_fax, 0, 0, 0.35 * shift_fax, 0)
+          obj.load("image", PED_MULTIDATA.path.."/combo/n"..digit..".png")
+          if progress > 8 and progress < 11 then
+            obj.effect("Glow", "Strength",  progress, "Blur", 5)
+            obj.effect("Light", "Strength",  progress * 6.5, "Backlight", 1)
+          elseif progress >= 11 and progress < 14 then
+            obj.effect("Glow", "Strength",  2.5 * (1 - (progress - 13) / 0.5), "Blur", 5)
+            obj.effect("Light", "Strength",  15 * (1 - (progress - 13) / 0.5), "Backlight", 1)
+          end
+          obj.draw(shift * 36 * shift_fax, 0, 0, 0.35 * shift_fax, alpha)
+        end
+      end
+      obj.setoption("blend", 0)
+    end
+  end
+  obj.setoption("antialias", 1)
+  obj.copybuffer("obj", "tmp")
+end
+----------------------------------------------------------------
+@Player5
+if PED_MULTIDATA and PED_MULTIDATA.version_status == "ok" then
+  local progress = (obj.frame - OFFSET) - (PED_MULTIDATA.current.time * obj.framerate)
+  obj.setoption("drawtarget", "tempbuffer", obj.screen_w / 4, 600)
+  obj.load("image", PED_MULTIDATA.path.."/players/frame5.png")
+  obj.draw(0, -122, 0, 1.7)
+  obj.load("image", PED_MULTIDATA.path.."/players/player5.png")
+  obj.draw(0, -122, 0, 1.19)
+
+  if PED_MULTIDATA.current.combo5 == 0 and progress >= 0 and progress < 20 then
+    obj.effect("Vibration", "X", -(progress/2) + 10, "Y", -(progress/2) + 10, "Z", 0, "Period", 1, "Change the strength at random", 1, "Complex vibration", 1)
+  end
+  if PED_MULTIDATA.pos == "5" then
+    obj.load("image", PED_MULTIDATA.path.."/players/you.png")
+    obj.draw(0, 0, 0, 2.1)
+  else
+    if PED_MULTIDATA.current.combo5 > 0 then
+      obj.load("image", PED_MULTIDATA.path.."/combo/nt.png")
+      obj.draw(0, 50, 0, 0.7)
+
+      local combo_str
+      combo_str = tostring(PED_MULTIDATA.current.combo5)
+
+      for i = 1, #combo_str do
+        local digit = combo_str:sub(i, i)
+        local shift = -(#combo_str / 2) + i - 0.5
+        local shift_fax = 0
+
+        if progress > 8 then
+          shift_fax = 1
+        else
+          shift_fax = (progress / 8) * 0.5 + 0.5
+        end
+
+        obj.load("image", PED_MULTIDATA.path.."/combo/n"..digit..".png")
+        obj.draw(shift * 36 * shift_fax, 0, 0, 0.35 * shift_fax)
+      end
+      obj.setoption("blend", 1)
+      if progress < 14 then
+        for i = 1, #combo_str do
+          local digit = combo_str:sub(i, i)
+          local shift = -(#combo_str / 2) + i - 0.5
+          local shift_fax = (progress / 8) * 0.5 + 0.5
+          local alpha = (progress / 14) * -1 + 1
+
+          obj.load("image", PED_MULTIDATA.path.."/combo/b"..digit..".png")
+          obj.setoption("blend", 0)
+          obj.draw(shift * 36 * shift_fax, 0, 0, 0.35 * shift_fax, 0)
+          obj.load("image", PED_MULTIDATA.path.."/combo/n"..digit..".png")
+          if progress > 8 and progress < 11 then
+            obj.effect("Glow", "Strength",  progress, "Blur", 5)
+            obj.effect("Light", "Strength",  progress * 6.5, "Backlight", 1)
+          elseif progress >= 11 and progress < 14 then
+            obj.effect("Glow", "Strength",  2.5 * (1 - (progress - 13) / 0.5), "Blur", 5)
+            obj.effect("Light", "Strength",  15 * (1 - (progress - 13) / 0.5), "Backlight", 1)
+          end
+          obj.draw(shift * 36 * shift_fax, 0, 0, 0.35 * shift_fax, alpha)
+        end
+      end
+      obj.setoption("blend", 0)
+    end
+  end
+  obj.setoption("antialias", 1)
+  obj.copybuffer("obj", "tmp")
+end
+----------------------------------------------------------------
+@Score5
 if PED_DATA and PED_DATA.version_status == "ok" then
-  obj.setoption("drawtarget", "tempbuffer", 372, 18)
-  obj.load("image", PED_DATA.path.."/score/bar.png")
+  -- -- bars
+  obj.setoption("drawtarget", "tempbuffer", 532, 24)
+  obj.load("image", PED_DATA.path.."/score/bar5.png")
   obj.draw(0, 0, 0, 1)
   obj.setoption("blend", "alpha_sub")
   obj.load("figure", "Background")
   obj.drawpoly(
-    372 * (PED_DATA.current.width - 0.5), -9, 0,
-    372, -9, 0,
-    372, 9, 0,
-    372 * (PED_DATA.current.width - 0.5), 9, 0
+    532 * (PED_DATA.current.widthP5 - 0.5), -12, 0,
+    532, -12, 0,
+    532, 12, 0,
+    532 * (PED_DATA.current.widthP5 - 0.5), 12, 0
   )
   obj.copybuffer("cache:score_bar", "tmp")
 
@@ -141,9 +579,9 @@ if PED_DATA and PED_DATA.version_status == "ok" then
   obj.load("image", PED_DATA.path.."/score/bg.png")
   obj.draw(0, 0, 0, 0.9758)
 
-  -- -- 79, 35 / 357, 18
+  -- -- 79, 35 / 532, 24
   obj.copybuffer("obj", "cache:score_bar")
-  obj.draw(33.25, -3, 0, 0.9596)
+  obj.draw(33.25, -3, 0, 0.671)
 
   if PED_DATA.enUI then
     obj.load("image", PED_DATA.path.."/score/rank/txt/en/"..PED_DATA.current.rank..".png")
@@ -158,10 +596,6 @@ if PED_DATA and PED_DATA.version_status == "ok" then
     obj.draw(-188, -6, 0, 0.22)
   end
 
-  obj.load("image", PED_DATA.path.."/score/fg.png")
-  obj.draw(0, 0, 0, 1)
-
-
   -- -127, 27, +22
   local score_str = ""
   local score_str2 = ""
@@ -171,7 +605,7 @@ if PED_DATA and PED_DATA.version_status == "ok" then
   else
     score_str = string.format("%8.0f", PED_DATA.current.score):gsub(" ", "n")
   end
-  
+
   if PED_DATA.current.score < 0 then
     score_str = "-" .. string.format("%7.0f", math.abs(PED_DATA.current.score)):gsub(" ", "n")
   end
@@ -288,7 +722,121 @@ if PED_DATA and PED_DATA.version_status == "ok" then
       obj.draw(26.25 + 13.65 * (c - c_minus + diff_len2) + diff_x, diff_y, 0, 0.42, diff_alpha)
     end
   end
-  obj.setoption("antialias", 1)
+  obj.copybuffer("obj", "tmp")
+end
+----------------------------------------------------------------
+@Score4
+if PED_DATA and PED_DATA.version_status == "ok" then
+  -- -- bars
+  obj.setoption("drawtarget", "tempbuffer", 532, 24)
+  obj.load("image", PED_DATA.path.."/score/bar4.png")
+  obj.draw(0, 0, 0, 1)
+  obj.setoption("blend", "alpha_sub")
+  obj.load("figure", "Background")
+  obj.drawpoly(
+    532 * (PED_DATA.current.widthP4 - 0.5), -12, 0,
+    532, -12, 0,
+    532, 12, 0,
+    532 * (PED_DATA.current.widthP4 - 0.5), 12, 0
+  )
+  obj.copybuffer("cache:score_bar", "tmp")
+
+  obj.setoption("drawtarget", "tempbuffer", 99999, 95)
+  obj.setoption("blend", 0)
+  obj.load("image", PED_DATA.path.."/score/bg.png")
+  obj.draw(0, 0, 0, 0.9758, 0)
+
+  -- -- 79, 35 / 532, 24
+  obj.copybuffer("obj", "cache:score_bar")
+  obj.draw(33.25, -3, 0, 0.671)
+
+  obj.copybuffer("obj", "tmp")
+end
+----------------------------------------------------------------
+@Score3
+if PED_DATA and PED_DATA.version_status == "ok" then
+  -- -- bars
+  obj.setoption("drawtarget", "tempbuffer", 532, 24)
+  obj.load("image", PED_DATA.path.."/score/bar3.png")
+  obj.draw(0, 0, 0, 1)
+  obj.setoption("blend", "alpha_sub")
+  obj.load("figure", "Background")
+  obj.drawpoly(
+    532 * (PED_DATA.current.widthP3 - 0.5), -12, 0,
+    532, -12, 0,
+    532, 12, 0,
+    532 * (PED_DATA.current.widthP3 - 0.5), 12, 0
+  )
+  obj.copybuffer("cache:score_bar", "tmp")
+
+  obj.setoption("drawtarget", "tempbuffer", 99999, 95)
+  obj.setoption("blend", 0)
+  obj.load("image", PED_DATA.path.."/score/bg.png")
+  obj.draw(0, 0, 0, 0.9758, 0)
+
+  -- -- 79, 35 / 532, 24
+  obj.copybuffer("obj", "cache:score_bar")
+  obj.draw(33.25, -3, 0, 0.671)
+
+  obj.copybuffer("obj", "tmp")
+end
+----------------------------------------------------------------
+@Score2
+if PED_DATA and PED_DATA.version_status == "ok" then
+  -- -- bars
+  obj.setoption("drawtarget", "tempbuffer", 532, 24)
+  obj.load("image", PED_DATA.path.."/score/bar2.png")
+  obj.draw(0, 0, 0, 1)
+  obj.setoption("blend", "alpha_sub")
+  obj.load("figure", "Background")
+  obj.drawpoly(
+    532 * (PED_DATA.current.widthP2 - 0.5), -12, 0,
+    532, -12, 0,
+    532, 12, 0,
+    532 * (PED_DATA.current.widthP2 - 0.5), 12, 0
+  )
+  obj.copybuffer("cache:score_bar", "tmp")
+
+  obj.setoption("drawtarget", "tempbuffer", 99999, 95)
+  obj.setoption("blend", 0)
+  obj.load("image", PED_DATA.path.."/score/bg.png")
+  obj.draw(0, 0, 0, 0.9758, 0)
+
+  -- -- 79, 35 / 532, 24
+  obj.copybuffer("obj", "cache:score_bar")
+  obj.draw(33.25, -3, 0, 0.671)
+
+  obj.copybuffer("obj", "tmp")
+end
+----------------------------------------------------------------
+@Score1
+if PED_DATA and PED_DATA.version_status == "ok" then
+  -- -- bars
+  obj.setoption("drawtarget", "tempbuffer", 532, 24)
+  obj.load("image", PED_DATA.path.."/score/bar1.png")
+  obj.draw(0, 0, 0, 1)
+  obj.setoption("blend", "alpha_sub")
+  obj.load("figure", "Background")
+  obj.drawpoly(
+    532 * (PED_DATA.current.widthP1 - 0.5), -12, 0,
+    532, -12, 0,
+    532, 12, 0,
+    532 * (PED_DATA.current.widthP1 - 0.5), 12, 0
+  )
+  obj.copybuffer("cache:score_bar", "tmp")
+
+  obj.setoption("drawtarget", "tempbuffer", 99999, 95)
+  obj.setoption("blend", 0)
+  obj.load("image", PED_DATA.path.."/score/bg.png")
+  obj.draw(0, 0, 0, 0.9758, 0)
+
+  -- -- 79, 35 / 532, 24
+  obj.copybuffer("obj", "cache:score_bar")
+  obj.draw(33.25, -3, 0, 0.671)
+
+  obj.load("image", PED_DATA.path.."/score/fg.png")
+  obj.draw(0, 0, 0, 1)
+
   obj.copybuffer("obj", "tmp")
 end
 ----------------------------------------------------------------

@@ -4,21 +4,21 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/TootieJin/pjsekai-overlay-APPEND/pkg/pjsekaioverlay"
+	"github.com/TootieJin/pjsekai-overlay-MULTI/pkg/pjsekaioverlay"
 	"github.com/lithammer/dedent"
 )
 
 func Title() {
 	fmt.Printf(
 		strings.TrimSpace(dedent.Dedent(`
-    %s== pjsekai-overlay-%sAP%sPE%sND %s-----------------------------------------------------------%s
+    %s== pjsekai-overlay-%sMU%sL%sTI %s-----------------------------------------------------------%s
     %sフォークプロセカ風動画作成補助ツール / Forked PJSekai-style video creation tool%s
         Version: %s%s%s
 
         Developed by %s名無し｡(@sevenc-nanashi)%s
             https://github.com/sevenc-nanashi/pjsekai-overlay
         Forked by %sTootieJin%s
-         -> https://github.com/TootieJin/pjsekai-overlay-APPEND %s(使用中/In use)%s
+         -> https://github.com/TootieJin/pjsekai-overlay-MULTI %s(使用中/In use)%s
 	
     %s[CAUTION] This tool is primary only for people with technical know-how and basic knowledge of AviUtl.%s 
     %sDO NOT open issues or request help about this. Refer to the README for how to set it up.%s

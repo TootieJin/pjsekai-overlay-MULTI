@@ -74,7 +74,7 @@ Y-Spin=0.00
 Z-Spin=0.00
 Affected by the upper group control=0
 Apply to objects in the same group=1
-range=13
+range=12
 [3]
 start=301
 end=396
@@ -92,7 +92,7 @@ Y-Spin=0.00
 Z-Spin=0.00
 Affected by the upper group control=0
 Apply to objects in the same group=0
-range=11
+range=21
 [3.1]
 _name=Clearness
 Clearness=100.0,0.0,1
@@ -208,7 +208,7 @@ Y-Spin=0.00
 Z-Spin=0.00
 Affected by the upper group control=0
 Apply to objects in the same group=0
-range=10
+range=9
 [9.1]
 _name=Clearness
 Clearness=0.0,100.0,1
@@ -393,7 +393,7 @@ Y-Spin=0.00
 Z-Spin=0.00
 Affected by the upper group control=0
 Apply to objects in the same group=1
-range=7
+range=6
 [17]
 start=301
 end=4001
@@ -403,14 +403,14 @@ overlay=1
 camera=0
 [17.0]
 _name=Custom object
-track0=216.00
+track0=0.00
 track1=1.00
 track2=0.00
 track3=0.00
 check0=1
 type=0
 filter=0
-name=Root@pjsekai-overlay-en
+name=Root@pjsekai-overlay-en-multi
 param=file="{dist}\\data.ped"
 [17.1]
 _name=Standard drawing
@@ -419,7 +419,7 @@ Y=0.0
 Z=0.0
 Zoom%=100.00
 Clearness=0.0
-Rotation=0.01
+Rotation=0.00
 blend=0
 [18]
 start=1
@@ -461,7 +461,7 @@ overlay=1
 camera=0
 [19.0]
 _name=Image file
-file={assets}\life.png
+file={assets}\life_nopause.png
 [19.1]
 _name=Standard drawing
 X=532.0
@@ -523,7 +523,7 @@ track3=0.00
 check0=0
 type=0
 filter=0
-name=Score@pjsekai-overlay-en
+name=Score5@pjsekai-overlay-multi-en
 param=
 [21.1]
 _name=Standard drawing
@@ -579,19 +579,19 @@ overlay=1
 camera=0
 [23.0]
 _name=Custom object
-track0={ap}
+track0=0.00
 track1=0.00
 track2=0.00
 track3=0.00
 check0=0
 type=0
 filter=0
-name=Combo@pjsekai-overlay-en
+name=Score4@pjsekai-overlay-multi-en
 param=
 [23.1]
 _name=Standard drawing
-X=505.0
-Y=-47.0
+X=-442.5
+Y=-489.5
 Z=0.0
 Zoom%=112.00
 Clearness=0.0
@@ -649,14 +649,14 @@ track3=0.00
 check0=0
 type=0
 filter=0
-name=Judgement@pjsekai-overlay-en
+name=Score3@pjsekai-overlay-multi-en
 param=
 [25.1]
 _name=Standard drawing
-X=0.0
-Y=95.0
+X=-442.5
+Y=-489.5
 Z=0.0
-Zoom%=110.00
+Zoom%=112.00
 Clearness=0.0
 Rotation=0.00
 blend=0
@@ -694,70 +694,25 @@ track3=0.00
 check0=0
 type=0
 filter=0
-name=Auto@pjsekai-overlay-en
+name=Score2@pjsekai-overlay-multi-en
 param=
 [27.1]
 _name=Standard drawing
-X=562.0
-Y=478.0
+X=-442.5
+Y=-489.5
 Z=0.0
-Zoom%=75.00
+Zoom%=112.00
 Clearness=0.0
 Rotation=0.00
 blend=0
 [28]
-start=61
-end=91
-layer=15
-overlay=1
-camera=1
-[28.0]
-_name=Group control
-X=0.0
-Y=135.0
-Z=0.0
-Zoom%=75.00
-X-Spin=0.00
-Y-Spin=0.00
-Z-Spin=0.00
-Affected by the upper group control=0
-Apply to objects in the same group=0
-range=1
-[28.1]
-_name=Clearness
-Clearness=100.0,0.0,1
-[29]
-start=3621
-end=4001
+start=1
+end=60
 layer=15
 group=4
 overlay=1
 camera=0
-[29.0]
-_name=Graphic
-Size=100
-rAspect=0.0
-Line width=4000
-type=0
-color=000000
-name=
-[29.1]
-_name=Standard drawing
-X=0.0
-Y=-2.0
-Z=0.0
-Zoom%=200.00
-Clearness=50.0,50.0,1
-Rotation=0.00
-blend=0
-[30]
-start=1
-end=60
-layer=16
-group=5
-overlay=1
-camera=0
-[30.0]
+[28.0]
 _name=Graphic
 Size=100
 rAspect=0.0
@@ -765,7 +720,7 @@ Line width=4000
 type=0
 color=ffffff
 name=
-[30.1]
+[28.1]
 _name=Standard drawing
 X=0.0
 Y=0.0
@@ -774,39 +729,323 @@ Zoom%=200.00
 Clearness=0.0,100.0,1
 Rotation=0.00
 blend=0
-[31]
-start=61
-end=300
+[29]
+start=301
+end=4001
+layer=15
+group=3
+overlay=1
+camera=0
+[29.0]
+_name=Custom object
+track0=0.00
+track1=0.00
+track2=0.00
+track3=0.00
+check0=0
+type=0
+filter=0
+name=Score1@pjsekai-overlay-multi-en
+param=
+[29.1]
+_name=Standard drawing
+X=-442.5
+Y=-489.5
+Z=0.0
+Zoom%=112.00
+Clearness=0.0
+Rotation=0.00
+blend=0
+[30]
+start=301
+end=4001
 layer=16
+group=3
+overlay=1
+camera=0
+[30.0]
+_name=Custom object
+track0={ap}
+track1=0.00
+track2=0.00
+track3=0.00
+check0=0
+type=0
+filter=0
+name=Combo@pjsekai-overlay-en-multi
+param=
+[30.1]
+_name=Standard drawing
+X=505.0
+Y=-47.0
+Z=0.0
+Zoom%=112.00
+Clearness=0.0
+Rotation=0.00
+blend=0
+[31]
+start=301
+end=4001
+layer=17
+group=3
 overlay=1
 camera=0
 [31.0]
-_name=Image file
-file={assets}\{image:tournament}
+_name=Custom object
+track0=0.00
+track1=0.00
+track2=0.00
+track3=0.00
+check0=0
+type=0
+filter=0
+name=Judgement@pjsekai-overlay-en-multi
+param=
 [31.1]
 _name=Standard drawing
-X=-740.0
-Y=13.0
+X=0.0
+Y=95.0
 Z=0.0
-Zoom%=70.00
-Clearness={opacity}
+Zoom%=110.00
+Clearness=0.0
 Rotation=0.00
 blend=0
 [32]
-start=3621
+start=301
 end=4001
-layer=16
-group=4
+layer=18
+group=3
 overlay=1
 camera=0
 [32.0]
+_name=Custom object
+track0=0.00
+track1=0.00
+track2=0.00
+track3=0.00
+check0=0
+type=0
+filter=0
+name=Auto@pjsekai-overlay-en-multi
+param=
+[32.1]
+_name=Standard drawing
+X=562.0
+Y=478.0
+Z=0.0
+Zoom%=75.00
+Clearness=0.0
+Rotation=0.00
+blend=0
+[33]
+start=301
+end=4001
+layer=19
+group=3
+overlay=1
+camera=0
+[33.0]
+_name=Custom object
+track0=0.00
+track1=0.00
+track2=0.00
+track3=0.00
+check0=0
+type=0
+filter=0
+name=Root-Multi@pjsekai-overlay-multi-en
+param=file="{dist}\\data-multi.ped"
+[33.1]
+_name=Standard drawing
+X=0.0
+Y=0.0
+Z=0.0
+Zoom%=100.00
+Clearness=0.0
+Rotation=0.00
+blend=0
+[34]
+start=301
+end=4001
+layer=20
+group=3
+overlay=1
+camera=0
+[34.0]
+_name=Custom object
+track0=0.00
+track1=0.00
+track2=0.00
+track3=0.00
+check0=0
+type=0
+filter=0
+name=Player1@pjsekai-overlay-multi-en
+param=
+[34.1]
+_name=Standard drawing
+X=-535.0
+Y=-358.0
+Z=0.0
+Zoom%=34.00
+Clearness=0.0
+Rotation=0.00
+blend=0
+[35]
+start=301
+end=4001
+layer=21
+group=3
+overlay=1
+camera=0
+[35.0]
+_name=Custom object
+track0=0.00
+track1=0.00
+track2=0.00
+track3=0.00
+check0=0
+type=0
+filter=0
+name=Player2@pjsekai-overlay-multi-en
+param=
+[35.1]
+_name=Standard drawing
+X=-467.0
+Y=-358.0
+Z=0.0
+Zoom%=34.00
+Clearness=0.0
+Rotation=0.00
+blend=0
+[36]
+start=301
+end=4001
+layer=22
+group=3
+overlay=1
+camera=0
+[36.0]
+_name=Custom object
+track0=0.00
+track1=0.00
+track2=0.00
+track3=0.00
+check0=0
+type=0
+filter=0
+name=Player3@pjsekai-overlay-multi-en
+param=
+[36.1]
+_name=Standard drawing
+X=-401.5
+Y=-358.0
+Z=0.0
+Zoom%=34.00
+Clearness=0.0
+Rotation=0.00
+blend=0
+[37]
+start=301
+end=4001
+layer=23
+group=3
+overlay=1
+camera=0
+[37.0]
+_name=Custom object
+track0=0.00
+track1=0.00
+track2=0.00
+track3=0.00
+check0=0
+type=0
+filter=0
+name=Player4@pjsekai-overlay-multi-en
+param=
+[37.1]
+_name=Standard drawing
+X=-336.0
+Y=-358.0
+Z=0.0
+Zoom%=34.00
+Clearness=0.0
+Rotation=0.00
+blend=0
+[38]
+start=301
+end=4001
+layer=24
+group=3
+overlay=1
+camera=0
+[38.0]
+_name=Custom object
+track0=0.00
+track1=0.00
+track2=0.00
+track3=0.00
+check0=0
+type=0
+filter=0
+name=Player5@pjsekai-overlay-multi-en
+param=
+[38.1]
+_name=Standard drawing
+X=-269.5
+Y=-358.0
+Z=0.0
+Zoom%=34.00
+Clearness=0.0
+Rotation=0.00
+blend=0
+[39]
+start=601
+end=634
+layer=25
+group=5
+overlay=1
+camera=1
+[39.0]
+_name=Group control
+X=0.0
+Y=0.0
+Z=0.0
+Zoom%=100.00
+X-Spin=0.00
+Y-Spin=0.00
+Z-Spin=0.00
+Affected by the upper group control=0
+Apply to objects in the same group=0
+range=2
+[39.1]
+_name=Mask
+X=0.0,0.0,1
+Y=-500.0,-2100.0,1
+Rotation=0.00
+Size=3000
+rAspect=0.0
+Blur=100
+Invert mask=1
+Match with original size=0
+type=2
+name=
+mode=0
+[40]
+start=1501
+end=1643
+layer=25
+group=6
+overlay=1
+camera=0
+[40.0]
 _name=Video file
 Playback position=1
 vPlay=100.0
 Loop playback=0
 Import alpha channel=0
-file={assets}\ap_43.mp4
-[32.1]
+file={assets}\fever\fx_fever_v2.mp4
+[40.1]
 _name=Animation effect
 track0=0.00
 track1=0.00
@@ -817,7 +1056,50 @@ type=0
 filter=0
 name=unmult
 param=
-[32.2]
+[40.2]
+_name=Standard drawing
+X=0.0
+Y=0.0
+Z=0.0
+Zoom%=75.00
+Clearness=0.0
+Rotation=0.00
+blend=0
+[41]
+start=3621
+end=4001
+layer=25
+group=7
+overlay=1
+camera=0
+[41.0]
+_name=Graphic
+Size=100
+rAspect=0.0
+Line width=4000
+type=0
+color=000000
+name=
+[41.1]
+_name=Standard drawing
+X=0.0
+Y=-2.0
+Z=0.0
+Zoom%=200.00
+Clearness=50.0,50.0,1
+Rotation=0.00
+blend=0
+[42]
+start=601
+end=1500
+layer=26
+group=5
+overlay=1
+camera=0
+[42.0]
+_name=Image file
+file={assets}\fever\t1.png
+[42.1]
 _name=Standard drawing
 X=0.0
 Y=0.0
@@ -826,32 +1108,283 @@ Zoom%=100.00
 Clearness=0.0
 Rotation=0.00
 blend=0
-[33]
+[43]
+start=1501
+end=1676
+layer=26
+group=6
+overlay=1
+camera=0
+[43.0]
+_name=Video file
+Playback position=1
+vPlay=100.0
+Loop playback=0
+Import alpha channel=0
+file={assets}\fever\fx_super_fever_frame.mp4
+[43.1]
+_name=Animation effect
+track0=0.00
+track1=0.00
+track2=0.00
+track3=0.00
+check0=0
+type=0
+filter=0
+name=unmult
+param=
+[43.2]
+_name=Standard drawing
+X=0.0
+Y=0.0
+Z=0.0
+Zoom%=75.00
+Clearness=0.0
+Rotation=0.00
+blend=0
+[44]
 start=3621
 end=4001
-layer=17
-group=4
+layer=26
+group=7
+overlay=1
+camera=0
+[44.0]
+_name=Video file
+Playback position=1
+vPlay=100.0
+Loop playback=0
+Import alpha channel=0
+file={assets}\ap_43.mp4
+[44.1]
+_name=Animation effect
+track0=0.00
+track1=0.00
+track2=0.00
+track3=0.00
+check0=0
+type=0
+filter=0
+name=unmult
+param=
+[44.2]
+_name=Standard drawing
+X=0.0
+Y=0.0
+Z=0.0
+Zoom%=100.00
+Clearness=0.0
+Rotation=0.00
+blend=0
+[45]
+start=601
+end=1500
+layer=27
+group=5
+overlay=1
+camera=0
+[45.0]
+_name=Video file
+Playback position=1
+vPlay=100.0
+Loop playback=1
+Import alpha channel=0
+file={assets}\fever\fx_fever_gauge.mp4
+[45.1]
+_name=Animation effect
+track0=0.00
+track1=0.00
+track2=0.00
+track3=0.00
+check0=0
+type=0
+filter=0
+name=unmult
+param=
+[45.2]
+_name=Mask
+X=0.0
+Y=0.0
+Rotation=0.00
+Size=100
+rAspect=0.0
+Blur=0
+Invert mask=0
+Match with original size=0
+type=0
+name=
+mode=0
+[45.3]
+_name=Standard drawing
+X=0.0
+Y=150.0
+Z=0.0
+Zoom%=100.00
+Clearness=0.0
+Rotation=0.00
+blend=0
+[46]
+start=1501
+end=1634
+layer=27
+group=6
+overlay=1
+camera=0
+[46.0]
+_name=Video file
+Playback position=1
+vPlay=100.0
+Loop playback=0
+Import alpha channel=0
+file={assets}\fever\fx_super_fever_v2.mp4
+[46.1]
+_name=Animation effect
+track0=0.00
+track1=0.00
+track2=0.00
+track3=0.00
+check0=0
+type=0
+filter=0
+name=unmult
+param=
+[46.2]
+_name=Standard drawing
+X=0.0
+Y=0.0
+Z=0.0
+Zoom%=75.00
+Clearness=0.0
+Rotation=0.00
+blend=0
+[47]
+start=3621
+end=4001
+layer=27
+group=7
 overlay=1
 audio=1
-[33.0]
+[47.0]
 _name=Audio file
 Playback position=0.00
 vPlay=100.0
 Loop playback=0
 Sync with video files=1
 file={assets}\ap_43.mp4
-[33.1]
+[47.1]
 _name=Standard playback
 Volume=300.0
 Left-Right=0.0
-[34]
+[48]
+start=601
+end=739
+layer=28
+group=8
+overlay=1
+camera=0
+[48.0]
+_name=Video file
+Playback position=1
+vPlay=100.0
+Loop playback=0
+Import alpha channel=0
+file={assets}\fever\fx_fever_chance_v2.mp4
+[48.1]
+_name=Animation effect
+track0=0.00
+track1=0.00
+track2=0.00
+track3=0.00
+check0=0
+type=0
+filter=0
+name=unmult
+param=
+[48.2]
+_name=Standard drawing
+X=0.0
+Y=0.0
+Z=0.0
+Zoom%=75.00
+Clearness=0.0
+Rotation=0.00
+blend=0
+[49]
+start=1203
+end=1331
+layer=28
+group=9
+overlay=1
+camera=0
+[49.0]
+_name=Video file
+Playback position=1
+vPlay=100.0
+Loop playback=1
+Import alpha channel=0
+file={assets}\fever\fx_fever_gauge_flash_v2.mp4
+[49.1]
+_name=Animation effect
+track0=0.00
+track1=0.00
+track2=0.00
+track3=0.00
+check0=0
+type=0
+filter=0
+name=unmult
+param=
+[49.2]
+_name=Standard drawing
+X=0.0
+Y=0.0
+Z=0.0
+Zoom%=100.00
+Clearness=0.0
+Rotation=0.00
+blend=0
+[50]
+start=1501
+end=2101
+layer=28
+group=10
+overlay=1
+camera=0
+[50.0]
+_name=Video file
+Playback position=1
+vPlay=100.0
+Loop playback=1
+Import alpha channel=0
+file={assets}\fever\fx_fever_frame.mp4
+[50.1]
+_name=Animation effect
+track0=0.00
+track1=0.00
+track2=0.00
+track3=0.00
+check0=0
+type=0
+filter=0
+name=unmult
+param=
+[50.2]
+_name=Standard drawing
+X=0.0
+Y=0.0
+Z=0.0
+Zoom%=75.00
+Clearness=0.0
+Rotation=0.00
+blend=0
+[51]
 start=3892
 end=3936
-layer=18
-group=4
+layer=28
+group=7
 overlay=1
 camera=1
-[34.0]
+[51.0]
 _name=Group control
 X=0.0
 Y=0.0
@@ -863,17 +1396,37 @@ Z-Spin=0.00
 Affected by the upper group control=1
 Apply to objects in the same group=0
 range=1
-[34.1]
+[51.1]
 _name=Clearness
 Clearness=100.0,0.0,1
-[35]
+[52]
+start=1501
+end=2101
+layer=29
+group=10
+overlay=1
+clipping=1
+camera=0
+[52.0]
+_name=Image file
+file={assets}\rainbow.png
+[52.1]
+_name=Standard drawing
+X=0.0
+Y=0.0
+Z=0.0
+Zoom%=850.00
+Clearness=0.0
+Rotation=720.00,-720.00,1
+blend=0
+[53]
 start=3892
 end=4001
-layer=19
-group=4
+layer=29
+group=7
 overlay=1
 camera=0
-[35.0]
+[53.0]
 _name=Graphic
 Size=100
 rAspect=0.0
@@ -881,12 +1434,46 @@ Line width=4000
 type=0
 color=000000
 name=
-[35.1]
+[53.1]
 _name=Standard drawing
 X=0.0
 Y=0.0
 Z=0.0
 Zoom%=200.00
+Clearness=0.0
+Rotation=0.00
+blend=0
+[54]
+start=1501
+end=2101
+layer=30
+group=10
+overlay=1
+camera=0
+[54.0]
+_name=Video file
+Playback position=1
+vPlay=100.0
+Loop playback=1
+Import alpha channel=0
+file={assets}\fever\fx_fever_frame_pt.mp4
+[54.1]
+_name=Animation effect
+track0=0.00
+track1=0.00
+track2=0.00
+track3=0.00
+check0=0
+type=0
+filter=0
+name=unmult
+param=
+[54.2]
+_name=Standard drawing
+X=0.0
+Y=0.0
+Z=0.0
+Zoom%=75.00
 Clearness=0.0
 Rotation=0.00
 blend=0

@@ -31,11 +31,11 @@ jobs:
       - name: Create package directory
         run: mkdir -p release
       - name: Build binary
-        run: go build -o release/pjsekai-overlay-APPEND.exe .
+        run: go build -o release/pjsekai-overlay-MULTI.exe .
         env:
           GOOS: windows
           GOARCH: amd64
       - name: Copy assets
         run: cp -r assets release/assets
       - name: Build zip
-        run: cd release && zip -r ../pjsekai-overlay-APPEND.zip .
+        run: cd release && zip -r ../pjsekai-overlay-MULTI.zip .

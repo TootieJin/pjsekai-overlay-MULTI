@@ -20,12 +20,6 @@ var sekaiObj []byte
 //go:embed sekai-en.obj
 var sekaiObjEn []byte
 
-//go:embed sekai-v1.obj
-var sekaiObjv1 []byte
-
-//go:embed sekai-v1-en.obj
-var sekaiObjEnv1 []byte
-
 func TryInstallObject() bool {
 	processes, _ := wapi.ProcessList()
 	var aviutlProcess *so.Process
@@ -50,7 +44,7 @@ func TryInstallObject() bool {
 
 	os.MkdirAll(filepath.Join(exeditRoot, "script"), 0755)
 
-	var sekaiObjPath = filepath.Join(exeditRoot, "script", "@pjsekai-overlay.obj")
+	var sekaiObjPath = filepath.Join(exeditRoot, "script", "@pjsekai-overlay-multi.obj")
 	if _, err := os.Stat(sekaiObjPath); err == nil {
 		var sekaiObjFile, _ = os.OpenFile(sekaiObjPath, os.O_RDONLY, 0755)
 		defer sekaiObjFile.Close()
@@ -60,33 +54,13 @@ func TryInstallObject() bool {
 			return false
 		}
 	}
-	var sekaiObjPathEn = filepath.Join(exeditRoot, "script", "@pjsekai-overlay-en.obj")
+	var sekaiObjPathEn = filepath.Join(exeditRoot, "script", "@pjsekai-overlay-multi-en.obj")
 	if _, err := os.Stat(sekaiObjPathEn); err == nil {
 		var sekaiObjFileEn, _ = os.OpenFile(sekaiObjPathEn, os.O_RDONLY, 0755)
 		defer sekaiObjFileEn.Close()
 		var sekaiObjDecoderEn = japanese.ShiftJIS.NewDecoder()
 		var existingSekaiObjEn, _ = io.ReadAll(transform.NewReader(sekaiObjFileEn, sekaiObjDecoderEn))
 		if strings.Contains(string(existingSekaiObjEn), "--version: "+Version) && Version != "0.0.0" {
-			return false
-		}
-	}
-	var sekaiObjPathv1 = filepath.Join(exeditRoot, "script", "@pjsekai-overlay-v1.obj")
-	if _, err := os.Stat(sekaiObjPathv1); err == nil {
-		var sekaiObjFilev1, _ = os.OpenFile(sekaiObjPathv1, os.O_RDONLY, 0755)
-		defer sekaiObjFilev1.Close()
-		var sekaiObjDecoderv1 = japanese.ShiftJIS.NewDecoder()
-		var existingSekaiObjv1, _ = io.ReadAll(transform.NewReader(sekaiObjFilev1, sekaiObjDecoderv1))
-		if strings.Contains(string(existingSekaiObjv1), "--version: "+Version) && Version != "0.0.0" {
-			return false
-		}
-	}
-	var sekaiObjPathEnv1 = filepath.Join(exeditRoot, "script", "@pjsekai-overlay-en-v1.obj")
-	if _, err := os.Stat(sekaiObjPathEnv1); err == nil {
-		var sekaiObjFileEnv1, _ = os.OpenFile(sekaiObjPathEnv1, os.O_RDONLY, 0755)
-		defer sekaiObjFileEnv1.Close()
-		var sekaiObjDecoderEnv1 = japanese.ShiftJIS.NewDecoder()
-		var existingSekaiObjEnv1, _ = io.ReadAll(transform.NewReader(sekaiObjFileEnv1, sekaiObjDecoderEnv1))
-		if strings.Contains(string(existingSekaiObjEnv1), "--version: "+Version) && Version != "0.0.0" {
 			return false
 		}
 	}
@@ -107,22 +81,8 @@ func TryInstallObject() bool {
 	}
 	defer sekaiObjFileEn.Close()
 
-	sekaiObjFilev1, err := os.Create(sekaiObjPathv1)
-	if err != nil {
-		return false
-	}
-	defer sekaiObjFilev1.Close()
-
-	sekaiObjFileEnv1, err := os.Create(sekaiObjPathEnv1)
-	if err != nil {
-		return false
-	}
-	defer sekaiObjFileEnv1.Close()
-
 	var sekaiObjWriter = transform.NewWriter(sekaiObjFile, japanese.ShiftJIS.NewEncoder())
 	var sekaiObjWriterEn = transform.NewWriter(sekaiObjFileEn, japanese.ShiftJIS.NewEncoder())
-	var sekaiObjWriterv1 = transform.NewWriter(sekaiObjFilev1, japanese.ShiftJIS.NewEncoder())
-	var sekaiObjWriterEnv1 = transform.NewWriter(sekaiObjFileEnv1, japanese.ShiftJIS.NewEncoder())
 
 	strings.NewReader(strings.NewReplacer(
 		"\r\n", "\r\n",
@@ -137,19 +97,5 @@ func TryInstallObject() bool {
 		"\n", "\r\n",
 		"{version}", Version,
 	).Replace(string(sekaiObjEn))).WriteTo(sekaiObjWriterEn)
-
-	strings.NewReader(strings.NewReplacer(
-		"\r\n", "\r\n",
-		"\r", "\r\n",
-		"\n", "\r\n",
-		"{version}", Version,
-	).Replace(string(sekaiObjv1))).WriteTo(sekaiObjWriterv1)
-
-	strings.NewReader(strings.NewReplacer(
-		"\r\n", "\r\n",
-		"\r", "\r\n",
-		"\n", "\r\n",
-		"{version}", Version,
-	).Replace(string(sekaiObjEnv1))).WriteTo(sekaiObjWriterEnv1)
 	return true
 }
