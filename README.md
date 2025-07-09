@@ -1,4 +1,4 @@
-[**日本語セクション**](#pjsekai-overlay-append--フォークプロセカ風動画作成補助ツール-日本語)
+[**日本語セクション**](#pjsekai-overlay-multi--フォークプロセカ風動画作成補助ツール-日本語)
 
 [![Releases](https://img.shields.io/github/downloads/TootieJin/pjsekai-overlay-MULTI/total.svg)](https://gitHub.com/TootieJin/pjsekai-overlay-MULTI/releases/)
 # pjsekai-overlay-MULTI / Forked PJSekai-style video creation tool (English)
@@ -11,7 +11,7 @@ Fork of [pjsekai-overlay](https://github.com/sevenc-nanashi/pjsekai-overlay) by 
 > **For English users:** This tool is primary only for people with technical know-how and basic knowledge of AviUtl.\
 > Only use this tool if you can figure it out yourself. **DO NOT open issues, DM me, or request help in Sonolus / Chart Cyanvas Discord servers about this**.
 
-This is a multilive version of my [pjsekai-overlay fork](https://gitHub.com/TootieJin/pjsekai-overlay-APPEND) for replicating a Project Sekai multiplayer screen. As usual, this repo has additional features originally not in the main repo, including:
+This is a multilive version of my [pjsekai-overlay fork](https://github.com/TootieJin/pjsekai-overlay-APPEND) for replicating a Project Sekai multiplayer screen. As usual, this repo has additional features originally not in the main repo, including:
   - [Extra assets](./assets/extra%20assets) (thank you [ReiyuN](https://discordid.netlify.app/?id=383636820409188374), [Gaven](https://github.com/gaven1880) and [YumYummity](https://github.com/YumYummity) for the contribution!)
   - Added/adjusted elements to look identical to the official photography
   - Quickly make 1080p videos
@@ -104,7 +104,7 @@ PJSekai-style video creation tool:
 [TootieJin](https://tootiejin.com)氏による[pjsekai-overlay](https://github.com/sevenc-nanashi/pjsekai-overlay)用フォーク。
 pjsekai-overlay(-MULTI) は、プロセカの創作譜面をプロセカ風の動画にするためのオープンソースのツールです。
 
-これは私の[pjsekai-overlayのフォーク版](https://gitHub.com/TootieJin/pjsekai-overlay-APPEND)のマルチライブ版で、プロセカのマルチプレイヤー画面を再現します。いつものように、元々メインレポにはない以下のような追加機能があります：
+これは私の[pjsekai-overlayのフォーク版](https://github.com/TootieJin/pjsekai-overlay-APPEND)のマルチライブ版で、プロセカのマルチプレイヤー画面を再現します。いつものように、元々メインレポにはない以下のような追加機能があります：
   - [追加アセット](./assets/extra%20assets/) ([ReiyuN](https://discordid.netlify.app/?id=383636820409188374)さん、[Gaven](https://github.com/gaven1880)さんと[YumYummity](https://github.com/YumYummity)さん、ご寄稿ありがとうございました。)
   - 本家撮影と同じように見えるように要素を追加/調整
   - 1080p動画を素早く作成
