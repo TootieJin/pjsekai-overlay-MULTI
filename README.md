@@ -4,6 +4,9 @@
 # pjsekai-overlay-MULTI / Forked PJSekai-style video creation tool (English)
 Fork of [pjsekai-overlay](https://github.com/sevenc-nanashi/pjsekai-overlay) by [TootieJin](https://tootiejin.com), an open-sourced tool to make Project Sekai Fanmade (custom chart) videos.
 
+- **Example image**
+![image](https://github.com/user-attachments/assets/f3daac19-0819-445a-8032-8725dbd7f2f7)
+
 > [!CAUTION]
 > **For English users:** This tool is primary only for people with technical know-how and basic knowledge of AviUtl.\
 > Only use this tool if you can figure it out yourself. **DO NOT open issues, DM me, or request help in Sonolus / Chart Cyanvas Discord servers about this**.
