@@ -743,9 +743,6 @@ if PED_DATA and PED_DATA.version_status == "ok" then
 
   obj.setoption("drawtarget", "tempbuffer", 99999, 95)
   obj.setoption("blend", 0)
-  obj.load("image", PED_DATA.path.."/score/bg.png")
-  obj.draw(0, 0, 0, 0.9758, 0)
-
   -- -- 79, 35 / 532, 24
   obj.copybuffer("obj", "cache:score_bar")
   obj.draw(33.25, -3, 0, 0.671)
@@ -771,9 +768,6 @@ if PED_DATA and PED_DATA.version_status == "ok" then
 
   obj.setoption("drawtarget", "tempbuffer", 99999, 95)
   obj.setoption("blend", 0)
-  obj.load("image", PED_DATA.path.."/score/bg.png")
-  obj.draw(0, 0, 0, 0.9758, 0)
-
   -- -- 79, 35 / 532, 24
   obj.copybuffer("obj", "cache:score_bar")
   obj.draw(33.25, -3, 0, 0.671)
@@ -799,9 +793,6 @@ if PED_DATA and PED_DATA.version_status == "ok" then
 
   obj.setoption("drawtarget", "tempbuffer", 99999, 95)
   obj.setoption("blend", 0)
-  obj.load("image", PED_DATA.path.."/score/bg.png")
-  obj.draw(0, 0, 0, 0.9758, 0)
-
   -- -- 79, 35 / 532, 24
   obj.copybuffer("obj", "cache:score_bar")
   obj.draw(33.25, -3, 0, 0.671)
@@ -827,8 +818,6 @@ if PED_DATA and PED_DATA.version_status == "ok" then
 
   obj.setoption("drawtarget", "tempbuffer", 99999, 95)
   obj.setoption("blend", 0)
-  obj.load("image", PED_DATA.path.."/score/bg.png")
-  obj.draw(0, 0, 0, 0.9758, 0)
 
   -- -- 79, 35 / 532, 24
   obj.copybuffer("obj", "cache:score_bar")

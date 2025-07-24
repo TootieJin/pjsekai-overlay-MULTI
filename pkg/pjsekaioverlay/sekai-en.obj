@@ -119,8 +119,8 @@ if obj.check0 and PED_DATA.version_status == "ok" then
   obj.setfont("FOT-ロダンNTLG Pro EB", 100)
   obj.load(
       "text",
-      "<s100,FOT-ロダンNTLG Pro EB>※TootieJinの「pjsekai-overlay-APPEND」を使用\n"..
-      "※Made with「pjsekai-overlay-APPEND」by TootieJin\n"..
+      "<s100,FOT-ロダンNTLG Pro EB>※TootieJinの「pjsekai-overlay-MULTI」を使用\n"..
+      "※Made with「pjsekai-overlay-MULTI」by TootieJin\n"..
       "............................................................................<s>"
   )
   obj.draw(-(obj.screen_w - ((1920 - obj.screen_w) / (16/9))) / 3.06, (obj.screen_h - ((1080 - obj.screen_h) / (16/9))) / 2.1, 0, 0.24, 0.5)
@@ -743,9 +743,6 @@ if PED_DATA and PED_DATA.version_status == "ok" then
 
   obj.setoption("drawtarget", "tempbuffer", 99999, 95)
   obj.setoption("blend", 0)
-  obj.load("image", PED_DATA.path.."/score/bg.png")
-  obj.draw(0, 0, 0, 0.9758, 0)
-
   -- -- 79, 35 / 532, 24
   obj.copybuffer("obj", "cache:score_bar")
   obj.draw(33.25, -3, 0, 0.671)
@@ -771,9 +768,6 @@ if PED_DATA and PED_DATA.version_status == "ok" then
 
   obj.setoption("drawtarget", "tempbuffer", 99999, 95)
   obj.setoption("blend", 0)
-  obj.load("image", PED_DATA.path.."/score/bg.png")
-  obj.draw(0, 0, 0, 0.9758, 0)
-
   -- -- 79, 35 / 532, 24
   obj.copybuffer("obj", "cache:score_bar")
   obj.draw(33.25, -3, 0, 0.671)
@@ -799,9 +793,6 @@ if PED_DATA and PED_DATA.version_status == "ok" then
 
   obj.setoption("drawtarget", "tempbuffer", 99999, 95)
   obj.setoption("blend", 0)
-  obj.load("image", PED_DATA.path.."/score/bg.png")
-  obj.draw(0, 0, 0, 0.9758, 0)
-
   -- -- 79, 35 / 532, 24
   obj.copybuffer("obj", "cache:score_bar")
   obj.draw(33.25, -3, 0, 0.671)
@@ -827,9 +818,6 @@ if PED_DATA and PED_DATA.version_status == "ok" then
 
   obj.setoption("drawtarget", "tempbuffer", 99999, 95)
   obj.setoption("blend", 0)
-  obj.load("image", PED_DATA.path.."/score/bg.png")
-  obj.draw(0, 0, 0, 0.9758, 0)
-
   -- -- 79, 35 / 532, 24
   obj.copybuffer("obj", "cache:score_bar")
   obj.draw(33.25, -3, 0, 0.671)
